@@ -12,7 +12,6 @@ import { Row, Col, Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 
 // Import menuDropdown
 import LanguageDropdown from "../CommonForBoth/TopbarDropdown/LanguageDropdown";
-import NotificationDropdown from "../CommonForBoth/TopbarDropdown/NotificationDropdown";
 import ProfileMenu from "../CommonForBoth/TopbarDropdown/ProfileMenu";
 
 import megamenuImg from "../../assets/images/megamenu-img.png";
@@ -368,8 +367,6 @@ const Header = (props) => {
                 <i className="bx bx-fullscreen" />
               </button>
             </div>
-
-            <NotificationDropdown />
 
             <ProfileMenu />
 

@@ -9,3 +9,5 @@ export * from "./home/shipping/actions";
 export * from "./home/offers/actions";
 export * from "./home/orders/actions";
 export * from "./home/dashboard/actions";
+export * from './home/faq/actions'
+export * from './home/message/actions'

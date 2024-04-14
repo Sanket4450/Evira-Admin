@@ -98,7 +98,6 @@ export const setProductReviewsRes = Data => {
     }
 }
 
-
 export const setProductInfoByID = Data => {
     return {
         type: SET_PRODUCT_INFO_BY_ID,

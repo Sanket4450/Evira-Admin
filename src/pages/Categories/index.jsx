@@ -41,7 +41,7 @@ import { categorySchema } from '../../schemas'
 import Spinners from '../../components/Common/Spinner'
 import CustomSpinner from '../../components/Common/CustomSpinner'
 
-import WarningGif from '../../assets/images/gif/icons8-warning.gif'
+import DummyImage from '../../assets/images/dummy-image.jpeg'
 import { toast } from 'react-toastify'
 import Paginations from '../../components/Common/Pagination'
 import DeleteModal from '../../components/Common/Model/DeleteModal'
@@ -105,8 +105,6 @@ const Categories = (props) => {
         formattedSize: formatBytes(file.size),
       })
 
-      setSelectedFile(file)
-
       const filePreview = await fetch(file.preview)
       const blob = await filePreview.blob()
 
@@ -121,6 +119,7 @@ const Categories = (props) => {
 
       const icon = await uploadFile(data)
 
+      setSelectedFile(file)
       seticonUrl(icon.url)
     } catch (error) {
       setSelectedFile({})
@@ -146,7 +145,7 @@ const Categories = (props) => {
         return rowData.icon ? (
           <img src={rowData.icon} alt="" width={'50px'} />
         ) : (
-          <img src={WarningGif} alt="" width={'50px'} />
+          <img src={DummyImage} alt="" width={'50px'} />
         )
       },
     },
@@ -234,7 +233,7 @@ const Categories = (props) => {
         delete payload.description
       }
 
-      dispatch(updateCategories(values))
+      dispatch(updateCategories(payload))
     },
   })
 
@@ -427,14 +426,14 @@ const Categories = (props) => {
           <ModalBody>
             <Card>
               <CardBody>
-                <CardTitle className="mb-3">Category Image</CardTitle>
+                <CardTitle className="mb-3">Category Icon</CardTitle>
                 <Form>
                   <Dropzone
                     onDrop={(acceptedFiles) => {
                       if (acceptedFiles.length === 1) {
                         handleAcceptedFiles(acceptedFiles[0])
                       } else {
-                        alert('Only one image can be uploaded.')
+                        alert('Only one icon image can be uploaded.')
                       }
                     }}
                   >

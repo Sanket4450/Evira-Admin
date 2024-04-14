@@ -1,7 +1,7 @@
 import { postApi, putApi } from '../common'
 import * as constants from '../constants'
-import { refreshToken } from '../../helpers/auth'
-import { headers } from '../../helpers/auth'
+import { getRefreshToken } from '../../helpers/auth'
+import { getHeaders } from '../../helpers/auth'
 
 export const loginAdminApi = async (data) => {
   const response = await postApi(constants.LOGIN, data)
@@ -24,13 +24,17 @@ export const resetPasswordApi = async (data) => {
 }
 
 export const refreshTokensApi = async () => {
-  const data = { refreshToken }
+  const data = { token: getRefreshToken() || '' }
 
   const response = await postApi(constants.REFRESH_TOKENS, data)
   return response.results
 }
 
 export const logoutAdminApi = async () => {
-  const response = await postApi(constants.LOGOUT, {}, { headers })
+  const response = await postApi(
+    constants.LOGOUT,
+    {},
+    { headers: getHeaders() }
+  )
   return response.results
 }

@@ -32,7 +32,6 @@ function* getOrderInfo({ payload }) {
   )
   try {
     const results = yield call(getOrderApi, payload)
-    console.log('results', results)
     yield put(
       getOrdersInfoRes({
         loading: false,
@@ -52,7 +51,6 @@ function* getOrderInfo({ payload }) {
 }
 
 function* updateOrders({ payload }) {
-  console.log('payload', payload)
   yield put(
     updateOrdersMessage({
       loading: true,

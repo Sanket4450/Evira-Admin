@@ -1,43 +1,38 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
+import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import {
   Dropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-} from "reactstrap";
+} from 'reactstrap'
 
 //i18n
-import { withTranslation } from "react-i18next";
+import { withTranslation } from 'react-i18next'
 
 // Redux
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import withRouter from "../../Common/withRouter";
+import { useSelector, useDispatch, connect } from 'react-redux'
+import { createSelector } from 'reselect'
+import { Link } from 'react-router-dom'
 
-// users
-import user1 from "../../../assets/images/users/avatar-1.jpg";
+import withRouter from '../../Common/withRouter'
+import { getUserInfo } from '../../../store/actions'
+import DummyImage from '../../../assets/images/dummy-image.jpeg'
 
 const ProfileMenu = (props) => {
-  // Declare a new state variable, which we'll call "menu"
-  const [menu, setMenu] = useState(false);
+  const dispatch = useDispatch()
+  const [menu, setMenu] = useState(false)
 
-  const [username, setusername] = useState("Admin");
+  const selectProfileState = (state) => state.Profile
+  const ProfileProperties = createSelector(selectProfileState, (profile) => ({
+    user_data: profile.user_data,
+  }))
+
+  const { user_data } = useSelector(ProfileProperties)
 
   useEffect(() => {
-    if (localStorage.getItem("tokens")) {
-      if (import.meta.env.VITE_APP_DEFAULTAUTH === "firebase") {
-        const obj = JSON.parse(localStorage.getItem("tokens"));
-        setusername(obj.email);
-      } else if (
-        import.meta.env.VITE_APP_DEFAULTAUTH === "fake" ||
-        import.meta.env.VITE_APP_DEFAULTAUTH === "jwt"
-      ) {
-        const obj = JSON.parse(localStorage.getItem("tokens"));
-        setusername(obj.username);
-      }
-    }
-  }, [props.success]);
+    dispatch(getUserInfo())
+  }, [dispatch])
 
   return (
     <React.Fragment>
@@ -53,47 +48,45 @@ const ProfileMenu = (props) => {
         >
           <img
             className="rounded-circle header-profile-user"
-            src={user1}
+            src={user_data?.profileImage || DummyImage}
             alt="Header Avatar"
           />
-          <span className="d-none d-xl-inline-block ms-2 me-1">{username}</span>
+          <span className="d-none d-xl-inline-block ms-2 me-1">
+            {user_data?.fullName}
+          </span>
           <i className="mdi mdi-chevron-down d-none d-xl-inline-block" />
         </DropdownToggle>
         <DropdownMenu className="dropdown-menu-end">
           <DropdownItem tag="a" href="/profile">
-            {" "}
+            {' '}
             <i className="bx bx-user font-size-16 align-middle me-1" />
-            {props.t("Profile")}{" "}
+            {props.t('Profile')}{' '}
           </DropdownItem>
           <DropdownItem tag="a" href="/crypto-wallet">
             <i className="bx bx-wallet font-size-16 align-middle me-1" />
-            {props.t("My Wallet")}
+            {props.t('My Wallet')}
           </DropdownItem>
-          {/* <DropdownItem tag="a" href="auth-lock-screen">
-            <i className="bx bx-lock-open font-size-16 align-middle me-1" />
-            {props.t("Lock screen")}
-          </DropdownItem> */}
           <div className="dropdown-divider" />
           <Link to="/logout" className="dropdown-item">
             <i className="bx bx-power-off font-size-16 align-middle me-1 text-danger" />
-            <span>{props.t("Logout")}</span>
+            <span>{props.t('Logout')}</span>
           </Link>
         </DropdownMenu>
       </Dropdown>
     </React.Fragment>
-  );
-};
+  )
+}
 
 ProfileMenu.propTypes = {
   success: PropTypes.any,
   t: PropTypes.any,
-};
+}
 
 const mapStatetoProps = (state) => {
-  const { error, success } = state.Profile;
-  return { error, success };
-};
+  const { error, success } = state.Profile
+  return { error, success }
+}
 
 export default withRouter(
   connect(mapStatetoProps, {})(withTranslation()(ProfileMenu))
-);
+)

@@ -8,6 +8,8 @@ import translationRS from "./locales/rs/translation.json"
 import translationSP from "./locales/sp/translation.json"
 import translationENG from "./locales/eng/translation.json"
 
+import { getItem, setItem } from './helpers/localStorage'
+
 // the translations
 const resources = {
   gr: {
@@ -27,9 +29,9 @@ const resources = {
   },
 }
 
-const language = localStorage.getItem("I18N_LANGUAGE")
+const language = getItem("I18N_LANGUAGE")
 if (!language) {
-  localStorage.setItem("I18N_LANGUAGE", "en")
+  setItem("I18N_LANGUAGE", "en")
 }
 
 i18n
@@ -37,7 +39,7 @@ i18n
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
     resources,
-    lng: localStorage.getItem("I18N_LANGUAGE") || "en",
+    lng: getItem("I18N_LANGUAGE") || "en",
     fallbackLng: "en", // use en if detected lng is not available
 
     keySeparator: false, // we do not use keys in form messages.welcome

@@ -1,10 +1,10 @@
-import axios from 'axios'
 import { call, put, takeEvery } from 'redux-saga/effects'
 
 // Login Redux States
 import { LOGIN_USER, LOGOUT_USER } from './actionTypes'
 import { apiError, loginSuccess } from './actions'
 import { loginAdminApi, logoutAdminApi } from '../../../api'
+import { setItem, removeItem } from '../../../helpers/localStorage'
 
 function* loginUser({ payload: { user, history } }) {
   try {
@@ -12,15 +12,14 @@ function* loginUser({ payload: { user, history } }) {
       email: user.email,
       password: user.password,
     })
-    const accessToken = results?.tokens?.accessToken
 
-    if (accessToken) {
-      axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`
+    if (!results?.tokens) {
+      window.location.reload()
+    } else {
+      setItem('tokens', JSON.stringify(results?.tokens))
+      yield put(loginSuccess(results))
+      history('/dashboard')
     }
-    localStorage.setItem('tokens', JSON.stringify(results?.tokens))
-
-    yield put(loginSuccess(results))
-    history('/dashboard')
   } catch (error) {
     yield put(apiError(error))
   }
@@ -28,9 +27,9 @@ function* loginUser({ payload: { user, history } }) {
 
 function* logoutUser({ payload: { history } }) {
   try {
-    localStorage.removeItem('tokens')
-    history('/login')
     yield call(logoutAdminApi)
+    removeItem('tokens')
+    history('/login')
   } catch (error) {
     yield put(apiError(error))
   }

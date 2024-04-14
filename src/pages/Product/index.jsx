@@ -35,10 +35,8 @@ import { useFormik } from 'formik'
 import { productSchema, promoCodeFullSchema } from '../../schemas'
 import CustomSpinner from '../../components/Common/CustomSpinner'
 
-import WarningGif from '../../assets/images/gif/icons8-warning.gif'
 import { toast } from 'react-toastify'
 
-import { Rating } from 'react-simple-star-rating'
 import DeleteModal from '../../components/Common/Model/DeleteModal'
 
 import ProductsFilters from '../../components/Products/ProductsList/Filter/productFilter'

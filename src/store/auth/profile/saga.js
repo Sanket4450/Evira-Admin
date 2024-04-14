@@ -1,22 +1,71 @@
-import { takeEvery, fork, put, all, call } from "redux-saga/effects"
+import { takeEvery, fork, put, all, call } from 'redux-saga/effects'
 
-// Login Redux States
-import { EDIT_PROFILE } from "./actionTypes"
-import { profileSuccess, profileError } from "./actions"
-import { updateProfileApi } from '../../../api'
+import { GET_USER_INFO, EDIT_PROFILE } from './actionTypes'
+import {
+  setUserInfo,
+  setUserRes,
+  editProfileMessage,
+} from './actions'
+import { getProfileApi, updateProfileApi } from '../../../api'
 
-function* editProfile({ payload: { user } }) {
+function* getUserByID({ payload }) {
+  yield put(
+    setUserRes({
+      loading: true,
+      success: null,
+      error: null,
+    })
+  )
   try {
-    const results = yield call(
-        updateProfileApi,
-        user
-      )
-      yield put(profileSuccess(results))
+    const results = yield call(getProfileApi, payload)
+    yield put(setUserInfo(results?.user))
+    yield put(
+      setUserRes({
+        loading: false,
+        success: results?.user,
+        error: null,
+      })
+    )
   } catch (error) {
-    yield put(profileError(error))
+    yield put(
+      setUserRes({
+        loading: false,
+        success: null,
+        error: error.message,
+      })
+    )
+  }
+}
+
+function* editProfile({ payload }) {
+  yield put(
+    editProfileMessage({
+      loading: true,
+      success: null,
+      error: null,
+    })
+  )
+  try {
+    const results = yield call(updateProfileApi, payload)
+    yield put(
+      editProfileMessage({
+        loading: false,
+        success: results,
+        error: null,
+      })
+    )
+  } catch (error) {
+    yield put(
+      editProfileMessage({
+        loading: false,
+        success: null,
+        error: error.message,
+      })
+    )
   }
 }
 export function* watchProfile() {
+  yield takeEvery(GET_USER_INFO, getUserByID)
   yield takeEvery(EDIT_PROFILE, editProfile)
 }
 

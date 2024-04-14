@@ -1,4 +1,5 @@
-export const EDIT_PROFILE = "EDIT_PROFILE"
-export const PROFILE_SUCCESS = "PROFILE_SUCCESS"
-export const PROFILE_ERROR = "PROFILE_ERROR"
-export const RESET_PROFILE_FLAG = "RESET_PROFILE_FLAG";
+export const GET_USER_INFO = 'GET_USER_INFO'
+export const SET_USER_INFO = 'SET_USER_INFO'
+export const SET_USER_RES = 'SET_USER_RES'
+export const EDIT_PROFILE = 'EDIT_PROFILE'
+export const EDIT_PROFILE_MESSAGE = 'edit_profile_message'

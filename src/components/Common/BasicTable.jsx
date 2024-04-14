@@ -1,6 +1,6 @@
-import { Card, CardBody, CardSubtitle, CardTitle, Col, Row, Table } from "reactstrap"
+import { Card, CardBody, Col, Row, Table } from "reactstrap"
 
-const BasicTable = ({ column, data,theadClass }) => {
+const BasicTable = ({ column, data, theadClass }) => {
     return (
       <>
         <Row>

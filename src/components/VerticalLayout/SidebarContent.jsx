@@ -144,32 +144,32 @@ const SidebarContent = (props) => {
       <SimpleBar className="h-100" ref={ref}>
         <div id="sidebar-menu">
           <ul className="metismenu list-unstyled" id="side-menu">
-            <li className="menu-title">{props.t("Menu")} </li>
+            <li className="menu-title">{props.t('Menu')} </li>
             <li>
               <Link to="/dashboard" className="">
                 <i className="bx bx-home-circle"></i>
-                <span>{props.t("Dashboards")}</span>
+                <span>{props.t('Dashboards')}</span>
               </Link>
             </li>
 
-            <li className="menu-title">{props.t("Apps")}</li>
+            <li className="menu-title">{props.t('Apps')}</li>
 
             <li>
               <Link to="/categories" className=" ">
                 <i className="bx bxl-magento"></i>
-                <span>{props.t("Categories")}</span>
+                <span>{props.t('Categories')}</span>
               </Link>
             </li>
             <li>
               <Link to="/user" className=" ">
-              <i className="bx bxs-user-detail"></i>
-                <span>{props.t("User")}</span>
+                <i className="bx bxs-user-detail"></i>
+                <span>{props.t('User')}</span>
               </Link>
             </li>
             <li>
               <Link to="/promo-code" className=" ">
                 <i className="bx bx-calendar"></i>
-                <span>{props.t("Promotions")}</span>
+                <span>{props.t('Promotions')}</span>
               </Link>
             </li>
 
@@ -177,39 +177,47 @@ const SidebarContent = (props) => {
             <li>
               <Link to="/#" className="has-arrow">
                 <i className="bx bx-store"></i>
-                <span>{props.t("Products")}</span>
+                <span>{props.t('Products')}</span>
               </Link>
               <ul className="sub-menu" aria-expanded="false">
                 <li>
-                  <Link to="/product">{props.t("Product List")}</Link>
+                  <Link to="/product">{props.t('Product List')}</Link>
                 </li>
                 <li>
-                  <Link to="/add-product">
-                    {props.t("Add Product")}
-                  </Link>
+                  <Link to="/add-product">{props.t('Add Product')}</Link>
                 </li>
               </ul>
             </li>
-            
 
             <li>
               <Link to="/shipping" className=" ">
                 <i className="fas fa-shipping-fast"></i>
-                <span>{props.t("Shipping")}</span>
+                <span>{props.t('Shipping')}</span>
               </Link>
             </li>
             <li>
               <Link to="/orders" className=" ">
                 <i className="mdi mdi-order-bool-descending-variant"></i>
-                <span>{props.t("Orders")}</span>
+                <span>{props.t('Orders')}</span>
               </Link>
             </li>
-
+            <li>
+              <Link to="/faq" className=" ">
+                <i className="bx bx-question-mark"></i>
+                <span>{props.t('FAQ')}</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/message" className=" ">
+                <i className="bx bx-message-rounded"></i>
+                <span>{props.t('Message')}</span>
+              </Link>
+            </li>
           </ul>
         </div>
       </SimpleBar>
     </React.Fragment>
-  );
+  )
 };
 
 SidebarContent.propTypes = {

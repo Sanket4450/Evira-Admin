@@ -36,7 +36,6 @@ export const GET_PRODUCT = '/admin/products'
 export const ADD_PRODUCT = '/admin/products'
 export const UPDATE_PRODUCT = '/admin/products'
 export const DELETE_PRODUCT = '/admin/products'
-export const GET_PRODUCT_VARIANTS = '/admin/products/variants'
 export const ADD_PRODUCT_VARIANT = '/admin/products/variants'
 export const UPDATE_PRODUCT_VARIANT = '/admin/variants'
 export const DELETE_PRODUCT_VARIANT = '/admin/variants'
@@ -67,3 +66,13 @@ export const DELETE_PROMO_CODE = '/admin/promo'
 export const GET_ORDERS = '/admin/orders'
 export const GET_ORDER = '/admin/orders'
 export const UPDATE_ORDER = '/admin/orders'
+
+// FAQs
+export const GET_FAQS = '/admin/faqs'
+export const ADD_FAQ = '/admin/faqs'
+export const UPDATE_FAQ = '/admin/faqs'
+export const DELETE_FAQ = '/admin/faqs'
+
+// Messages
+export const GET_MESSAGES = '/admin/messages'
+export const DELETE_MESSAGE = '/admin/messages'

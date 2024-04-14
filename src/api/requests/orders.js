@@ -1,6 +1,6 @@
 import { getApi, putApi } from '../common'
 import * as constants from '../constants'
-import { headers } from '../../helpers/auth'
+import { getHeaders } from '../../helpers/auth'
 
 export const getOrdersApi = async (
   type,
@@ -10,14 +10,14 @@ export const getOrdersApi = async (
 
   const response = await getApi(
     `${constants.GET_ORDERS}?type=${type}&page=${page}&limit=${limit}`,
-    { headers }
+    { headers: getHeaders() }
   )
   return response.results
 }
 
 export const getOrderApi = async (orderId) => {
   const response = await getApi(`${constants.GET_ORDER}/${orderId}`, {
-    headers,
+    headers: getHeaders(),
   })
   return response.results
 }
@@ -26,7 +26,7 @@ export const updateOrderApi = async (orderId, updateData) => {
   const response = await putApi(
     `${constants.UPDATE_ORDER}/${orderId}`,
     updateData,
-    { headers }
+    { headers: getHeaders() }
   )
   return response.results
 }

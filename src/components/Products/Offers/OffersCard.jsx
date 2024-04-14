@@ -74,8 +74,6 @@ const CardShop = (props) => {
         formattedSize: formatBytes(file.size),
       })
 
-      setSelectedFile(file)
-
       const filePreview = await fetch(file.preview)
       const blob = await filePreview.blob()
 
@@ -90,6 +88,7 @@ const CardShop = (props) => {
 
       const image = await uploadFile(data)
 
+      setSelectedFile(file)
       setImgUrl(image.url)
     } catch (error) {
       setSelectedFile({})

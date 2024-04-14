@@ -3,39 +3,23 @@ import { API_BASE_URL } from './constants'
 
 import { refreshTokensApi } from '../api'
 
-import { accessToken } from '../helpers/auth'
-import { removeItem } from '../helpers/localStorage'
+import { setItem, removeItem } from '../helpers/localStorage'
 
 const axiosApi = axios.create({
   baseURL: API_BASE_URL,
 })
 
-axiosApi.interceptors.request.use(
-  (config) => {
-    if (accessToken) {
-      config.headers = {
-        ...config.headers,
-        Authorization: `Bearer ${accessToken}`,
-      }
-    }
-    return config
-  },
-  (error) => {
-    return Promise.reject(error)
-  }
-)
-
 axiosApi.interceptors.response.use(
   (response) => {
     if (response.status === 401) {
-      window.location.replace('/login')
       removeItem('tokens')
+      window.location.replace('/login')
     } else if (response.status === 406) {
-      refreshTokensApi()
-    } else {
-    }
-
-    if (response.data?.type !== 'success') {
+      refreshTokensApi().then((response) => {
+          setItem('tokens', JSON.stringify(response?.tokens))
+          window.location.reload()
+      })
+    } else if (response.data?.type !== 'success') {
       throw new Error(response.data?.message)
     } else {
       return response
@@ -43,14 +27,7 @@ axiosApi.interceptors.response.use(
   },
   (error) => {
     if (error.response) {
-      if (response.status === 401) {
-        window.location.replace('/login')
-        removeItem('tokens')
-      } else if (response.status === 406) {
-        refreshTokensApi()
-      } else {
-        return response
-      }
+      return Promise.reject(new Error(error.response.data?.message))
     } else if (error.request) {
       // The request was made but no response was received
       window.location.replace('/login')

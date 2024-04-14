@@ -1,0 +1,6 @@
+export const GET_MESSAGE_LIST = 'get_message_list'
+export const ADD_MESSAGE_LIST = 'add_message_list'
+export const MESSAGE_LOADING = 'message_loading'
+export const DELETE_MESSAGE = 'delete_message'
+export const DELETE_MESSAGE_MESSAGE = 'delete_message_message'
+export const SET_TOTAL_RECODE = 'set_total_recode'

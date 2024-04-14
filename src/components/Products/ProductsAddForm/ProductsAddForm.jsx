@@ -70,8 +70,6 @@ const ProductsAddForm = (props) => {
         formattedSize: formatBytes(file.size),
       })
 
-      setSelectedFile(file)
-
       const filePreview = await fetch(file.preview)
       const blob = await filePreview.blob()
 
@@ -86,6 +84,7 @@ const ProductsAddForm = (props) => {
 
       const image = await uploadFile(data)
 
+      setSelectedFile(file)
       setImgUrl(image.url)
     } catch (error) {
       setSelectedFile({})

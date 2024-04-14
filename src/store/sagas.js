@@ -13,6 +13,8 @@ import shippingSaga from "./home/shipping/saga";
 import offersSaga from "./home/offers/saga";
 import ordersSaga from "./home/orders/saga";
 import dashboardSaga from './home/dashboard/saga'
+import FaqSaga from './home/faq/saga'
+import MessageSaga from './home/message/saga'
 
 export default function* rootSaga() {
   yield all([
@@ -28,6 +30,8 @@ export default function* rootSaga() {
     fork(shippingSaga),
     fork(offersSaga),
     fork(ordersSaga),
-    fork(dashboardSaga)
+    fork(dashboardSaga),
+    fork(FaqSaga),
+    fork(MessageSaga)
   ]);
 }

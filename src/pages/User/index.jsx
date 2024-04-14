@@ -34,7 +34,7 @@ import { useFormik } from 'formik'
 import { emailSchema } from '../../schemas'
 import Spinners from '../../components/Common/Spinner'
 import CustomSpinner from '../../components/Common/CustomSpinner'
-import WarningGif from '../../assets/images/gif/icons8-warning.gif'
+import DummyImage from '../../assets/images/dummy-image.jpeg'
 
 import { toast } from 'react-toastify'
 import Paginations from '../../components/Common/Pagination'
@@ -95,7 +95,7 @@ const User = (props) => {
                   className="avatar-title rounded-circle"
                 />
               ) : (
-                <img src={WarningGif} alt="" width={'50px'} />
+                <img src={DummyImage} alt="" width={'50px'} />
               )}
             </span>
           </div>

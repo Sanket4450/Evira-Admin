@@ -15,6 +15,8 @@ import shipping from "./home/shipping/reducer"
 import offers from "./home/offers/reducer"
 import orders from "./home/orders/reducer"
 import dashboard from './home/dashboard/reducer'
+import faq from './home/faq/reducer'
+import message from './home/message/reducer'
 
 const rootReducer = combineReducers({
   // public
@@ -30,6 +32,8 @@ const rootReducer = combineReducers({
   offers,
   orders,
   dashboard,
+  faq,
+  message
 })
 
 export default rootReducer;

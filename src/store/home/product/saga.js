@@ -5,7 +5,6 @@ import {
   addProductApi,
   updateProductApi,
   deleteProductApi,
-  getProductVariantsApi,
   addProductVariantApi,
   updateProductVariantApi,
   deleteProductVariantApi,
