@@ -14,9 +14,9 @@ function* getOrders({ payload }) {
   try {
     const { type, ...pagination } = payload
 
-    const results = yield call(getOrdersApi, type || 'all', pagination)
-    yield put(addOrdersList(results?.orders?.results))
-    yield put(setOrdersRecode(results?.orders?.count))
+    const response = yield call(getOrdersApi, type || 'all', pagination)
+    yield put(addOrdersList(response?.results?.orders?.results))
+    yield put(setOrdersRecode(response?.results?.orders?.count))
   } catch (error) {
     yield put(ordersLoading(false))
   }
@@ -31,11 +31,11 @@ function* getOrderInfo({ payload }) {
     })
   )
   try {
-    const results = yield call(getOrderApi, payload)
+    const response = yield call(getOrderApi, payload)
     yield put(
       getOrdersInfoRes({
         loading: false,
-        success: results,
+        success: response?.results,
         error: null,
       })
     )
@@ -61,11 +61,11 @@ function* updateOrders({ payload }) {
   try {
     const { id, ...updateData } = payload
 
-    const results = yield call(updateOrderApi, id, updateData)
+    const response = yield call(updateOrderApi, id, updateData)
     yield put(
       updateOrdersMessage({
         loading: false,
-        success: results,
+        success: response?.results,
         error: null,
       })
     )

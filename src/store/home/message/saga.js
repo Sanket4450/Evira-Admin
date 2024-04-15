@@ -17,9 +17,9 @@ import {
 function* getMessages({ payload }) {
   yield put(messageLoading(true))
   try {
-    const results = yield call(getMessagesApi, payload)
-    yield put(addMessageList(results?.messages?.results))
-    yield put(setMessageRecode(results?.messages?.count))
+    const response = yield call(getMessagesApi, payload)
+    yield put(addMessageList(response?.results?.messages?.results))
+    yield put(setMessageRecode(response?.results?.messages?.count))
   } catch (error) {
     yield put(messageLoading(false))
   }
@@ -36,11 +36,11 @@ function* deleteMessage({ payload }) {
   try {
     const { id } = payload
 
-    const results = yield call(deleteMessageApi, id)
+    const response = yield call(deleteMessageApi, id)
     yield put(
       deleteMessageMessage({
         loading: false,
-        success: results,
+        success: response?.results,
         error: null,
       })
     )

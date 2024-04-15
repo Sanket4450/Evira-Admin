@@ -22,8 +22,8 @@ import {
 function* getOffers({ payload }) {
   yield put(offersLoading(true))
   try {
-    const results = yield call(getOffersApi, payload)
-    yield put(addOffersList(results?.offers))
+    const response = yield call(getOffersApi, payload)
+    yield put(addOffersList(response?.results?.offers))
   } catch (error) {
     yield put(offersLoading(false))
   }
@@ -38,11 +38,11 @@ function* addOffers({ payload }) {
     })
   )
   try {
-    const results = yield call(addOfferApi, payload)
+    const response = yield call(addOfferApi, payload)
     yield put(
       addOffersMessage({
         loading: false,
-        success: results,
+        success: response?.results,
         error: null,
       })
     )
@@ -68,11 +68,11 @@ function* updateOffers({ payload }) {
   try {
     const { id, ...updateData } = payload
 
-    const results = yield call(updateOfferApi, id, updateData)
+    const response = yield call(updateOfferApi, id, updateData)
     yield put(
       updateOffersMessage({
         loading: false,
-        success: results,
+        success: response?.results,
         error: null,
       })
     )
@@ -96,11 +96,11 @@ function* deleteOffers({ payload }) {
     })
   )
   try {
-    const results = yield call(deleteOfferApi, payload)
+    const response = yield call(deleteOfferApi, payload)
     yield put(
       deleteOffersMessage({
         loading: false,
-        success: results,
+        success: response?.results,
         error: null,
       })
     )

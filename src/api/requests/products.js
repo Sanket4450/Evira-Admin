@@ -15,21 +15,21 @@ export const getProductsApi = async (query = { page: 1, limit: 10 }) => {
     }`,
     { headers: getHeaders() }
   )
-  return response.results
+  return response
 }
 
 export const getProductApi = async (productId) => {
   const response = await getApi(`${constants.GET_PRODUCT}/${productId}`, {
     headers: getHeaders(),
   })
-  return response.results
+  return response
 }
 
 export const addProductApi = async (data) => {
   const response = await postApi(constants.ADD_PRODUCT, data, {
     headers: getHeaders(),
   })
-  return response.results
+  return response
 }
 
 export const updateProductApi = async (productId, updateData) => {
@@ -38,14 +38,14 @@ export const updateProductApi = async (productId, updateData) => {
     updateData,
     { headers: getHeaders() }
   )
-  return response.results
+  return response
 }
 
 export const deleteProductApi = async (productId) => {
   const response = await deleteApi(`${constants.DELETE_PRODUCT}/${productId}`, {
     headers: getHeaders(),
   })
-  return response.results
+  return response
 }
 
 export const addProductVariantApi = async (productId, data) => {
@@ -54,7 +54,7 @@ export const addProductVariantApi = async (productId, data) => {
     data,
     { headers: getHeaders() }
   )
-  return response.results
+  return response
 }
 
 export const updateProductVariantApi = async (variantId, updateData) => {
@@ -63,7 +63,7 @@ export const updateProductVariantApi = async (variantId, updateData) => {
     updateData,
     { headers: getHeaders() }
   )
-  return response.results
+  return response
 }
 
 export const deleteProductVariantApi = async (variantId) => {
@@ -71,5 +71,5 @@ export const deleteProductVariantApi = async (variantId) => {
     `${constants.DELETE_PRODUCT_VARIANT}/${variantId}`,
     { headers: getHeaders() }
   )
-  return response.results
+  return response
 }

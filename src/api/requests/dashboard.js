@@ -6,5 +6,5 @@ export const getDashboardApi = async () => {
   const response = await getApi(constants.GET_DASHBOARD, {
     headers: getHeaders(),
   })
-  return response.results
+  return response
 }

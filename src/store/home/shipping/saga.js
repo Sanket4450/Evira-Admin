@@ -22,8 +22,8 @@ import {
 function* getShipping() {
   yield put(shippingLoading(true))
   try {
-    const results = yield call(getShippingTypesApi)
-    yield put(addShippingList(results?.shippingTypes))
+    const response = yield call(getShippingTypesApi)
+    yield put(addShippingList(response?.results?.shippingTypes))
   } catch (error) {
     yield put(shippingLoading(false))
   }
@@ -38,11 +38,11 @@ function* addShipping({ payload }) {
     })
   )
   try {
-    const results = yield call(addShippingTypeApi, payload)
+    const response = yield call(addShippingTypeApi, payload)
     yield put(
       addShippingMessage({
         loading: false,
-        success: results,
+        success: response?.results,
         error: null,
       })
     )
@@ -68,11 +68,11 @@ function* updateShipping({ payload }) {
   try {
     const { id, ...updateData } = payload
 
-    const results = yield call(updateShippingTypeApi, id, updateData)
+    const response = yield call(updateShippingTypeApi, id, updateData)
     yield put(
       updateShippingMessage({
         loading: false,
-        success: results,
+        success: response?.results,
         error: null,
       })
     )
@@ -98,11 +98,11 @@ function* deleteShipping({ payload }) {
   try {
     const { id } = payload
 
-    const results = yield call(deleteShippingTypeApi, id)
+    const response = yield call(deleteShippingTypeApi, id)
     yield put(
       deleteShippingMessage({
         loading: false,
-        success: results,
+        success: response?.results,
         error: null,
       })
     )

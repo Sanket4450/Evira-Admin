@@ -76,8 +76,6 @@
     "t-authentication":"Аутентификация",
     "t-login":"Авторизоваться",
     "t-login-2":"Логин 2",
-    "t-register":"регистр",
-    "t-register-2":"Регистр 2",
     "t-recover-password":"Восстановить пароль",
     "t-recover-password-2":"Восстановить пароль 2",
     "t-lock-screen":"Экран блокировки",

@@ -17,12 +17,12 @@ function* getUserByID({ payload }) {
     })
   )
   try {
-    const results = yield call(getProfileApi, payload)
-    yield put(setUserInfo(results?.user))
+    const response = yield call(getProfileApi, payload)
+    yield put(setUserInfo(response?.results?.user))
     yield put(
       setUserRes({
         loading: false,
-        success: results?.user,
+        success: response?.results?.user,
         error: null,
       })
     )
@@ -46,11 +46,11 @@ function* editProfile({ payload }) {
     })
   )
   try {
-    const results = yield call(updateProfileApi, payload)
+    const response = yield call(updateProfileApi, payload)
     yield put(
       editProfileMessage({
         loading: false,
-        success: results,
+        success: response?.results,
         error: null,
       })
     )

@@ -12,14 +12,14 @@ export const getOrdersApi = async (
     `${constants.GET_ORDERS}?type=${type}&page=${page}&limit=${limit}`,
     { headers: getHeaders() }
   )
-  return response.results
+  return response
 }
 
 export const getOrderApi = async (orderId) => {
   const response = await getApi(`${constants.GET_ORDER}/${orderId}`, {
     headers: getHeaders(),
   })
-  return response.results
+  return response
 }
 
 export const updateOrderApi = async (orderId, updateData) => {
@@ -28,5 +28,5 @@ export const updateOrderApi = async (orderId, updateData) => {
     updateData,
     { headers: getHeaders() }
   )
-  return response.results
+  return response
 }

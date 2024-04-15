@@ -12,9 +12,9 @@ import {
 function* getUser({ payload }) {
   yield put(categoriesLoading(true))
   try {
-    const results = yield call(getUsersApi, payload)
-    yield put(addUserList(results?.users?.results))
-    yield put(setUserRecode(results?.users?.count))
+    const response = yield call(getUsersApi, payload)
+    yield put(addUserList(response?.results?.users?.results))
+    yield put(setUserRecode(response?.results?.users?.count))
   } catch (error) {
     yield put(categoriesLoading(false))
   }
@@ -31,11 +31,11 @@ function* updateUser({ payload }) {
   try {
     const { id, ...updateData } = payload
 
-    const results = yield call(updateUserApi, id, updateData)
+    const response = yield call(updateUserApi, id, updateData)
     yield put(
       updateUserMessage({
         loading: false,
-        success: results,
+        success: response?.results,
         error: null,
       })
     )
@@ -61,11 +61,11 @@ function* deleteUser({ payload }) {
   try {
     const { id } = payload
 
-    const results = yield call(deleteUserApi, id)
+    const response = yield call(deleteUserApi, id)
     yield put(
       deleteUserMessage({
         loading: false,
-        success: results,
+        success: response?.results,
         error: null,
       })
     )

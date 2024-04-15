@@ -8,14 +8,14 @@ export const getFaqsApi = async (pagination = { page: 1, limit: 8 }) => {
     `${constants.GET_FAQS}?page=${page}&limit=${limit}`,
     { headers: getHeaders() }
   )
-  return response.results
+  return response
 }
 
 export const addFaqApi = async (data) => {
   const response = await postApi(constants.ADD_FAQ, data, {
     headers: getHeaders(),
   })
-  return response.results
+  return response
 }
 
 export const updateFaqApi = async (faqId, updateData) => {
@@ -24,12 +24,12 @@ export const updateFaqApi = async (faqId, updateData) => {
     updateData,
     { headers: getHeaders() }
   )
-  return response.results
+  return response
 }
 
 export const deleteFaqApi = async (faqId) => {
   const response = await deleteApi(`${constants.DELETE_FAQ}/${faqId}`, {
     headers: getHeaders(),
   })
-  return response.results
+  return response
 }

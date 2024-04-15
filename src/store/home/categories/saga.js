@@ -23,9 +23,9 @@ import {
 function* getCategories({ payload }) {
   yield put(categoriesLoading(true))
   try {
-    const results = yield call(getCategoriesApi, payload)
-    yield put(addCategoriesList(results?.categories?.results))
-    yield put(setCategoriesRecode(results?.categories?.count))
+    const response = yield call(getCategoriesApi, payload)
+    yield put(addCategoriesList(response?.results?.categories?.results))
+    yield put(setCategoriesRecode(response?.results?.categories?.count))
   } catch (error) {
     yield put(categoriesLoading(false))
   }
@@ -40,11 +40,11 @@ function* addCategories({ payload }) {
     })
   )
   try {
-    const results = yield call(addCategoryApi, payload)
+    const response = yield call(addCategoryApi, payload)
     yield put(
       addCategoriesMessage({
         loading: false,
-        success: results,
+        success: response?.results,
         error: null,
       })
     )
@@ -70,11 +70,11 @@ function* updateCategories({ payload }) {
   try {
     const { id, ...updateData } = payload
 
-    const results = yield call(updateCategoryApi, id, updateData)
+    const response = yield call(updateCategoryApi, id, updateData)
     yield put(
       updateCategoriesMessage({
         loading: false,
-        success: results,
+        success: response?.results,
         error: null,
       })
     )
@@ -100,11 +100,11 @@ function* deleteCategories({ payload }) {
   try {
     const { id } = payload
 
-    const results = yield call(deleteCategoryApi, id)
+    const response = yield call(deleteCategoryApi, id)
     yield put(
       deleteCategoriesMessage({
         loading: false,
-        success: results,
+        success: response?.results,
         error: null,
       })
     )

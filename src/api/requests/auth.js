@@ -5,29 +5,29 @@ import { getHeaders } from '../../helpers/auth'
 
 export const loginAdminApi = async (data) => {
   const response = await postApi(constants.LOGIN, data)
-  return response.results
+  return response
 }
 
 export const forgotPasswordApi = async (data) => {
   const response = await postApi(constants.FORGOT_PASSWORD, data)
-  return response.results
+  return response
 }
 
 export const verifyResetOtpApi = async (data) => {
   const response = await postApi(constants.VERIFY_RESET_OTP, data)
-  return response.results
+  return response
 }
 
 export const resetPasswordApi = async (data) => {
   const response = await putApi(constants.RESET_PASSWORD, data)
-  return response.results
+  return response
 }
 
 export const refreshTokensApi = async () => {
   const data = { token: getRefreshToken() || '' }
 
   const response = await postApi(constants.REFRESH_TOKENS, data)
-  return response.results
+  return response
 }
 
 export const logoutAdminApi = async () => {
@@ -36,5 +36,5 @@ export const logoutAdminApi = async () => {
     {},
     { headers: getHeaders() }
   )
-  return response.results
+  return response
 }

@@ -82,10 +82,10 @@ const ProductsAddForm = (props) => {
         file: generatedFile,
       }
 
-      const image = await uploadFile(data)
+      const response = await uploadFile(data)
 
       setSelectedFile(file)
-      setImgUrl(image.url)
+      setImgUrl(response?.image.url)
     } catch (error) {
       setSelectedFile({})
     }

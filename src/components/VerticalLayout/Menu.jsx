@@ -64,12 +64,6 @@ const menuItems = [
           parentId: "auth",
         },
         {
-          id: "register",
-          label: "Register",
-          link: "/auth-register",
-          parentId: "auth",
-        },
-        {
           id: "recoverpw",
           label: "Recover Password",
           link: "/auth-recoverpw",

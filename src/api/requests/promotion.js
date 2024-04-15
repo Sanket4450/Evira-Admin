@@ -9,14 +9,14 @@ export const getPromoCodesApi = async (pagination = { page: 1, limit: 10 }) => {
     `${constants.GET_PROMO_CODES}?page=${page}&limit=${limit}`,
     { headers: getHeaders() }
   )
-  return response.results
+  return response
 }
 
 export const addPromoCodeApi = async (data) => {
   const response = await postApi(constants.ADD_PROMO_CODE, data, {
     headers: getHeaders(),
   })
-  return response.results
+  return response
 }
 
 export const updatePromoCodeApi = async (promoId, updateData) => {
@@ -25,7 +25,7 @@ export const updatePromoCodeApi = async (promoId, updateData) => {
     updateData,
     { headers: getHeaders() }
   )
-  return response.results
+  return response
 }
 
 export const deletePromoCodeApi = async (promoId) => {
@@ -33,5 +33,5 @@ export const deletePromoCodeApi = async (promoId) => {
     `${constants.DELETE_PROMO_CODE}/${promoId}`,
     { headers: getHeaders() }
   )
-  return response.results
+  return response
 }

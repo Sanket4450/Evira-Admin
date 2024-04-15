@@ -9,14 +9,14 @@ export const getUsersApi = async (pagination = { page: 1, limit: 8 }) => {
     `${constants.GET_USERS}?page=${page}&limit=${limit}`,
     { headers: getHeaders() }
   )
-  return response.results
+  return response
 }
 
 export const getUserApi = async (userId) => {
   const response = await getApi(`${constants.GET_USER}/${userId}`, {
     headers: getHeaders(),
   })
-  return response.results
+  return response
 }
 
 export const updateUserApi = async (userId, updateData) => {
@@ -25,12 +25,12 @@ export const updateUserApi = async (userId, updateData) => {
     updateData,
     { headers: getHeaders() }
   )
-  return response.results
+  return response
 }
 
 export const deleteUserApi = async (userId) => {
   const response = await deleteApi(`${constants.DELETE_USER}/${userId}`, {
     headers: getHeaders(),
   })
-  return response.results
+  return response
 }

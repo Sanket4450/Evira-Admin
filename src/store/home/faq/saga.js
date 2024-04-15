@@ -23,9 +23,9 @@ import {
 function* getFaqs({ payload }) {
   yield put(faqLoading(true))
   try {
-    const results = yield call(getFaqsApi, payload)
-    yield put(addFaqList(results?.faqs?.results))
-    yield put(setFaqRecode(results?.faqs?.count))
+    const response = yield call(getFaqsApi, payload)
+    yield put(addFaqList(response?.results?.faqs?.results))
+    yield put(setFaqRecode(response?.results?.faqs?.count))
   } catch (error) {
     yield put(faqLoading(false))
   }
@@ -40,11 +40,11 @@ function* addFaq({ payload }) {
     })
   )
   try {
-    const results = yield call(addFaqApi, payload)
+    const response = yield call(addFaqApi, payload)
     yield put(
       addFaqMessage({
         loading: false,
-        success: results,
+        success: response?.results,
         error: null,
       })
     )
@@ -70,11 +70,11 @@ function* updateFaq({ payload }) {
   try {
     const { id, ...updateData } = payload
 
-    const results = yield call(updateFaqApi, id, updateData)
+    const response = yield call(updateFaqApi, id, updateData)
     yield put(
       updateFaqMessage({
         loading: false,
-        success: results,
+        success: response?.results,
         error: null,
       })
     )
@@ -100,11 +100,11 @@ function* deleteFaq({ payload }) {
   try {
     const { id } = payload
 
-    const results = yield call(deleteFaqApi, id)
+    const response = yield call(deleteFaqApi, id)
     yield put(
       deleteFaqMessage({
         loading: false,
-        success: results,
+        success: response?.results,
         error: null,
       })
     )

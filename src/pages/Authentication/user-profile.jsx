@@ -6,7 +6,6 @@ import {
   Card,
   CardBody,
   Button,
-  Label,
   Input,
   FormFeedback,
   Form,
@@ -73,10 +72,10 @@ const UserProfile = () => {
         file: generatedFile,
       }
 
-      const image = await uploadFile(data)
+      const response = await uploadFile(data)
 
       setSelectedFile(file)
-      setImageUrl(image.url)
+      setImageUrl(response?.image.url)
     } catch (error) {
       setSelectedFile({})
     }

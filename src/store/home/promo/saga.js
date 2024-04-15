@@ -23,9 +23,9 @@ import {
 function* getPromo({ payload }) {
   yield put(promoLoading(true))
   try {
-    const results = yield call(getPromoCodesApi, payload)
-    yield put(addPromoList(results?.promoCodes?.results))
-    yield put(setPromoRecode(results?.promoCodes?.count))
+    const response = yield call(getPromoCodesApi, payload)
+    yield put(addPromoList(response?.results?.promoCodes?.results))
+    yield put(setPromoRecode(response?.results?.promoCodes?.count))
   } catch (error) {
     yield put(promoLoading(false))
   }
@@ -40,11 +40,11 @@ function* addPromo({ payload }) {
     })
   )
   try {
-    const results = yield call(addPromoCodeApi, payload)
+    const response = yield call(addPromoCodeApi, payload)
     yield put(
       addPromoMessage({
         loading: false,
-        success: results,
+        success: response?.results,
         error: null,
       })
     )
@@ -70,11 +70,11 @@ function* updatePromo({ payload }) {
   try {
     const { id, ...updateData } = payload
 
-    const results = yield call(updatePromoCodeApi, id, updateData)
+    const response = yield call(updatePromoCodeApi, id, updateData)
     yield put(
       updatePromoMessage({
         loading: false,
-        success: results,
+        success: response?.results,
         error: null,
       })
     )
@@ -100,11 +100,11 @@ function* deletePromo({ payload }) {
   try {
     const { id } = payload
 
-    const results = yield call(deletePromoCodeApi, id)
+    const response = yield call(deletePromoCodeApi, id)
     yield put(
       deletePromoMessage({
         loading: false,
-        success: results,
+        success: response?.results,
         error: null,
       })
     )

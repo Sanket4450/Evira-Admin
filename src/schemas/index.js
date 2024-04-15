@@ -1,4 +1,3 @@
-export { registerSchema } from './register'
 export { loginSchema } from './login'
 export { forgotPasswordSchema } from './forgotPassword'
 export { verifyOtpSchema } from './verifyOtp'

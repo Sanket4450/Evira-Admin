@@ -6,14 +6,14 @@ export const getOffersApi = async (productId) => {
   const response = await getApi(`${constants.GET_OFFER}/${productId}`, {
     headers: getHeaders(),
   })
-  return response.results
+  return response
 }
 
 export const addOfferApi = async (data) => {
   const response = await postApi(constants.ADD_OFFER, data, {
     headers: getHeaders(),
   })
-  return response.results
+  return response
 }
 
 export const updateOfferApi = async (offerId, updateData) => {
@@ -22,12 +22,12 @@ export const updateOfferApi = async (offerId, updateData) => {
     updateData,
     { headers: getHeaders() }
   )
-  return response.results
+  return response
 }
 
 export const deleteOfferApi = async (offerId) => {
   const response = await deleteApi(`${constants.DELETE_OFFER}/${offerId}`, {
     headers: getHeaders(),
   })
-  return response.results
+  return response
 }

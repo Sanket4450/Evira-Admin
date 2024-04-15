@@ -8,14 +8,14 @@ export const getCategoriesApi = async (pagination = { page: 1, limit: 8 }) => {
     `${constants.GET_CATEGORIES}?page=${page}&limit=${limit}`,
     { headers: getHeaders() }
   )
-  return response.results
+  return response
 }
 
 export const addCategoryApi = async (data) => {
   const response = await postApi(constants.ADD_CATEGORY, data, {
     headers: getHeaders(),
   })
-  return response.results
+  return response
 }
 
 export const updateCategoryApi = async (categoryId, updateData) => {
@@ -24,7 +24,7 @@ export const updateCategoryApi = async (categoryId, updateData) => {
     updateData,
     { headers: getHeaders() }
   )
-  return response.results
+  return response
 }
 
 export const deleteCategoryApi = async (categoryId) => {
@@ -32,5 +32,5 @@ export const deleteCategoryApi = async (categoryId) => {
     `${constants.DELETE_CATEGORY}/${categoryId}`,
     { headers: getHeaders() }
   )
-  return response.results
+  return response
 }

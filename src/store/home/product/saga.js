@@ -45,8 +45,8 @@ import {
 
 function* getAllCategories({ payload }) {
   try {
-    const results = yield call(getCategoriesApi, payload)
-    yield put(setAllCategoriesList(results?.categories?.results))
+    const response = yield call(getCategoriesApi, payload)
+    yield put(setAllCategoriesList(response?.results?.categories?.results))
   } catch (error) {}
 }
 
@@ -62,9 +62,9 @@ function* getProduct({ payload }) {
       ...(payload.rating && { rating: payload.rating }),
       ...{ page: payload.page || 1, limit: payload.limit || 10 },
     }
-    const results = yield call(getProductsApi, updatedPayload)
-    yield put(addProductList(results?.products?.results))
-    yield put(setProductRecode(results?.products?.count))
+    const response = yield call(getProductsApi, updatedPayload)
+    yield put(addProductList(response?.results?.products?.results))
+    yield put(setProductRecode(response?.results?.products?.count))
   } catch (error) {
     yield put(productLoading(false))
   }
@@ -79,12 +79,12 @@ function* getProductByID({ payload }) {
     })
   )
   try {
-    const results = yield call(getProductApi, payload)
-    yield put(setProductInfoByID(results?.product))
+    const response = yield call(getProductApi, payload)
+    yield put(setProductInfoByID(response?.results?.product))
     yield put(
       setProductResByID({
         loading: false,
-        success: results?.product,
+        success: response?.results?.product,
         error: null,
       })
     )
@@ -108,11 +108,11 @@ function* addProduct({ payload }) {
     })
   )
   try {
-    const results = yield call(addProductApi, payload)
+    const response = yield call(addProductApi, payload)
     yield put(
       addProductMessage({
         loading: false,
-        success: results,
+        success: response?.results,
         error: null,
       })
     )
@@ -138,11 +138,11 @@ function* updateProduct({ payload }) {
   try {
     const { id, ...updateData } = payload
 
-    const results = yield call(updateProductApi, id, updateData)
+    const response = yield call(updateProductApi, id, updateData)
     yield put(
       updateProductMessage({
         loading: false,
-        success: results,
+        success: response?.results,
         error: null,
       })
     )
@@ -166,11 +166,11 @@ function* deleteProduct({ payload }) {
     })
   )
   try {
-    const results = yield call(deleteProductApi, payload)
+    const response = yield call(deleteProductApi, payload)
     yield put(
       deleteProductMessage({
         loading: false,
-        success: results?.message,
+        success: response?.results?.message,
         error: null,
       })
     )
@@ -196,11 +196,11 @@ function* addProductVariant({ payload }) {
   try {
     const { id, ...updateData } = payload
 
-    const results = yield call(addProductVariantApi, id, updateData)
+    const response = yield call(addProductVariantApi, id, updateData)
     yield put(
       addProductVariantsRes({
         loading: false,
-        success: results?.message,
+        success: response?.results?.message,
         error: null,
       })
     )
@@ -226,11 +226,11 @@ function* updateProductVariant({ payload }) {
   try {
     const { id, ...updateData } = payload
 
-    const results = yield call(updateProductVariantApi, id, updateData)
+    const response = yield call(updateProductVariantApi, id, updateData)
     yield put(
       updateProductVariantsRes({
         loading: false,
-        success: results?.message,
+        success: response?.results?.message,
         error: null,
       })
     )
@@ -254,11 +254,11 @@ function* deleteProductVariant({ payload }) {
     })
   )
   try {
-    const results = yield call(deleteProductVariantApi, payload)
+    const response = yield call(deleteProductVariantApi, payload)
     yield put(
       deleteProductVariantsRes({
         loading: false,
-        success: results?.message,
+        success: response?.results?.message,
         error: null,
       })
     )
@@ -282,12 +282,12 @@ function* getProductReviews({ payload }) {
     })
   )
   try {
-    const results = yield call(getReviewsApi, payload)
-    yield put(setProductReviews(results?.reviews))
+    const response = yield call(getReviewsApi, payload)
+    yield put(setProductReviews(response?.results?.reviews))
     yield put(
       setProductReviewsRes({
         loading: false,
-        success: results?.reviews,
+        success: response?.results?.reviews,
       })
     )
   } catch (error) {
@@ -311,11 +311,11 @@ function* deteleReviews({ payload }) {
     })
   )
   try {
-    const results = yield call(deleteReviewApi, payload)
+    const response = yield call(deleteReviewApi, payload)
     yield put(
       setDeleteReviewsRes({
         loading: false,
-        success: results?.message,
+        success: response?.results?.message,
         error: null,
         refresh: true,
       })

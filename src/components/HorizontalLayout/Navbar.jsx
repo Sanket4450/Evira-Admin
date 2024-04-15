@@ -846,12 +846,6 @@ const Navbar = (props) => {
                           {props.t("Login 2")}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Register")}
-                        </Link>
-                        <Link to="#" className="dropdown-item">
-                          {props.t("Register 2")}
-                        </Link>
-                        <Link to="#" className="dropdown-item">
                           {props.t("Recover Password")}
                         </Link>
                         <Link to="#" className="dropdown-item">

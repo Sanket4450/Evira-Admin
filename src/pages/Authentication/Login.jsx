@@ -117,9 +117,9 @@ const Login = (props) => {
                         return false
                       }}
                     >
-                      {error?.response?.data?.message ? (
+                      {error ? (
                         <Alert color="danger">
-                          {error?.response?.data?.message}
+                          {error}
                         </Alert>
                       ) : null}
 

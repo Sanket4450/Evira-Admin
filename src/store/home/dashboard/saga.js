@@ -12,11 +12,11 @@ function* getDashboard() {
     })
   )
   try {
-    const results = yield call(getDashboardApi)
+    const response = yield call(getDashboardApi)
     yield put(
       setDashboardRevenue({
         loading: false,
-        success: results,
+        success: response?.results,
         error: null,
       })
     )

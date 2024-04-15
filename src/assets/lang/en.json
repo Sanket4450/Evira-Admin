@@ -76,8 +76,6 @@
     "t-authentication":"Authentication",
     "t-login":"Login",
     "t-login-2":"Login 2",
-    "t-register":"Register",
-    "t-register-2":"Register 2",
     "t-recover-password":"Recover Password",
     "t-recover-password-2":"Recover Password 2",
     "t-lock-screen":"Lock screen",

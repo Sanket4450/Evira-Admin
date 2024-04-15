@@ -1,25 +1,34 @@
-import { takeEvery, fork, put, all, call } from "redux-saga/effects"
+import { takeEvery, fork, put, all, call } from 'redux-saga/effects'
 
 // Login Redux States
-import { FORGET_PASSWORD, RESET_PASSWORD, VERIFY_OTP } from "./actionTypes"
-import { userForgetPasswordSuccess, userForgetPasswordError, userVerifyOtpSuccess } from "./actions"
-import { forgotPasswordApi, verifyResetOtpApi, resetPasswordApi } from '../../../api'
+import { FORGET_PASSWORD, RESET_PASSWORD, VERIFY_OTP } from './actionTypes'
+import {
+  userForgetPasswordSuccess,
+  userForgetPasswordError,
+  userVerifyOtpSuccess,
+} from './actions'
+import {
+  forgotPasswordApi,
+  verifyResetOtpApi,
+  resetPasswordApi,
+} from '../../../api'
 
-//If user is send successfully send mail link then dispatch redux action's are directly from here.
 function* forgetUser({ payload: { user } }) {
   try {
     const response = yield call(forgotPasswordApi, {
       email: user.email,
+      isAdmin: true,
     })
     if (response) {
       yield put(
-        userForgetPasswordSuccess(
-          { ...response, message: "verification code sended to your mailbox, check there first" }
-        )
+        userForgetPasswordSuccess({
+          ...response?.results,
+          message: response?.results?.message,
+        })
       )
     }
   } catch (error) {
-    yield put(userForgetPasswordError(error))
+    yield put(userForgetPasswordError(error.message))
   }
 }
 
@@ -30,14 +39,11 @@ function* verifyOtp({ payload: { user } }) {
       token: user.token,
     })
     if (response) {
-      yield put(
-        userVerifyOtpSuccess(
-          { verifyOtp: true }
-        )
-      )
+      yield put(userForgetPasswordError(null))
+      yield put(userVerifyOtpSuccess({ verifyOtp: true }))
     }
   } catch (error) {
-    yield put(userForgetPasswordError(error))
+    yield put(userForgetPasswordError(error.message))
   }
 }
 
@@ -48,10 +54,10 @@ function* resetPassword({ payload: { user, history } }) {
       token: user.token,
     })
     if (response) {
-      history('/login');
+      history('/login')
     }
   } catch (error) {
-    yield put(userForgetPasswordError(error))
+    yield put(userForgetPasswordError(error.message))
   }
 }
 

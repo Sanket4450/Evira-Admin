@@ -12,12 +12,12 @@ export const getReviewsApi = async (
     `${constants.GET_REVIEWS}/${productId}?page=${page}&limit=${limit}`,
     { headers: getHeaders() }
   )
-  return response.results
+  return response
 }
 
 export const deleteReviewApi = async (reviewId) => {
   const response = await deleteApi(`${constants.DELETE_REVIEW}/${reviewId}`, {
     headers: getHeaders(),
   })
-  return response.results
+  return response
 }

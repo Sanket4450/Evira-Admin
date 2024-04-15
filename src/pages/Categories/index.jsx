@@ -117,10 +117,10 @@ const Categories = (props) => {
         file: generatedFile,
       }
 
-      const icon = await uploadFile(data)
+      const response = await uploadFile(data)
 
       setSelectedFile(file)
-      seticonUrl(icon.url)
+      seticonUrl(response?.icon.url)
     } catch (error) {
       setSelectedFile({})
     }

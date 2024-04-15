@@ -6,5 +6,5 @@ export const uploadFile = async (data) => {
   const response = await postApi(constants.UPLOAD_FILE, data, {
     headers: { ...getHeaders(), 'Content-Type': 'multipart/form-data'},
   })
-  return response.results
+  return response
 }

@@ -6,14 +6,14 @@ export const getShippingTypesApi = async () => {
   const response = await getApi(constants.GET_SHIPPING_TYPES, {
     headers: getHeaders(),
   })
-  return response.results
+  return response
 }
 
 export const addShippingTypeApi = async (data) => {
   const response = await postApi(constants.ADD_SHIPPING_TYPE, data, {
     headers: getHeaders(),
   })
-  return response.results
+  return response
 }
 
 export const updateShippingTypeApi = async (shippingId, updateData) => {
@@ -22,7 +22,7 @@ export const updateShippingTypeApi = async (shippingId, updateData) => {
     updateData,
     { headers: getHeaders() }
   )
-  return response.results
+  return response
 }
 
 export const deleteShippingTypeApi = async (shippingId) => {
@@ -30,5 +30,5 @@ export const deleteShippingTypeApi = async (shippingId) => {
     `${constants.DELETE_SHIPPING_TYPE}/${shippingId}`,
     { headers: getHeaders() }
   )
-  return response.results
+  return response
 }

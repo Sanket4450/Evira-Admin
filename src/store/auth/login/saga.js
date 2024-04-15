@@ -8,20 +8,20 @@ import { setItem, removeItem } from '../../../helpers/localStorage'
 
 function* loginUser({ payload: { user, history } }) {
   try {
-    const results = yield call(loginAdminApi, {
+    const response = yield call(loginAdminApi, {
       email: user.email,
       password: user.password,
     })
 
-    if (!results?.tokens) {
+    if (!response?.results?.tokens) {
       window.location.reload()
     } else {
-      setItem('tokens', JSON.stringify(results?.tokens))
-      yield put(loginSuccess(results))
+      setItem('tokens', JSON.stringify(response.results.tokens))
+      yield put(loginSuccess(response.results))
       history('/dashboard')
     }
   } catch (error) {
-    yield put(apiError(error))
+    yield put(apiError(error.message))
   }
 }
 
@@ -31,7 +31,7 @@ function* logoutUser({ payload: { history } }) {
     removeItem('tokens')
     history('/login')
   } catch (error) {
-    yield put(apiError(error))
+    yield put(apiError(error.message))
   }
 }
 

@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
-import React from "react";
+import PropTypes from 'prop-types'
+import React from 'react'
 import {
   Row,
   Col,
@@ -11,33 +11,41 @@ import {
   Input,
   Label,
   Form,
-} from "reactstrap";
-import OtpInput from 'react-otp-input';
+} from 'reactstrap'
+import OtpInput from 'react-otp-input'
 
 //redux
-import { useSelector, useDispatch } from "react-redux";
-import { createSelector } from "reselect";
-import { Link, useNavigate } from "react-router-dom";
-import withRouter from "../../components/Common/withRouter";
+import { useSelector, useDispatch } from 'react-redux'
+import { createSelector } from 'reselect'
+import { Link, useNavigate } from 'react-router-dom'
+import withRouter from '../../components/Common/withRouter'
 
 // Formik Validation
-import { useFormik } from "formik";
-import { forgotPasswordSchema, verifyOtpSchema, resetPasswordSchema } from '../../schemas'
+import { useFormik } from 'formik'
+import {
+  forgotPasswordSchema,
+  verifyOtpSchema,
+  resetPasswordSchema,
+} from '../../schemas'
 
 // action
-import { userForgetPassword, userResetPassword, userVerifyOTP } from "../../store/actions";
+import {
+  userForgetPassword,
+  userResetPassword,
+  userVerifyOTP,
+} from '../../store/actions'
 
 // import images
-import profile from "../../assets/images/profile-img.png";
-import logo from "../../assets/images/logo.svg";
-import lightlogo from "../../assets/images/logo-light.svg";
+import profile from '../../assets/images/profile-img.png'
+import logo from '../../assets/images/logo.svg'
+import lightlogo from '../../assets/images/logo-light.svg'
 
 const ForgetPasswordPage = (props) => {
-  const history = useNavigate();
+  const history = useNavigate()
   //meta title
   document.title =
-    "Forget Password | Skote - Vite React Admin & Dashboard Template";
-  const dispatch = useDispatch();
+    'Forget Password | Skote - Vite React Admin & Dashboard Template'
+  const dispatch = useDispatch()
 
   const validation = useFormik({
     // enableReinitialize : use this flag when initial values needs to be changed
@@ -53,21 +61,20 @@ const ForgetPasswordPage = (props) => {
   })
 
   const OTPvalidation = useFormik({
-    // enableReinitialize : use this flag when initial values needs to be changed
     enableReinitialize: true,
 
     initialValues: {
-      otp: "",
+      otp: '',
     },
     validationSchema: verifyOtpSchema,
     onSubmit: (values) => {
       const payload = {
-        ...values,
-        token: forgetSuccessMsg?.results?.resetToken
+        otp: parseInt(values.otp),
+        token: forgetSuccessMsg?.resetToken,
       }
-      dispatch(userVerifyOTP(payload, props.history));
+      dispatch(userVerifyOTP(payload, props.history))
     },
-  });
+  })
 
   const ForgetPasswordValidation = useFormik({
     // enableReinitialize : use this flag when initial values needs to be changed
@@ -80,14 +87,14 @@ const ForgetPasswordPage = (props) => {
     validationSchema: resetPasswordSchema,
     onSubmit: (values) => {
       const payload = {
-        ...values,
-        token: forgetSuccessMsg?.results?.resetToken,
+        password: values.password,
+        token: forgetSuccessMsg?.resetToken,
       }
       dispatch(userResetPassword(payload, history))
     },
   })
 
-  const selectForgotPasswordState = (state) => state.ForgetPassword;
+  const selectForgotPasswordState = (state) => state.ForgetPassword
 
   const ForgotPasswordProperties = createSelector(
     selectForgotPasswordState,
@@ -96,13 +103,11 @@ const ForgetPasswordPage = (props) => {
       forgetSuccessMsg: forgetPassword.forgetSuccessMsg,
       verifyOTPSuccessMsg: forgetPassword.verifyOTPSuccessMsg,
     })
-  );
+  )
 
-  const {
-    forgetError,
-    forgetSuccessMsg,
-    verifyOTPSuccessMsg
-  } = useSelector(ForgotPasswordProperties);
+  const { forgetError, forgetSuccessMsg, verifyOTPSuccessMsg } = useSelector(
+    ForgotPasswordProperties
+  )
   return (
     <React.Fragment>
       <div className="home-btn d-none d-sm-block">
@@ -159,9 +164,9 @@ const ForgetPasswordPage = (props) => {
                   {verifyOTPSuccessMsg?.verifyOtp ? (
                     <>
                       <div className="p-2">
-                        {forgetError && forgetError?.response?.data?.message ? (
+                        {forgetError ? (
                           <Alert color="danger" style={{ marginTop: '13px' }}>
-                            {forgetError?.response?.data?.message}
+                            {forgetError}
                           </Alert>
                         ) : null}
                         <Form
@@ -246,15 +251,14 @@ const ForgetPasswordPage = (props) => {
                     </>
                   ) : (
                     <div className="p-2">
-                      {forgetError && forgetError?.response?.data?.message ? (
+                      {forgetError ? (
                         <Alert color="danger" style={{ marginTop: '13px' }}>
-                          {forgetError?.response?.data?.message}
+                          {forgetError}
                         </Alert>
                       ) : null}
-                      {!forgetError?.response?.data?.message &&
-                      forgetSuccessMsg?.message ? (
+                      {!forgetError && forgetSuccessMsg?.message ? (
                         <Alert color="success" style={{ marginTop: '13px' }}>
-                          {forgetSuccessMsg?.message}
+                          {forgetSuccessMsg.message}
                         </Alert>
                       ) : null}
 
@@ -384,10 +388,10 @@ const ForgetPasswordPage = (props) => {
       </div>
     </React.Fragment>
   )
-};
+}
 
 ForgetPasswordPage.propTypes = {
   history: PropTypes.object,
-};
+}
 
-export default withRouter(ForgetPasswordPage);
+export default withRouter(ForgetPasswordPage)
