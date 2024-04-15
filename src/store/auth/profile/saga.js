@@ -22,7 +22,7 @@ function* getUserByID({ payload }) {
     yield put(
       setUserRes({
         loading: false,
-        success: response?.results?.user,
+        success: response?.message,
         error: null,
       })
     )

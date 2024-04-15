@@ -42,7 +42,7 @@ function* addOffers({ payload }) {
     yield put(
       addOffersMessage({
         loading: false,
-        success: response?.results,
+        success: response?.message,
         error: null,
       })
     )
@@ -72,7 +72,7 @@ function* updateOffers({ payload }) {
     yield put(
       updateOffersMessage({
         loading: false,
-        success: response?.results,
+        success: response?.message,
         error: null,
       })
     )
@@ -100,7 +100,7 @@ function* deleteOffers({ payload }) {
     yield put(
       deleteOffersMessage({
         loading: false,
-        success: response?.results,
+        success: response?.message,
         error: null,
       })
     )

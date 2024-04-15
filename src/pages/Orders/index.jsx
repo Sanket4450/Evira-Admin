@@ -49,7 +49,7 @@ const Orders = (props) => {
     viewOrdersTrackInfo: {},
   })
 
-  document.title = 'Orders | Skote - Vite React Admin & Orders Template'
+  document.title = 'Orders | Evira - Admin & Dashboard'
   const dispatch = useDispatch()
 
   const selectOrdersState = (state) => state.orders
@@ -203,7 +203,7 @@ const Orders = (props) => {
   // This useEffect Use after update orders
   useEffect(() => {
     if (modelInfo?.updateOrders) {
-      toast.success(update_orders?.success?.message)
+      toast.success(update_orders?.success)
       closeUpdateModel()
       refresh()
     }

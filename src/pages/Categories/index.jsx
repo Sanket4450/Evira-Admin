@@ -64,7 +64,7 @@ const Categories = (props) => {
     addCategories: false,
   })
   //meta title
-  document.title = 'Categories | Skote - Vite React Admin & Categories Template'
+  document.title = 'Categories | Evira - Admin & Dashboard'
   const dispatch = useDispatch()
 
   const selectCategoriesState = (state) => state.categories
@@ -120,7 +120,7 @@ const Categories = (props) => {
       const response = await uploadFile(data)
 
       setSelectedFile(file)
-      seticonUrl(response?.icon.url)
+      seticonUrl(response?.results?.url)
     } catch (error) {
       setSelectedFile({})
     }
@@ -263,7 +263,7 @@ const Categories = (props) => {
   // This useEffect Use after update categories
   useEffect(() => {
     if (modelInfo?.updateCategories) {
-      toast.success(update_categories?.success?.message)
+      toast.success(update_categories?.success)
       closeUpdateModel()
       refresh()
     }
@@ -271,7 +271,7 @@ const Categories = (props) => {
 
   useEffect(() => {
     if (modelInfo?.addCategories) {
-      toast.success(add_categories?.success?.message)
+      toast.success(add_categories?.success)
       closeAddModel()
       refresh()
     }
@@ -279,7 +279,7 @@ const Categories = (props) => {
 
   useEffect(() => {
     if (modelInfo?.deleteCategories) {
-      toast.success(delete_categories?.success?.message)
+      toast.success(delete_categories?.success)
       closeDeleteModel()
       refresh()
     }

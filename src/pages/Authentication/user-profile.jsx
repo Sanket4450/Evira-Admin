@@ -28,13 +28,13 @@ import { getUserInfo, editProfile } from '../../store/actions'
 import { uploadFile } from '../../api'
 
 const UserProfile = () => {
-  document.title = 'Profile | Skote - React Admin & Dashboard Template'
+  document.title = 'Profile | Evira - Admin & Dashboard'
 
   const dispatch = useDispatch()
 
   const [selectFileError, setSelectFileError] = useState(null)
   const [selectedFile, setSelectedFile] = useState({})
-  const [imageUrl, setImageUrl] = useState(null)
+  const [imgUrl, setImgUrl] = useState(null)
 
   const selectProfileState = (state) => state.Profile
   const ProfileProperties = createSelector(selectProfileState, (profile) => ({
@@ -75,7 +75,7 @@ const UserProfile = () => {
       const response = await uploadFile(data)
 
       setSelectedFile(file)
-      setImageUrl(response?.image.url)
+      setImgUrl(response?.results?.url)
     } catch (error) {
       setSelectedFile({})
     }
@@ -100,8 +100,8 @@ const UserProfile = () => {
     },
     validationSchema: profileSchema,
     onSubmit: (values) => {
-      if (imageUrl) {
-        values.profileImage = imageUrl
+      if (imgUrl) {
+        values.profileImage = imgUrl
       }
 
       let payload = values
@@ -155,7 +155,7 @@ const UserProfile = () => {
     <React.Fragment>
       <div className="page-content">
         <Container fluid>
-          <Breadcrumb title="Skote" breadcrumbItem="Profile" />
+          <Breadcrumb title="Evira" breadcrumbItem="Profile" />
 
           <Row>
             <Col lg="12">

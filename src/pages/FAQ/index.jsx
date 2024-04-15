@@ -58,7 +58,7 @@ const FAQ = (props) => {
     addFaq: false,
   })
 
-  document.title = 'FAQs | Skote - Vite React Admin & Categories Template'
+  document.title = 'FAQs | Evira - Admin & Dashboard'
   const dispatch = useDispatch()
 
   const selectFaqState = (state) => state.faq
@@ -183,7 +183,7 @@ const FAQ = (props) => {
   // This useEffect Use after update faq
   useEffect(() => {
     if (modelInfo?.updateFaq) {
-      toast.success(update_faq?.success?.message)
+      toast.success(update_faq?.success)
       closeUpdateModel()
       refresh()
     }
@@ -191,7 +191,7 @@ const FAQ = (props) => {
 
   useEffect(() => {
     if (modelInfo?.addFaq) {
-      toast.success(add_faq?.success?.message)
+      toast.success(add_faq?.success)
       closeAddModel()
       refresh()
     }
@@ -199,7 +199,7 @@ const FAQ = (props) => {
 
   useEffect(() => {
     if (modelInfo?.deleteFaq) {
-      toast.success(delete_faq?.success?.message)
+      toast.success(delete_faq?.success)
       closeDeleteModel()
       refresh()
     }

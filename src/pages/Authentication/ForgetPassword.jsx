@@ -43,8 +43,7 @@ import lightlogo from '../../assets/images/logo-light.svg'
 const ForgetPasswordPage = (props) => {
   const history = useNavigate()
   //meta title
-  document.title =
-    'Forget Password | Skote - Vite React Admin & Dashboard Template'
+  document.title = 'Forget Password | Evira - Admin & Dashboard'
   const dispatch = useDispatch()
 
   const validation = useFormik({
@@ -125,7 +124,7 @@ const ForgetPasswordPage = (props) => {
                     <Col xs={7}>
                       <div className="text-primary p-4">
                         <h5 className="text-primary">Welcome Back !</h5>
-                        <p>Sign in to continue to Skote.</p>
+                        <p>Sign in to continue to Evira.</p>
                       </div>
                     </Col>
                     <Col className="col-5 align-self-end">
@@ -378,7 +377,7 @@ const ForgetPasswordPage = (props) => {
                   </Link>{' '}
                 </p>
                 <p>
-                  © {new Date().getFullYear()} Skote. Crafted with{' '}
+                  © {new Date().getFullYear()} Evira. Crafted with{' '}
                   <i className="mdi mdi-heart text-danger" /> by Object Infotech
                 </p>
               </div>

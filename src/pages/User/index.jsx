@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
-import React, { useEffect, useState } from "react";
+import PropTypes from 'prop-types'
+import React, { useEffect, useState } from 'react'
 import {
   Alert,
   Button,
@@ -31,7 +31,7 @@ import { createSelector } from 'reselect'
 
 // Formik validation
 import { useFormik } from 'formik'
-import { emailSchema } from '../../schemas'
+import { userSchema } from '../../schemas'
 import Spinners from '../../components/Common/Spinner'
 import CustomSpinner from '../../components/Common/CustomSpinner'
 import DummyImage from '../../assets/images/dummy-image.jpeg'
@@ -52,8 +52,8 @@ const User = (props) => {
     deleteUser: false,
     deleteUserInfo: {},
   })
-  //meta title
-  document.title = 'User | Skote - Vite React Admin & User Template'
+
+  document.title = 'User | Evira - Admin & Dashboard'
   const dispatch = useDispatch()
 
   const selectUserState = (state) => state.user
@@ -88,15 +88,11 @@ const User = (props) => {
         return (
           <div className="avatar-sm">
             <span className="avatar-title rounded-circle">
-              {rowData.profileImage ? (
                 <img
-                  src={rowData.profileImage}
+                  src={rowData.profileImage || DummyImage}
                   alt=""
                   className="avatar-title rounded-circle"
                 />
-              ) : (
-                <img src={DummyImage} alt="" width={'50px'} />
-              )}
             </span>
           </div>
         )
@@ -165,7 +161,6 @@ const User = (props) => {
   ]
 
   const validation = useFormik({
-    // enableReinitialize : use this flag when initial values needs to be changed
     enableReinitialize: true,
 
     initialValues: {
@@ -177,7 +172,7 @@ const User = (props) => {
       mobile: '',
       gender: '',
     },
-    validationSchema: emailSchema,
+    validationSchema: userSchema,
     onSubmit: (values) => {
       let payload = values
       if (values?.email === modelInfo?.updateUserInfo?.email) {
@@ -204,7 +199,7 @@ const User = (props) => {
 
   useEffect(() => {
     if (modelInfo?.updateUser) {
-      toast.success(update_user?.success?.message)
+      toast.success(update_user?.success)
       closeUpdateModel()
       refresh()
     }
@@ -212,7 +207,7 @@ const User = (props) => {
 
   useEffect(() => {
     if (modelInfo?.deleteUser) {
-      toast.success(delete_user?.success?.message)
+      toast.success(delete_user?.success)
       closeDeleteModel()
       refresh()
     }
@@ -339,7 +334,7 @@ const User = (props) => {
                 <div className="avatar-md mx-auto mb-4">
                   <div className="avatar-title bg-light  rounded-circle text-primary h1">
                     <img
-                      src={modelInfo?.updateUserInfo?.profileImage}
+                      src={modelInfo?.updateUserInfo?.profileImage || DummyImage}
                       alt=""
                       width={'80px'}
                       className="rounded-circle"
@@ -491,6 +486,6 @@ User.propTypes = {
   t: PropTypes.any,
   chartsData: PropTypes.any,
   onGetChartsData: PropTypes.func,
-};
+}
 
-export default withTranslation()(User);
+export default withTranslation()(User)

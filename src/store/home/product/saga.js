@@ -84,7 +84,7 @@ function* getProductByID({ payload }) {
     yield put(
       setProductResByID({
         loading: false,
-        success: response?.results?.product,
+        success: response?.message,
         error: null,
       })
     )
@@ -112,7 +112,7 @@ function* addProduct({ payload }) {
     yield put(
       addProductMessage({
         loading: false,
-        success: response?.results,
+        success: response?.message,
         error: null,
       })
     )
@@ -142,7 +142,7 @@ function* updateProduct({ payload }) {
     yield put(
       updateProductMessage({
         loading: false,
-        success: response?.results,
+        success: response?.message,
         error: null,
       })
     )
@@ -170,7 +170,7 @@ function* deleteProduct({ payload }) {
     yield put(
       deleteProductMessage({
         loading: false,
-        success: response?.results?.message,
+        success: response?.message,
         error: null,
       })
     )
@@ -200,7 +200,7 @@ function* addProductVariant({ payload }) {
     yield put(
       addProductVariantsRes({
         loading: false,
-        success: response?.results?.message,
+        success: response?.message,
         error: null,
       })
     )
@@ -230,7 +230,7 @@ function* updateProductVariant({ payload }) {
     yield put(
       updateProductVariantsRes({
         loading: false,
-        success: response?.results?.message,
+        success: response?.message,
         error: null,
       })
     )
@@ -258,7 +258,7 @@ function* deleteProductVariant({ payload }) {
     yield put(
       deleteProductVariantsRes({
         loading: false,
-        success: response?.results?.message,
+        success: response?.message,
         error: null,
       })
     )
@@ -287,7 +287,7 @@ function* getProductReviews({ payload }) {
     yield put(
       setProductReviewsRes({
         loading: false,
-        success: response?.results?.reviews,
+        success: response?.message,
       })
     )
   } catch (error) {
@@ -315,7 +315,7 @@ function* deteleReviews({ payload }) {
     yield put(
       setDeleteReviewsRes({
         loading: false,
-        success: response?.results?.message,
+        success: response?.message,
         error: null,
         refresh: true,
       })

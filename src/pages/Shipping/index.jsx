@@ -49,7 +49,7 @@ const Shipping = (props) => {
     addShipping: false,
   })
   //meta title
-  document.title = 'Shipping | Skote - Vite React Admin & Shipping Template'
+  document.title = 'Shipping | Evira - Admin & Dashboard'
   const dispatch = useDispatch()
 
   const selectShippingState = (state) => state.shipping
@@ -182,7 +182,7 @@ const Shipping = (props) => {
   // This useEffect Use after update shipping
   useEffect(() => {
     if (modelInfo?.updateShipping) {
-      toast.success(update_shipping?.success?.message)
+      toast.success(update_shipping?.success)
       closeUpdateModel()
       refresh()
     }
@@ -190,7 +190,7 @@ const Shipping = (props) => {
 
   useEffect(() => {
     if (modelInfo?.addShipping) {
-      toast.success(add_shipping?.success?.message)
+      toast.success(add_shipping?.success)
       closeAddModel()
       refresh()
     }
@@ -198,7 +198,7 @@ const Shipping = (props) => {
 
   useEffect(() => {
     if (modelInfo?.deleteShipping) {
-      toast.success(delete_shipping?.success?.message)
+      toast.success(delete_shipping?.success)
       closeDeleteModel()
       refresh()
     }

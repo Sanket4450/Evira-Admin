@@ -32,7 +32,7 @@ import { createSelector } from 'reselect'
 
 // Formik validation
 import { useFormik } from 'formik'
-import { productSchema, promoCodeFullSchema } from '../../schemas'
+import { productSchema } from '../../schemas'
 import CustomSpinner from '../../components/Common/CustomSpinner'
 
 import { toast } from 'react-toastify'
@@ -61,7 +61,7 @@ const Product = (props) => {
     addProduct: false,
   })
 
-  document.title = 'Product | Skote - Vite React Admin & Product Template'
+  document.title = 'Product | Evira - Admin & Dashboard'
   const dispatch = useDispatch()
 
   const selectProductState = (state) => state.product
@@ -123,7 +123,7 @@ const Product = (props) => {
       validFrom: '',
       validUntil: '',
     },
-    validationSchema: promoCodeFullSchema,
+    validationSchema: productSchema,
     onSubmit: (values) => {
       dispatch(addProduct(values))
     },
@@ -131,7 +131,7 @@ const Product = (props) => {
 
   useEffect(() => {
     if (modelInfo?.updateProduct) {
-      toast.success(update_product?.success?.message)
+      toast.success(update_product?.success)
       closeUpdateModel()
       refresh()
     }
@@ -139,7 +139,7 @@ const Product = (props) => {
 
   useEffect(() => {
     if (modelInfo?.addProduct) {
-      toast.success(add_product?.success?.message)
+      toast.success(add_product?.success)
       closeAddModel()
       refresh()
     }
@@ -147,7 +147,7 @@ const Product = (props) => {
 
   useEffect(() => {
     if (modelInfo?.deleteProduct) {
-      toast.success(delete_product?.success?.message)
+      toast.success(delete_product?.success)
       closeDeleteModel()
       refresh()
     }
@@ -236,270 +236,7 @@ const Product = (props) => {
         </Container>
       </div>
 
-      {/* --------------Add Model-------------- */}
-      <Modal
-        isOpen={modelInfo?.addProduct}
-        role="dialog"
-        autoFocus={true}
-        centered
-        data-toggle="modal"
-        toggle={() => {
-          setModelInfo({
-            ...modelInfo,
-            addProduct: !modelInfo?.addProduct,
-          })
-        }}
-      >
-        <div>
-          <ModalHeader className="border-bottom-0" toggle={closeAddModel}>
-            Add Product
-          </ModalHeader>
-          {add_product?.error ? (
-            <Alert color="danger">{add_product?.error}</Alert>
-          ) : null}
-        </div>
-        <Form
-          className="form-horizontal"
-          onSubmit={(e) => {
-            e.preventDefault()
-            addProductValidation.handleSubmit()
-            return false
-          }}
-        >
-          <ModalBody>
-            <div className="modal-body">
-              <div className="text-center mb-4">
-                <div className="row justify-content-center">
-                  <div className="col-xl-10">
-                    <div className="input-group rounded bg-light">
-                      <Input
-                        type="text"
-                        className="form-control bg-transparent"
-                        placeholder="Enter Name"
-                        name="title"
-                        onChange={addProductValidation.handleChange}
-                        onBlur={addProductValidation.handleBlur}
-                        value={addProductValidation.values.title || ''}
-                        invalid={
-                          addProductValidation.touched.title &&
-                          addProductValidation.errors.title
-                            ? true
-                            : false
-                        }
-                      />
-                    </div>
-                    <div className="input-group rounded bg-light mt-3">
-                      <Input
-                        type="number"
-                        className="form-control bg-transparent"
-                        placeholder="Enter Discount Percentage"
-                        name="discountPercentage"
-                        max="250"
-                        onChange={(e) => {
-                          const value = parseInt(e.target.value)
-                          if (value <= 100 || !value) {
-                            // Validate if the value is less than or equal to 100
-                            addProductValidation.handleChange(e)
-                          }
-                        }}
-                        onBlur={addProductValidation.handleBlur}
-                        value={
-                          addProductValidation.values.discountPercentage || ''
-                        }
-                        invalid={
-                          addProductValidation.touched.discountPercentage &&
-                          addProductValidation.errors.discountPercentage
-                            ? true
-                            : false
-                        }
-                      />
-                    </div>
-                    <div className="input-group rounded bg-light mt-3">
-                      <Input
-                        type="number"
-                        className="form-control bg-transparent"
-                        placeholder="Enter Max User"
-                        name="maxUses"
-                        onChange={addProductValidation.handleChange}
-                        onBlur={addProductValidation.handleBlur}
-                        value={addProductValidation.values.maxUses || ''}
-                        invalid={
-                          addProductValidation.touched.maxUses &&
-                          addProductValidation.errors.maxUses
-                            ? true
-                            : false
-                        }
-                      />
-                    </div>
-
-                    <div className="input-group rounded bg-light mt-3">
-                      <Input
-                        type="date"
-                        className="form-control bg-transparent"
-                        placeholder="Enter Start Date"
-                        name="validFrom"
-                        onChange={addProductValidation.handleChange}
-                        onBlur={addProductValidation.handleBlur}
-                        value={addProductValidation.values.validFrom || ''}
-                        invalid={
-                          addProductValidation.touched.validFrom &&
-                          addProductValidation.errors.validFrom
-                            ? true
-                            : false
-                        }
-                      />
-                      <Input
-                        type="date"
-                        className="form-control bg-transparent"
-                        placeholder="Enter End Date"
-                        name="validUntil"
-                        onChange={addProductValidation.handleChange}
-                        onBlur={addProductValidation.handleBlur}
-                        value={addProductValidation.values.validUntil || ''}
-                        invalid={
-                          addProductValidation.touched.validUntil &&
-                          addProductValidation.errors.validUntil
-                            ? true
-                            : false
-                        }
-                      />
-                    </div>
-                    <div className="input-group rounded bg-light mt-3">
-                      <Input
-                        type="textarea"
-                        className="form-control bg-transparent "
-                        placeholder="Enter Description"
-                        name="description"
-                        onChange={addProductValidation.handleChange}
-                        onBlur={addProductValidation.handleBlur}
-                        value={addProductValidation.values.description || ''}
-                        invalid={
-                          addProductValidation.touched.description &&
-                          addProductValidation.errors.description
-                            ? true
-                            : false
-                        }
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ModalBody>
-          <ModalFooter>
-            <Button
-              type="submit"
-              color="primary"
-              disabled={add_product?.loading}
-              style={{ minWidth: '60px' }}
-            >
-              {add_product?.loading ? <CustomSpinner /> : 'Add'}
-            </Button>
-            <Button type="button" color="secondary" onClick={closeAddModel}>
-              Close
-            </Button>
-          </ModalFooter>
-        </Form>
-      </Modal>
-
-      {/* --------------Update Model-------------- */}
-      <Modal
-        isOpen={modelInfo?.updateProduct}
-        role="dialog"
-        autoFocus={true}
-        centered
-        data-toggle="modal"
-        toggle={() => {
-          setModelInfo({
-            ...modelInfo,
-            updateProduct: !modelInfo?.updateProduct,
-          })
-        }}
-      >
-        <div>
-          <ModalHeader className="border-bottom-0" toggle={closeUpdateModel}>
-            Update Product
-          </ModalHeader>
-          {update_product?.error ? (
-            <Alert color="danger">{update_product?.error}</Alert>
-          ) : null}
-        </div>
-        <Form
-          className="form-horizontal"
-          onSubmit={(e) => {
-            e.preventDefault()
-            validation.handleSubmit()
-            return false
-          }}
-        >
-          <ModalBody>
-            <div className="modal-body">
-              <div className="text-center mb-4">
-                <div className="row justify-content-center">
-                  <div className="col-xl-10">
-                    <div className="input-group rounded bg-light">
-                      <Input
-                        type="text"
-                        className="form-control bg-transparent"
-                        placeholder="Enter Name"
-                        name="title"
-                        onChange={validation.handleChange}
-                        onBlur={validation.handleBlur}
-                        value={validation.values.title || ''}
-                        invalid={
-                          validation.touched.title && validation.errors.title
-                            ? true
-                            : false
-                        }
-                      />
-                    </div>
-                    <div className="input-group rounded bg-light mt-3">
-                      <Input
-                        type="textarea"
-                        className="form-control bg-transparent "
-                        placeholder="Enter Description"
-                        name="description"
-                        onChange={validation.handleChange}
-                        onBlur={validation.handleBlur}
-                        value={validation.values.description || ''}
-                        invalid={
-                          validation.touched.description &&
-                          validation.errors.description
-                            ? true
-                            : false
-                        }
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ModalBody>
-          <ModalFooter>
-            <Button
-              type="submit"
-              color="primary"
-              disabled={update_product?.loading}
-              style={{ minWidth: '60px' }}
-            >
-              {update_product?.loading ? <CustomSpinner /> : 'Update'}
-            </Button>
-            <Button type="button" color="secondary" onClick={closeUpdateModel}>
-              Close
-            </Button>
-          </ModalFooter>
-        </Form>
-      </Modal>
-
-      {/* --------------Delete Model-------------- */}
-      <DeleteModal
-        loading={delete_product?.loading}
-        show={modelInfo?.deleteProduct}
-        onCloseClick={closeDeleteModel}
-        onDeleteClick={() =>
-          dispatch(deleteProduct(modelInfo?.deleteProductInfo))
-        }
-      />
+      
     </React.Fragment>
   )
 }

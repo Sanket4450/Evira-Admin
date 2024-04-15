@@ -65,7 +65,7 @@ function* updateOrders({ payload }) {
     yield put(
       updateOrdersMessage({
         loading: false,
-        success: response?.results,
+        success: response?.message,
         error: null,
       })
     )

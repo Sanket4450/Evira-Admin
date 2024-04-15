@@ -35,7 +35,7 @@ function* updateUser({ payload }) {
     yield put(
       updateUserMessage({
         loading: false,
-        success: response?.results,
+        success: response?.message,
         error: null,
       })
     )
@@ -65,7 +65,7 @@ function* deleteUser({ payload }) {
     yield put(
       deleteUserMessage({
         loading: false,
-        success: response?.results,
+        success: response?.message,
         error: null,
       })
     )

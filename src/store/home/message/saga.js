@@ -40,7 +40,7 @@ function* deleteMessage({ payload }) {
     yield put(
       deleteMessageMessage({
         loading: false,
-        success: response?.results,
+        success: response?.message,
         error: null,
       })
     )

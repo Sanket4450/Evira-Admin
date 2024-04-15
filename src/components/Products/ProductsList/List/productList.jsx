@@ -43,7 +43,7 @@ const ProductList = ({
   total_record,
 }) => {
   //meta title
-  document.title = 'Products | Skote - Vite React Admin & Dashboard Template'
+  document.title = 'Products | Evira - Admin & Dashboard'
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [productList, setProductList] = useState([])

@@ -78,7 +78,7 @@ const Dashboard = (props) => {
     setPeriodData(transformedData)
   }
 
-  document.title = 'Dashboard | Skote - Vite React Admin & Dashboard Template'
+  document.title = 'Dashboard | Evira - Admin & Dashboard'
   return (
     <React.Fragment>
       <Container fluid>

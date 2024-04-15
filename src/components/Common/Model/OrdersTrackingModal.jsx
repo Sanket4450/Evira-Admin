@@ -143,7 +143,7 @@ const OrdersTrackingModal = (props) => {
 
   useEffect(() => {
     if (update_orders?.success) {
-      toast.success(update_orders?.success?.message)
+      toast.success(update_orders?.success)
       refresh()
       toggle()
       dispatch(

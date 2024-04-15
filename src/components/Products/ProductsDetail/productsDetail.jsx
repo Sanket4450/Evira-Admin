@@ -71,8 +71,7 @@ const ProductsDetail = (props) => {
 
   const params = props.router.params
 
-  document.title =
-    'Product Details | Skote - Vite React Admin & Dashboard Template'
+  document.title = 'Product Details | Evira - Admin & Dashboard'
   const dispatch = useDispatch()
   const selectProductState = (state) => state.product
   const ProductProperties = createSelector(selectProductState, (product) => ({

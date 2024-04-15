@@ -1,26 +1,40 @@
-import PropTypes from "prop-types";
-import React, { useEffect, useState } from "react";
+import PropTypes from 'prop-types'
+import React, { useEffect, useState } from 'react'
 import {
   Alert,
   Button,
-  Container, Form, Input, Modal, ModalBody, ModalFooter, ModalHeader
-} from "reactstrap";
+  Container,
+  Form,
+  Input,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
+} from 'reactstrap'
 //redux
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from 'react-redux'
 //Import Breadcrumb
-import Breadcrumbs from "../../components/Common/Breadcrumb";
+import Breadcrumbs from '../../components/Common/Breadcrumb'
 
 //i18n
-import { withTranslation } from "react-i18next";
-import BasicTable from "../../components/Common/BasicTable";
-import { addPromo, addPromoMessage, deletePromo, deletePromoMessage, getPromoList, updatePromo, updatePromoMessage } from "../../store/home/promo/actions";
-import { createSelector } from "reselect";
+import { withTranslation } from 'react-i18next'
+import BasicTable from '../../components/Common/BasicTable'
+import {
+  addPromo,
+  addPromoMessage,
+  deletePromo,
+  deletePromoMessage,
+  getPromoList,
+  updatePromo,
+  updatePromoMessage,
+} from '../../store/home/promo/actions'
+import { createSelector } from 'reselect'
 
 // Formik validation
-import { useFormik } from "formik";
-import { promoCodeSchema, promoCodeFullSchema } from '../../schemas'
-import Spinners from "../../components/Common/Spinner";
-import CustomSpinner from "../../components/Common/CustomSpinner";
+import { useFormik } from 'formik'
+import { promoCodeSchema } from '../../schemas'
+import Spinners from '../../components/Common/Spinner'
+import CustomSpinner from '../../components/Common/CustomSpinner'
 
 import { toast } from 'react-toastify'
 import Paginations from '../../components/Common/Pagination'
@@ -40,7 +54,7 @@ const Promo = (props) => {
     addPromo: false,
   })
   //meta title
-  document.title = 'Promo | Skote - Vite React Admin & Promo Template'
+  document.title = 'Promo | Evira - Admin & Dashboard'
   const dispatch = useDispatch()
 
   const selectPromoState = (state) => state.promo
@@ -83,6 +97,12 @@ const Promo = (props) => {
       label: 'Description',
       value: 'description',
       textAlign: 'start',
+    },
+    {
+      id: 2,
+      label: 'Percentage',
+      value: 'discountPercentage',
+      textAlign: 'center',
     },
     {
       id: 3,
@@ -128,6 +148,10 @@ const Promo = (props) => {
     initialValues: {
       title: '',
       description: '',
+      discountPercentage: '',
+      maxUses: '',
+      validFrom: '',
+      validUntil: '',
     },
     validationSchema: promoCodeSchema,
     onSubmit: (values) => {
@@ -135,15 +159,32 @@ const Promo = (props) => {
       if (values?.title === modelInfo?.updatePromoInfo?.title) {
         delete payload.title
       }
-      if (values?.description === modelInfo?.updatePromoInfo?.description) {
+      if (
+        !values?.description ||
+        values?.description === modelInfo?.updatePromoInfo?.description
+      ) {
         delete payload.description
+      }
+      if (
+        values?.discountPercentage ===
+        modelInfo?.updatePromoInfo?.discountPercentage
+      ) {
+        delete payload.discountPercentage
+      }
+      if (values?.maxUses === modelInfo?.updatePromoInfo?.maxUses) {
+        delete payload.maxUses
+      }
+      if (values?.validFrom === modelInfo?.updatePromoInfo?.validFrom) {
+        delete payload.validFrom
+      }
+      if (values?.validUntil === modelInfo?.updatePromoInfo?.validUntil) {
+        delete payload.validUntil
       }
       dispatch(updatePromo(payload))
     },
   })
 
   const addPromoValidation = useFormik({
-    // enableReinitialize : use this flag when initial values needs to be changed
     enableReinitialize: true,
 
     initialValues: {
@@ -154,7 +195,7 @@ const Promo = (props) => {
       validFrom: '',
       validUntil: '',
     },
-    validationSchema: promoCodeFullSchema,
+    validationSchema: promoCodeSchema,
     onSubmit: (values) => {
       dispatch(addPromo(values))
     },
@@ -163,7 +204,7 @@ const Promo = (props) => {
   // This useEffect Use after update promo
   useEffect(() => {
     if (modelInfo?.updatePromo) {
-      toast.success(update_promo?.success?.message)
+      toast.success(update_promo?.success)
       closeUpdateModel()
       refresh()
     }
@@ -171,7 +212,7 @@ const Promo = (props) => {
 
   useEffect(() => {
     if (modelInfo?.addPromo) {
-      toast.success(add_promo?.success?.message)
+      toast.success(add_promo?.success)
       closeAddModel()
       refresh()
     }
@@ -179,7 +220,7 @@ const Promo = (props) => {
 
   useEffect(() => {
     if (modelInfo?.deletePromo) {
-      toast.success(delete_promo?.success?.message)
+      toast.success(delete_promo?.success)
       closeDeleteModel()
       refresh()
     }
@@ -191,7 +232,20 @@ const Promo = (props) => {
       validation.setFieldValue('title', modelInfo?.updatePromoInfo?.title)
       validation.setFieldValue(
         'description',
-        modelInfo?.updatePromoInfo?.description
+        modelInfo?.updatePromoInfo?.description || ''
+      )
+      validation.setFieldValue(
+        'discountPercentage',
+        modelInfo?.updatePromoInfo?.discountPercentage
+      )
+      validation.setFieldValue('maxUses', modelInfo?.updatePromoInfo?.maxUses)
+      validation.setFieldValue(
+        'validFrom',
+        modelInfo?.updatePromoInfo?.validFrom
+      )
+      validation.setFieldValue(
+        'validUntil',
+        modelInfo?.updatePromoInfo?.validUntil
       )
     }
   }, [modelInfo?.updatePromoInfo])
@@ -248,8 +302,8 @@ const Promo = (props) => {
         <Container fluid>
           {/* Render Breadcrumb */}
           <Breadcrumbs
-            title={props.t('Promotions')}
-            breadcrumbItem={props.t('Promotions')}
+            title={props.t('Promo Codes')}
+            breadcrumbItem={props.t('Promo Codes')}
           />
           <div className="mb-4 text-end">
             <Button
@@ -310,7 +364,7 @@ const Promo = (props) => {
       >
         <div>
           <ModalHeader className="border-bottom-0" toggle={closeAddModel}>
-            Add Promotions
+            Add Promo-Code
           </ModalHeader>
           {add_promo?.error ? (
             <Alert color="danger">{add_promo?.error}</Alert>
@@ -333,7 +387,7 @@ const Promo = (props) => {
                       <Input
                         type="text"
                         className="form-control bg-transparent"
-                        placeholder="Enter Name"
+                        placeholder="Enter Title"
                         name="title"
                         onChange={addPromoValidation.handleChange}
                         onBlur={addPromoValidation.handleBlur}
@@ -356,7 +410,6 @@ const Promo = (props) => {
                         onChange={(e) => {
                           const value = parseInt(e.target.value)
                           if (value <= 100 || !value) {
-                            // Validate if the value is less than or equal to 100
                             addPromoValidation.handleChange(e)
                           }
                         }}
@@ -437,11 +490,6 @@ const Promo = (props) => {
                             : false
                         }
                       />
-                      {/* {validation.touched.description && validation.errors.description ? (
-                        <FormFeedback type="invalid">
-                          {validation.errors.description}
-                        </FormFeedback>
-                      ) : null} */}
                     </div>
                   </div>
                 </div>
@@ -480,7 +528,7 @@ const Promo = (props) => {
       >
         <div>
           <ModalHeader className="border-bottom-0" toggle={closeUpdateModel}>
-            Update Promotions
+            Update Promo-Code
           </ModalHeader>
           {update_promo?.error ? (
             <Alert color="danger">{update_promo?.error}</Alert>
@@ -503,13 +551,85 @@ const Promo = (props) => {
                       <Input
                         type="text"
                         className="form-control bg-transparent"
-                        placeholder="Enter Name"
+                        placeholder="Enter Title"
                         name="title"
                         onChange={validation.handleChange}
                         onBlur={validation.handleBlur}
                         value={validation.values.title || ''}
                         invalid={
                           validation.touched.title && validation.errors.title
+                            ? true
+                            : false
+                        }
+                      />
+                    </div>
+                    <div className="input-group rounded bg-light mt-3">
+                      <Input
+                        type="number"
+                        className="form-control bg-transparent"
+                        placeholder="Enter Discount Percentage"
+                        name="discountPercentage"
+                        max="250"
+                        onChange={(e) => {
+                          const value = parseInt(e.target.value)
+                          if (value <= 100 || !value) {
+                            validation.handleChange(e)
+                          }
+                        }}
+                        onBlur={validation.handleBlur}
+                        value={validation.values.discountPercentage || ''}
+                        invalid={
+                          validation.touched.discountPercentage &&
+                          validation.errors.discountPercentage
+                            ? true
+                            : false
+                        }
+                      />
+                    </div>
+                    <div className="input-group rounded bg-light mt-3">
+                      <Input
+                        type="number"
+                        className="form-control bg-transparent"
+                        placeholder="Enter Max User"
+                        name="maxUses"
+                        onChange={validation.handleChange}
+                        onBlur={validation.handleBlur}
+                        value={validation.values.maxUses || ''}
+                        invalid={
+                          validation.touched.maxUses &&
+                          validation.errors.maxUses
+                            ? true
+                            : false
+                        }
+                      />
+                    </div>
+                    <div className="input-group rounded bg-light mt-3">
+                      <Input
+                        type="date"
+                        className="form-control bg-transparent"
+                        placeholder="Enter Start Date"
+                        name="validFrom"
+                        onChange={validation.handleChange}
+                        onBlur={validation.handleBlur}
+                        value={validation.values.validFrom || ''}
+                        invalid={
+                          validation.touched.validFrom &&
+                          validation.errors.validFrom
+                            ? true
+                            : false
+                        }
+                      />
+                      <Input
+                        type="date"
+                        className="form-control bg-transparent"
+                        placeholder="Enter End Date"
+                        name="validUntil"
+                        onChange={validation.handleChange}
+                        onBlur={validation.handleBlur}
+                        value={validation.values.validUntil || ''}
+                        invalid={
+                          validation.touched.validUntil &&
+                          validation.errors.validUntil
                             ? true
                             : false
                         }
@@ -568,6 +688,6 @@ Promo.propTypes = {
   t: PropTypes.any,
   chartsData: PropTypes.any,
   onGetChartsData: PropTypes.func,
-};
+}
 
-export default withTranslation()(Promo);
+export default withTranslation()(Promo)

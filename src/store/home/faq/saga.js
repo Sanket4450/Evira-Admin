@@ -44,7 +44,7 @@ function* addFaq({ payload }) {
     yield put(
       addFaqMessage({
         loading: false,
-        success: response?.results,
+        success: response?.message,
         error: null,
       })
     )
@@ -74,7 +74,7 @@ function* updateFaq({ payload }) {
     yield put(
       updateFaqMessage({
         loading: false,
-        success: response?.results,
+        success: response?.message,
         error: null,
       })
     )
@@ -104,7 +104,7 @@ function* deleteFaq({ payload }) {
     yield put(
       deleteFaqMessage({
         loading: false,
-        success: response?.results,
+        success: response?.message,
         error: null,
       })
     )

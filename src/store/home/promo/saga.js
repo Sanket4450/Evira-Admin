@@ -44,7 +44,7 @@ function* addPromo({ payload }) {
     yield put(
       addPromoMessage({
         loading: false,
-        success: response?.results,
+        success: response?.message,
         error: null,
       })
     )
@@ -74,7 +74,7 @@ function* updatePromo({ payload }) {
     yield put(
       updatePromoMessage({
         loading: false,
-        success: response?.results,
+        success: response?.message,
         error: null,
       })
     )
@@ -104,7 +104,7 @@ function* deletePromo({ payload }) {
     yield put(
       deletePromoMessage({
         loading: false,
-        success: response?.results,
+        success: response?.message,
         error: null,
       })
     )

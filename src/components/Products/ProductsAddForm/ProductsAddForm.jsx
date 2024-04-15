@@ -40,7 +40,7 @@ import { uploadFile } from '../../../api'
 const ProductsAddForm = (props) => {
   const ProdUpdateID = props?.router?.params?.id
 
-  document.title = 'Add Product | Skote - Vite React Admin & Dashboard Template'
+  document.title = 'Add Product | Evira - Admin & Dashboard'
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -85,7 +85,7 @@ const ProductsAddForm = (props) => {
       const response = await uploadFile(data)
 
       setSelectedFile(file)
-      setImgUrl(response?.image.url)
+      setImgUrl(response?.results?.url)
     } catch (error) {
       setSelectedFile({})
     }
@@ -169,7 +169,11 @@ const ProductsAddForm = (props) => {
   useEffect(() => {
     if (add_product?.success && !add_product?.loading) {
       formik.resetForm()
-      toast.success(add_product?.success?.message)
+      toast.success(add_product?.success)
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      })
       dispatch(
         addProductMessage({
           loading: false,
@@ -188,7 +192,7 @@ const ProductsAddForm = (props) => {
 
   useEffect(() => {
     if (update_product?.success) {
-      toast.success(update_product?.success?.message)
+      toast.success(update_product?.success)
       navigate(`/product`)
       dispatch(
         updateProductMessage({
@@ -225,6 +229,9 @@ const ProductsAddForm = (props) => {
           <Form onSubmit={formik.handleSubmit}>
             {add_product?.error ? (
               <Alert color="danger">{add_product?.error}</Alert>
+            ) : null}
+            {add_product?.success ? (
+              <Alert color="success">{add_product?.success}</Alert>
             ) : null}
             <Row>
               <Col xs="12">

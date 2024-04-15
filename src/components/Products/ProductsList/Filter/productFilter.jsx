@@ -19,7 +19,7 @@ import { createSelector } from 'reselect'
 const ProductsFilters = ({ pagination, setPagination }) => {
   const dispatch = useDispatch()
   //meta title
-  document.title = 'Products | Skote - Vite React Admin & Dashboard Template'
+  document.title = 'Products | Evira - Admin & Dashboard'
   // eslint-disable-next-line no-unused-vars
   const filterClothes = [
     { id: 1, name: 'T-shirts', link: '#' },

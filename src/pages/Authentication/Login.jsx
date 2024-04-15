@@ -33,7 +33,7 @@ import logo from "../../assets/images/logo.svg";
 import lightlogo from "../../assets/images/logo-light.svg";
 
 const Login = (props) => {
-  document.title = 'Login | Skote - Vite React Admin & Dashboard Template'
+  document.title = 'Login | Evira - Admin & Dashboard'
   const dispatch = useDispatch()
 
   const validation = useFormik({
@@ -73,7 +73,7 @@ const Login = (props) => {
                     <Col xs={7}>
                       <div className="text-primary p-4">
                         <h5 className="text-primary">Welcome Back !</h5>
-                        <p>Sign in to continue to Skote.</p>
+                        <p>Sign in to continue to Evira.</p>
                       </div>
                     </Col>
                     <Col className="col-5 align-self-end">
@@ -206,7 +206,7 @@ const Login = (props) => {
               </Card>
               <div className="mt-5 text-center">
                 <p>
-                  © {new Date().getFullYear()} Skote. Crafted with{' '}
+                  © {new Date().getFullYear()} Evira. Crafted with{' '}
                   <i className="mdi mdi-heart text-danger" /> by Object Infotech
                 </p>
               </div>

@@ -23,7 +23,7 @@ function* forgetUser({ payload: { user } }) {
       yield put(
         userForgetPasswordSuccess({
           ...response?.results,
-          message: response?.results?.message,
+          message: response?.message,
         })
       )
     }

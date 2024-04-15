@@ -42,7 +42,7 @@ function* addShipping({ payload }) {
     yield put(
       addShippingMessage({
         loading: false,
-        success: response?.results,
+        success: response?.message,
         error: null,
       })
     )
@@ -72,7 +72,7 @@ function* updateShipping({ payload }) {
     yield put(
       updateShippingMessage({
         loading: false,
-        success: response?.results,
+        success: response?.message,
         error: null,
       })
     )
@@ -102,7 +102,7 @@ function* deleteShipping({ payload }) {
     yield put(
       deleteShippingMessage({
         loading: false,
-        success: response?.results,
+        success: response?.message,
         error: null,
       })
     )

@@ -44,7 +44,7 @@ function* addCategories({ payload }) {
     yield put(
       addCategoriesMessage({
         loading: false,
-        success: response?.results,
+        success: response?.message,
         error: null,
       })
     )
@@ -74,7 +74,7 @@ function* updateCategories({ payload }) {
     yield put(
       updateCategoriesMessage({
         loading: false,
-        success: response?.results,
+        success: response?.message,
         error: null,
       })
     )
@@ -104,7 +104,7 @@ function* deleteCategories({ payload }) {
     yield put(
       deleteCategoriesMessage({
         loading: false,
-        success: response?.results,
+        success: response?.message,
         error: null,
       })
     )

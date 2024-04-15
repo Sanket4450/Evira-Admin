@@ -1,5 +1,5 @@
 {
-    "title": "Dashboard | Skote - Admin & Dashboard Template",
+    "title": "Dashboard | Evira",
     "t-menu":"Menu",
     "t-dashboards":"Dashboards",
     "t-default":"Default",
@@ -174,7 +174,6 @@
     "t-occidental":"As a skeptical Cambridge friend of mine occidental",
     "t-hours-ago":"1 hours ago",
     "t-view-more":"View More",
-    "t-my-wallet":"My Wallet",
     "t-t-settings":"Settings",
     "t-logout":"Logout"
 }

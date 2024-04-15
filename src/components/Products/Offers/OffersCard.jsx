@@ -89,7 +89,7 @@ const CardShop = (props) => {
       const response = await uploadFile(data)
 
       setSelectedFile(file)
-      setImgUrl(response?.image.url)
+      setImgUrl(response?.results?.url)
     } catch (error) {
       setSelectedFile({})
     }
@@ -176,7 +176,7 @@ const CardShop = (props) => {
 
   useEffect(() => {
     if (modelInfo?.deleteOffers) {
-      toast.success(delete_offers?.success?.message)
+      toast.success(delete_offers?.success)
       closeModels()
       refresh()
     }
@@ -192,7 +192,7 @@ const CardShop = (props) => {
 
   useEffect(() => {
     if (modelInfo?.addOffers) {
-      toast.success(add_offers?.success?.message)
+      toast.success(add_offers?.success)
       closeModels()
       refresh()
     }

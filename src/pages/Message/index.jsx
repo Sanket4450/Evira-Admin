@@ -48,7 +48,7 @@ const Message = (props) => {
     deleteMessageInfo: {},
   })
 
-  document.title = 'Messages | Skote - Vite React Admin & Categories Template'
+  document.title = 'Messages | Evira - Admin & Dashboard'
   const dispatch = useDispatch()
 
   const selectMessageState = (state) => state.message
@@ -73,7 +73,7 @@ const Message = (props) => {
 
   useEffect(() => {
     if (modelInfo?.deleteMessage) {
-      toast.success(deleteMessage?.success?.message)
+      toast.success(deleteMessage?.success)
       closeDeleteModel()
       refresh()
     }
