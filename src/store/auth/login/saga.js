@@ -11,6 +11,7 @@ function* loginUser({ payload: { user, history } }) {
     const response = yield call(loginAdminApi, {
       email: user.email,
       password: user.password,
+      isAdmin: true,
     })
 
     if (!response?.results?.tokens) {

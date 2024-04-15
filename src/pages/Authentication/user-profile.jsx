@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import {
   Container,
   Row,
+  UncontrolledAlert,
   Col,
   Card,
   CardBody,
@@ -20,8 +21,6 @@ import { profileSchema } from '../../schemas'
 import { useSelector, useDispatch } from 'react-redux'
 import { createSelector } from 'reselect'
 
-import { toast } from 'react-toastify'
-
 import DummyImage from '../../assets/images/dummy-image.jpeg'
 import withRouter from '../../components/Common/withRouter'
 import Breadcrumb from '../../components/Common/Breadcrumb'
@@ -33,6 +32,7 @@ const UserProfile = () => {
 
   const dispatch = useDispatch()
 
+  const [selectFileError, setSelectFileError] = useState(null)
   const [selectedFile, setSelectedFile] = useState({})
   const [imageUrl, setImageUrl] = useState(null)
 
@@ -127,10 +127,22 @@ const UserProfile = () => {
 
   useEffect(() => {
     if (edit_profile?.success) {
-      toast.success(editProfile?.success?.message)
       refresh()
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      })
     }
   }, [edit_profile?.success])
+
+  useEffect(() => {
+    if (edit_profile?.error) {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      })
+    }
+  }, [edit_profile?.error])
 
   useEffect(() => {
     if (Object.keys(user_data).length > 0) {
@@ -172,6 +184,18 @@ const UserProfile = () => {
 
           <h4 className="card-title mb-4">Update Profile</h4>
 
+          {!!edit_profile?.error && (
+            <UncontrolledAlert color="danger" style={{ marginTop: '13px' }}>
+              {edit_profile?.error}
+            </UncontrolledAlert>
+          )}
+
+          {!!edit_profile?.success && (
+            <UncontrolledAlert color="success" style={{ marginTop: '13px' }}>
+              {edit_profile?.success}
+            </UncontrolledAlert>
+          )}
+
           <Card>
             <CardBody>
               <Form
@@ -183,7 +207,7 @@ const UserProfile = () => {
                 }}
               >
                 <div className="form-group">
-                  <div className='mx-4'>
+                  <div className="mx-4">
                     <p className="form-label">Profile Image</p>
                   </div>
                   <Card>
@@ -292,7 +316,7 @@ const UserProfile = () => {
                       onChange={validation.handleChange}
                       onBlur={validation.handleBlur}
                       value={validation.values.email}
-                      autoComplete='off'
+                      autoComplete="off"
                       invalid={
                         validation.touched.email && validation.errors.email
                           ? true

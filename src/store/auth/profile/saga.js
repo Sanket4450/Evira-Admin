@@ -50,7 +50,7 @@ function* editProfile({ payload }) {
     yield put(
       editProfileMessage({
         loading: false,
-        success: response?.results,
+        success: response?.message,
         error: null,
       })
     )
