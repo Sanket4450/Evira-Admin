@@ -103,8 +103,9 @@ const Orders = (props) => {
     },
     {
       id: 4,
-      label: 'Total',
+      label: 'Amount',
       value: 'amount',
+      textAlign: 'center',
       render: (rowData) => {
         return <div className="text-body">{rowData.amount}₹</div>
       },

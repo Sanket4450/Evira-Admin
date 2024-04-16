@@ -103,6 +103,9 @@ const Promo = (props) => {
       label: 'Percentage',
       value: 'discountPercentage',
       textAlign: 'center',
+      render: (rowData) => {
+        return <div className="text-body">{rowData.discountPercentage}%</div>
+      },
     },
     {
       id: 3,

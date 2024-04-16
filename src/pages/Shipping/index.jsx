@@ -84,21 +84,24 @@ const Shipping = (props) => {
   const column = [
     {
       id: 1,
-      label: 'title',
+      label: 'Title',
       value: 'title',
       textAlign: 'center',
     },
     {
       id: 2,
-      label: 'description',
+      label: 'Description',
       value: 'description',
       textAlign: 'start',
     },
     {
       id: 3,
-      label: 'charge',
+      label: 'Charge',
       value: 'charge',
       textAlign: 'center',
+      render: (rowData) => {
+        return <div className="text-body">{rowData.charge}₹</div>
+      },
     },
     {
       id: 4,

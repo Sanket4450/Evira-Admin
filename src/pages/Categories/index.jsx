@@ -141,6 +141,7 @@ const Categories = (props) => {
       id: 1,
       label: 'Icon',
       value: 'icon',
+      textAlign: 'center',
       render: (rowData) => {
         return rowData.icon ? (
           <img src={rowData.icon} alt="" width={'50px'} />

@@ -16,7 +16,7 @@ axiosApi.interceptors.response.use(
       window.location.replace('/login')
     } else if (response.status === 406) {
       refreshTokensApi().then((response) => {
-          setItem('tokens', JSON.stringify(response?.tokens))
+          setItem('tokens', JSON.stringify(response?.results?.tokens))
           window.location.reload()
       })
     } else if (response.data?.type !== 'success') {

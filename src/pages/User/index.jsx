@@ -88,11 +88,11 @@ const User = (props) => {
         return (
           <div className="avatar-sm">
             <span className="avatar-title rounded-circle">
-                <img
-                  src={rowData.profileImage || DummyImage}
-                  alt=""
-                  className="avatar-title rounded-circle"
-                />
+              <img
+                src={rowData.profileImage || DummyImage}
+                alt=""
+                className="avatar-title rounded-circle"
+              />
             </span>
           </div>
         )
@@ -102,7 +102,7 @@ const User = (props) => {
       id: 3,
       label: 'Full Name',
       value: 'fullName',
-      textAlign: 'start',
+      textAlign: 'center',
     },
     {
       id: 2,
@@ -114,13 +114,13 @@ const User = (props) => {
       id: 3,
       label: 'Phone Number',
       value: 'mobile',
-      textAlign: 'start',
+      textAlign: 'center',
     },
     {
       id: 3,
       label: 'Gender',
       value: 'gender',
-      textAlign: 'start',
+      textAlign: 'center',
     },
     {
       id: 4,
