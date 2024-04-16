@@ -20,7 +20,6 @@ import { withTranslation } from 'react-i18next'
 import BasicTable from '../../components/Common/BasicTable'
 import {
   getOrdersList,
-  updateOrders,
   updateOrdersMessage,
 } from '../../store/home/orders/actions'
 import { createSelector } from 'reselect'

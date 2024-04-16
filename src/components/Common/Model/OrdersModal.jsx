@@ -32,7 +32,7 @@ const OrdersModal = (props) => {
     }
   }, [dispatch, transaction?.id])
 
-  const product_info = order_info_res?.success?.order?.[0]
+  const orderInfo = order_info_res?.success?.order
 
   return (
     <Modal
@@ -54,13 +54,13 @@ const OrdersModal = (props) => {
           ) : (
             <>
               <p className="mb-2">
-                Product id:{' '}
-                <span className="text-primary">#{product_info?.id}</span>
+                Order id:{' '}
+                <span className="text-primary">#{orderInfo?.id}</span>
               </p>
               <p className="mb-4">
                 Billing Name:{' '}
                 <span className="text-primary">
-                  {product_info?.user?.fullName}
+                  {orderInfo?.user?.fullName}
                 </span>
               </p>
 
@@ -78,7 +78,7 @@ const OrdersModal = (props) => {
                       <th scope="row">
                         <div>
                           <img
-                            src={product_info?.product?.image}
+                            src={orderInfo?.product?.image}
                             alt=""
                             className="avatar-sm"
                           />
@@ -87,27 +87,27 @@ const OrdersModal = (props) => {
                       <td>
                         <div>
                           <h5 className="text-truncate font-size-14">
-                            {product_info?.product?.name}
+                            {orderInfo?.product?.name}
                           </h5>
                           <p className="text-muted mb-0">
-                            ₹ {product_info?.product?.price} x{' '}
-                            {product_info?.quantity}
+                            ₹ {orderInfo?.variant?.price} x{' '}
+                            {orderInfo?.quantity}
                           </p>
                         </div>
                       </td>
-                      <td>₹ {product_info?.amount}</td>
+                      <td>₹ {orderInfo?.amount}</td>
                     </tr>
                     <tr>
                       <td colSpan="2">
                         <h6 className="m-0 text-right">Sub Total:</h6>
                       </td>
-                      <td>₹ {product_info?.amount}</td>
+                      <td>₹ {orderInfo?.amount}</td>
                     </tr>
                     <tr>
                       <td colSpan="2">
                         <h6 className="m-0 text-right">Shipping:</h6>
                       </td>
-                      <td>₹ {product_info?.shippingType?.charge}</td>
+                      <td>₹ {orderInfo?.shippingType?.charge}</td>
                     </tr>
                     <tr>
                       <td colSpan="2">
@@ -115,8 +115,8 @@ const OrdersModal = (props) => {
                       </td>
                       <td>
                         ₹{' '}
-                        {product_info?.shippingType?.charge +
-                          product_info?.amount}
+                        {orderInfo?.shippingType?.charge +
+                          orderInfo?.amount}
                       </td>
                     </tr>
                   </tbody>
