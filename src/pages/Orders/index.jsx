@@ -35,7 +35,7 @@ const Orders = (props) => {
   const [pagination, setPagination] = useState({
     limit: 5,
     page: 1,
-    type: null,
+    status: null,
   })
   const [singleBtn, setSingleBtn] = useState(false)
 
@@ -126,7 +126,7 @@ const Orders = (props) => {
       render: (rowData) => {
         let statusColor
 
-        switch (rowData.status[0]?.title) {
+        switch (rowData.status) {
           case 'Ordered':
             statusColor = 'warning'
             break
@@ -144,7 +144,7 @@ const Orders = (props) => {
         }
         return (
           <Badge className={'font-size-11 badge-soft-' + statusColor}>
-            {rowData.status[0]?.title}
+            {rowData.status}
           </Badge>
         )
       },
@@ -255,7 +255,7 @@ const Orders = (props) => {
                   toggle={() => setSingleBtn(!singleBtn)}
                 >
                   <DropdownToggle tag="button" className="btn btn-primary">
-                    {pagination?.type ? pagination?.type : 'All'}{' '}
+                    {pagination?.status ? pagination?.status : 'All'}{' '}
                     <i className="mdi mdi-chevron-down" />
                   </DropdownToggle>
                   <DropdownMenu>
@@ -263,7 +263,7 @@ const Orders = (props) => {
                       onClick={() =>
                         setPagination({
                           ...pagination,
-                          type: null,
+                          status: null,
                           limit: 5,
                           page: 1,
                         })
@@ -275,25 +275,61 @@ const Orders = (props) => {
                       onClick={() =>
                         setPagination({
                           ...pagination,
-                          type: 'completed',
+                          status: 'Ordered',
                           limit: 5,
                           page: 1,
                         })
                       }
                     >
-                      completed
+                      Ordered
                     </DropdownItem>
                     <DropdownItem
                       onClick={() =>
                         setPagination({
                           ...pagination,
-                          type: 'Ongoing',
+                          status: 'Shipped',
                           limit: 5,
                           page: 1,
                         })
                       }
                     >
-                      Ongoing
+                      Shipped
+                    </DropdownItem>
+                    <DropdownItem
+                      onClick={() =>
+                        setPagination({
+                          ...pagination,
+                          status: 'Out for Delivery',
+                          limit: 5,
+                          page: 1,
+                        })
+                      }
+                    >
+                      Out for Delivery
+                    </DropdownItem>
+                    <DropdownItem
+                      onClick={() =>
+                        setPagination({
+                          ...pagination,
+                          status: 'Delivered',
+                          limit: 5,
+                          page: 1,
+                        })
+                      }
+                    >
+                      Delivered
+                    </DropdownItem>
+                    <DropdownItem
+                      onClick={() =>
+                        setPagination({
+                          ...pagination,
+                          status: 'Canceled',
+                          limit: 5,
+                          page: 1,
+                        })
+                      }
+                    >
+                      Canceled
                     </DropdownItem>
                   </DropdownMenu>
                 </Dropdown>

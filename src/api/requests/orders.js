@@ -3,13 +3,13 @@ import * as constants from '../constants'
 import { getHeaders } from '../../helpers/auth'
 
 export const getOrdersApi = async (
-  type,
+  status,
   pagination = { page: 1, limit: 10 }
 ) => {
   const { page, limit } = pagination
 
   const response = await getApi(
-    `${constants.GET_ORDERS}?type=${type}&page=${page}&limit=${limit}`,
+    `${constants.GET_ORDERS}?status=${status}&page=${page}&limit=${limit}`,
     { headers: getHeaders() }
   )
   return response

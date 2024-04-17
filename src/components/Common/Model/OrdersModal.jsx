@@ -54,14 +54,23 @@ const OrdersModal = (props) => {
           ) : (
             <>
               <p className="mb-2">
-                Order id:{' '}
-                <span className="text-primary">#{orderInfo?.id}</span>
+                Order id: <span className="text-primary">#{orderInfo?.id}</span>
+              </p>
+              <p className="mb-2">
+                Type:{' '}
+                <span
+                  className={`${
+                    orderInfo?.type === 'completed'
+                      ? 'text-success'
+                      : 'text-warning'
+                  }`}
+                >
+                  {orderInfo?.type}
+                </span>
               </p>
               <p className="mb-4">
                 Billing Name:{' '}
-                <span className="text-primary">
-                  {orderInfo?.user?.fullName}
-                </span>
+                <span className="text-secondary">{orderInfo?.billingName}</span>
               </p>
 
               <div className="table-responsive">
@@ -95,29 +104,43 @@ const OrdersModal = (props) => {
                           </p>
                         </div>
                       </td>
-                      <td>₹ {orderInfo?.amount}</td>
+                      <td>
+                        ₹ {orderInfo?.variant?.price * orderInfo?.quantity}
+                      </td>
                     </tr>
                     <tr>
                       <td colSpan="2">
                         <h6 className="m-0 text-right">Sub Total:</h6>
                       </td>
-                      <td>₹ {orderInfo?.amount}</td>
+                      <td>
+                        ₹ {orderInfo?.variant?.price * orderInfo?.quantity}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colSpan="2">
+                        <h6 className="m-0 text-right">Discount:</h6>
+                      </td>
+                      <td>
+                        - ₹{' '}
+                        {parseInt(
+                          (orderInfo?.variant?.price *
+                            orderInfo?.quantity *
+                            orderInfo?.discountPercentage) /
+                            100
+                        )}
+                      </td>
                     </tr>
                     <tr>
                       <td colSpan="2">
                         <h6 className="m-0 text-right">Shipping:</h6>
                       </td>
-                      <td>₹ {orderInfo?.shippingType?.charge}</td>
+                      <td>+ ₹ {orderInfo?.shippingCharge}</td>
                     </tr>
                     <tr>
                       <td colSpan="2">
                         <h6 className="m-0 text-right">Total:</h6>
                       </td>
-                      <td>
-                        ₹{' '}
-                        {orderInfo?.shippingType?.charge +
-                          orderInfo?.amount}
-                      </td>
+                      <td>₹ {orderInfo?.shippingCharge + orderInfo?.amount}</td>
                     </tr>
                   </tbody>
                 </Table>

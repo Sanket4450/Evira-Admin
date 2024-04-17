@@ -12,9 +12,9 @@ import {
 function* getOrders({ payload }) {
   yield put(ordersLoading(true))
   try {
-    const { type, ...pagination } = payload
+    const { status, ...pagination } = payload
 
-    const response = yield call(getOrdersApi, type || 'all', pagination)
+    const response = yield call(getOrdersApi, status || 'all', pagination)
     yield put(addOrdersList(response?.results?.orders?.results))
     yield put(setOrdersRecode(response?.results?.orders?.count))
   } catch (error) {
