@@ -184,7 +184,7 @@ const Orders = (props) => {
             type="button"
             color="primary"
             className="btn-sm btn-rounded"
-            disabled={rowData?.status[0]?.title === 'Canceled'}
+            disabled={rowData?.status === 'Canceled'}
             onClick={() => {
               setModelInfo({
                 ...modelInfo,

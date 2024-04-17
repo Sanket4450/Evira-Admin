@@ -106,6 +106,7 @@ const OrdersTrackingModal = (props) => {
       status: {
         title: 'Canceled',
         description: 'Order has been canceled',
+        isForwardDirection: true,
       },
     }
     dispatch(updateOrders(payload))
@@ -293,20 +294,28 @@ const OrdersTrackingModal = (props) => {
                                 Next
                               </Link>
                             </li>
-                            <li>
+                            <li
+                              className={
+                                trackingInfo?.length === activeTabVertical
+                                  ? 'disabled'
+                                  : ''
+                              }
+                            >
                               <Link to="#" onClick={updateOrderStatus}>
                                 Update
                               </Link>
                             </li>
                             <li
                               className={
-                                activeTabVertical < 4 ? 'next' : 'next disabled'
+                                trackingInfo?.length < 4
+                                  ? 'next'
+                                  : 'next disabled'
                               }
                             >
                               <Link
                                 to="#"
                                 onClick={() => {
-                                  if (activeTabVertical < 4) {
+                                  if (trackingInfo?.length < 4) {
                                     cancelOrder()
                                   }
                                 }}
