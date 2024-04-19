@@ -2,19 +2,10 @@ import { getApi, postApi, putApi, deleteApi } from '../common'
 import * as constants from '../constants'
 import { getHeaders } from '../../helpers/auth'
 
-export const getProductsApi = async (query = { page: 1, limit: 10 }) => {
-  const { keyword, category, page, limit, min_price, max_price, rating } = query
-
-  const response = await getApi(
-    `${constants.GET_PRODUCTS}?page=${page}&limit=${limit}${
-      keyword ? '&keyword=' + keyword : ''
-    }${category ? '&category=' + category : ''}${
-      min_price ? '&min_price=' + min_price : ''
-    }${max_price ? '&max_price=' + max_price : ''}${
-      rating ? '&rating=' + rating : ''
-    }`,
-    { headers: getHeaders() }
-  )
+export const getProductsApi = async (payload = { page: 1, limit: 10 }) => {
+  const response = await postApi(constants.GET_PRODUCTS, payload, {
+    headers: getHeaders(),
+  })
   return response
 }
 

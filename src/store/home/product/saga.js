@@ -53,16 +53,16 @@ function* getAllCategories({ payload }) {
 function* getProduct({ payload }) {
   yield put(productLoading(true))
   try {
-    const updatedPayload = {
-      ...(payload.category && { category: payload.category }),
+    const filterPayload = {
       ...(payload.keyword &&
         payload.keyword.trim() && { keyword: payload.keyword.trim() }),
-      ...(payload.max_price && { max_price: payload.max_price }),
+      ...(payload.category && { category: payload.category }),
       ...(payload.min_price && { min_price: payload.min_price }),
+      ...(payload.max_price && { max_price: payload.max_price }),
       ...(payload.rating && { rating: payload.rating }),
       ...{ page: payload.page || 1, limit: payload.limit || 10 },
     }
-    const response = yield call(getProductsApi, updatedPayload)
+    const response = yield call(getProductsApi, filterPayload)
     yield put(addProductList(response?.results?.products?.results))
     yield put(setProductRecode(response?.results?.products?.count))
   } catch (error) {
