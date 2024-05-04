@@ -127,6 +127,8 @@ const UserProfile = () => {
 
   useEffect(() => {
     if (edit_profile?.success) {
+      setSelectedFile({})
+      setImgUrl(null)
       refresh()
       window.scrollTo({
         top: 0,

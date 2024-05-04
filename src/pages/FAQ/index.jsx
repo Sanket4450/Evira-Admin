@@ -214,7 +214,7 @@ const FAQ = (props) => {
         modelInfo?.updateFaqInfo?.description
       )
     }
-  }, [modelInfo?.updateFaqInfo])
+  }, [modelInfo?.updateFaqInfo, update_faq?.error])
 
   const closeUpdateModel = () => {
     setModelInfo({

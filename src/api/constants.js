@@ -1,4 +1,4 @@
-export const API_BASE_URL = 'http://65.0.143.176/api/v1'
+export const API_BASE_URL = import.meta.env.VITE_BASE_URL
 
 // Auth
 export const LOGIN = '/auth/login'
@@ -31,7 +31,7 @@ export const UPDATE_CATEGORY = '/admin/categories'
 export const DELETE_CATEGORY = '/admin/categories'
 
 // Products
-export const GET_PRODUCTS = '/admin/products'
+export const GET_PRODUCTS = '/admin/products/filter'
 export const GET_PRODUCT = '/admin/products'
 export const ADD_PRODUCT = '/admin/products'
 export const UPDATE_PRODUCT = '/admin/products'

@@ -31,7 +31,7 @@ import { useSelector } from 'react-redux'
 import DeleteModal from '../../Common/Model/DeleteModal'
 import { toast } from 'react-toastify'
 import { useFormik } from 'formik'
-import { offerSchema } from '../../../schemas'
+import { addOfferSchema, updateOfferSchema } from '../../../schemas'
 import CustomSpinner from '../../Common/CustomSpinner'
 import { uploadFile } from '../../../api'
 
@@ -62,6 +62,13 @@ const CardShop = (props) => {
   }))
   const { offers_info, delete_offers, update_offers, add_offers } =
     useSelector(OfferProperties)
+
+  useEffect(() => {
+    if (modelInfo?.addOffers || modelInfo?.updateOffers) {
+      setSelectedFile({})
+      setImgUrl(null)
+    }
+  }, [modelInfo?.addOffers, modelInfo?.updateOffers])
 
   const refresh = () => {
     dispatch(getOffersList(productId))
@@ -108,11 +115,12 @@ const CardShop = (props) => {
   const updateOfferformik = useFormik({
     initialValues: {
       id: '',
+      image: '',
       discountPercentage: '',
       startDate: '',
       endDate: '',
     },
-    validationSchema: offerSchema,
+    validationSchema: updateOfferSchema,
     onSubmit: (values) => {
       if (imgUrl) {
         values.image = imgUrl
@@ -154,7 +162,7 @@ const CardShop = (props) => {
       startDate: '',
       endDate: '',
     },
-    validationSchema: offerSchema,
+    validationSchema: addOfferSchema,
     onSubmit: (values) => {
       if (imgUrl) {
         values.image = imgUrl
@@ -204,6 +212,7 @@ const CardShop = (props) => {
 
   useEffect(() => {
     updateOfferformik.setFieldValue('id', modelInfo?.updateOffersInfo?.id)
+    updateOfferformik.setFieldValue('image', modelInfo?.updateOffersInfo?.image)
     updateOfferformik.setFieldValue(
       'discountPercentage',
       modelInfo?.updateOffersInfo?.discountPercentage
@@ -216,7 +225,7 @@ const CardShop = (props) => {
       'endDate',
       modelInfo?.updateOffersInfo?.endDate
     )
-  }, [modelInfo?.updateOffersInfo])
+  }, [modelInfo?.updateOffersInfo, update_offers?.error])
 
   const closeModels = () => {
     setModelInfo({

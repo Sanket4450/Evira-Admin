@@ -63,6 +63,13 @@ const ProductsAddForm = (props) => {
     dispatch(getAllCategoriesList())
   }, [dispatch])
 
+  useEffect(() => {
+    if (ProdUpdateID) {
+      setSelectedFile({})
+      setImgUrl(null)
+    }
+  }, [ProdUpdateID])
+
   async function handleAcceptedFiles(file) {
     try {
       Object.assign(file, {
@@ -104,6 +111,7 @@ const ProductsAddForm = (props) => {
   const formik = useFormik({
     initialValues: {
       name: '',
+      image: '',
       category: '',
       description: '',
       defaultVariant: {
@@ -168,6 +176,8 @@ const ProductsAddForm = (props) => {
 
   useEffect(() => {
     if (add_product?.success && !add_product?.loading) {
+      setSelectedFile({})
+      setImgUrl(null)
       formik.resetForm()
       toast.success(add_product?.success)
       window.scrollTo({
@@ -206,6 +216,7 @@ const ProductsAddForm = (props) => {
   useEffect(() => {
     if (ProdUpdateID && product_info) {
       formik.setFieldValue('name', product_info?.name)
+      formik.setFieldValue('image', product_info?.image)
       formik.setFieldValue('category', product_info?.category?.id)
       formik.setFieldValue('description', product_info?.description || '')
 

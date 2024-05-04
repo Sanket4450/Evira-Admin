@@ -226,7 +226,7 @@ const User = (props) => {
       validation.setFieldValue('mobile', modelInfo?.updateUserInfo?.mobile)
       validation.setFieldValue('gender', modelInfo?.updateUserInfo?.gender)
     }
-  }, [modelInfo?.updateUserInfo])
+  }, [modelInfo?.updateUserInfo, update_user?.error])
 
   const closeUpdateModel = () => {
     setModelInfo({

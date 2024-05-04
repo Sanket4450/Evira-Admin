@@ -251,7 +251,7 @@ const Promo = (props) => {
         modelInfo?.updatePromoInfo?.validUntil
       )
     }
-  }, [modelInfo?.updatePromoInfo])
+  }, [modelInfo?.updatePromoInfo, update_promo?.error])
 
   const closeUpdateModel = () => {
     setModelInfo({

@@ -217,7 +217,7 @@ const Shipping = (props) => {
       )
       validation.setFieldValue('charge', modelInfo?.updateShippingInfo?.charge)
     }
-  }, [modelInfo?.updateShippingInfo])
+  }, [modelInfo?.updateShippingInfo, update_shipping?.error])
 
   const closeUpdateModel = () => {
     setModelInfo({

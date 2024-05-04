@@ -7,6 +7,7 @@ export const productSchema = Yup.object({
 
 export const productFullSchema = Yup.object().shape({
   name: Yup.string().required('Name is required'),
+  image: Yup.string().required('Image is required'),
   category: Yup.string().required('Category is required'),
   description: Yup.string(),
   defaultVariant: Yup.object().shape({

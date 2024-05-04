@@ -37,7 +37,7 @@ import { createSelector } from 'reselect'
 
 // Formik validation
 import { useFormik } from 'formik'
-import { categorySchema } from '../../schemas'
+import { addCategorySchema, updateCategorySchema } from '../../schemas'
 import Spinners from '../../components/Common/Spinner'
 import CustomSpinner from '../../components/Common/CustomSpinner'
 
@@ -93,6 +93,13 @@ const Categories = (props) => {
   useEffect(() => {
     dispatch(getCategoriesList(pagination))
   }, [dispatch, pagination])
+
+  useEffect(() => {
+    if (modelInfo?.addCategories || modelInfo?.updateCategories) {
+      setSelectedFile({})
+      seticonUrl(null)
+    }
+  }, [modelInfo?.addCategories, modelInfo?.updateCategories])
 
   const refresh = () => {
     dispatch(getCategoriesList(pagination))
@@ -205,10 +212,11 @@ const Categories = (props) => {
 
     initialValues: {
       id: '',
+      icon: '',
       name: '',
       description: '',
     },
-    validationSchema: categorySchema,
+    validationSchema: updateCategorySchema,
     onSubmit: (values) => {
       if (iconUrl) {
         values.icon = iconUrl
@@ -245,7 +253,7 @@ const Categories = (props) => {
       name: '',
       description: '',
     },
-    validationSchema: categorySchema,
+    validationSchema: addCategorySchema,
     onSubmit: (values) => {
       if (iconUrl) {
         values.icon = iconUrl
@@ -289,13 +297,14 @@ const Categories = (props) => {
   useEffect(() => {
     if (modelInfo?.updateCategoriesInfo) {
       validation.setFieldValue('id', modelInfo?.updateCategoriesInfo?.id)
+      validation.setFieldValue('icon', modelInfo?.updateCategoriesInfo?.icon)
       validation.setFieldValue('name', modelInfo?.updateCategoriesInfo?.name)
       validation.setFieldValue(
         'description',
         modelInfo?.updateCategoriesInfo?.description
       )
     }
-  }, [modelInfo?.updateCategoriesInfo])
+  }, [modelInfo?.updateCategoriesInfo, update_categories?.error])
 
   const closeUpdateModel = () => {
     setModelInfo({
@@ -395,6 +404,7 @@ const Categories = (props) => {
         </Container>
       </div>
 
+      {/* --------------Add Model-------------- */}
       <Modal
         isOpen={modelInfo?.addCategories}
         role="dialog"

@@ -1,18 +1,13 @@
-import PropTypes from "prop-types";
-import React, { useEffect, useState } from "react";
-import {
-  Card,
-  CardBody,
-  Col,
-  Container, Row
-} from "reactstrap";
+import PropTypes from 'prop-types'
+import React, { useEffect, useState } from 'react'
+import { Card, CardBody, Col, Container, Row } from 'reactstrap'
 
 //Import Breadcrumb
-import Breadcrumbs from "../../components/Common/Breadcrumb";
+import Breadcrumbs from '../../components/Common/Breadcrumb'
 
 //i18n
-import { withTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
+import { withTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
 import { getDashboardRevenue } from '../../store/home/dashboard/actions'
 import { createSelector } from 'reselect'
 import { useSelector } from 'react-redux'
@@ -44,21 +39,23 @@ const Dashboard = (props) => {
 
   useEffect(() => {
     if (dashboard_revenue?.success) {
-      let currentRevenue =
-        dashboard_revenue?.success?.currentMonth?.Revenue
+      let currentRevenue = dashboard_revenue?.success?.currentMonth?.Revenue
       let lastRevenue = dashboard_revenue?.success?.lastMonth?.Revenue
-      let currentOrders =
-        dashboard_revenue?.success?.currentMonth?.Orders
+      let currentOrders = dashboard_revenue?.success?.currentMonth?.Orders
       let lastOrders = dashboard_revenue?.success?.lastMonth?.Orders
 
       let Earning = {
         count: currentRevenue,
-        percentage: lastRevenue ? ((currentRevenue - lastRevenue) * 100) / lastRevenue : 0,
+        percentage: lastRevenue
+          ? ((currentRevenue - lastRevenue) * 100) / lastRevenue
+          : 0,
         Symbol: '₹',
       }
       let Orders = {
         count: currentOrders,
-        percentage: lastOrders ? ((currentOrders - lastOrders) * 100) / lastOrders : 0,
+        percentage: lastOrders
+          ? ((currentOrders - lastOrders) * 100) / lastOrders
+          : 0,
       }
 
       setMonthlyData({ Earning, Orders })
@@ -68,8 +65,7 @@ const Dashboard = (props) => {
 
   const onChangeChartPeriod = (pType) => {
     setPeriodType(pType)
-    const pTypeData =
-      dashboard_revenue?.success?.chartData?.[`${pType}`]
+    const pTypeData = dashboard_revenue?.success?.chartData?.[`${pType}`]
     const transformedData = pTypeData.map((week) => ({
       name: week.name,
       data: Object.values(week.data),
@@ -112,7 +108,7 @@ const Dashboard = (props) => {
                           <div className="flex-grow-1">
                             <p className="text-muted fw-medium">{'Orders'}</p>
                             <h4 className="mb-0">
-                              {dashboard_revenue?.success?.Orders}
+                              {dashboard_revenue?.success?.Orders || 0}
                             </h4>
                           </div>
                           <div className="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
@@ -161,8 +157,10 @@ const Dashboard = (props) => {
                             </p>
                             <h4 className="mb-0">
                               ₹
-                              {(dashboard_revenue?.success?.Revenue /
-                                dashboard_revenue?.success?.Orders).toFixed(2)}
+                              {(
+                                dashboard_revenue?.success?.Revenue /
+                                dashboard_revenue?.success?.Orders || 0
+                              ).toFixed(2)}
                             </h4>
                           </div>
                           <div className="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
@@ -236,10 +234,12 @@ const Dashboard = (props) => {
                         </ul>
                       </div>
                     </div>
-                    {periodData.length > 0 && <StackedColumnChart
-                      periodData={periodData}
-                      dataColors='["--bs-primary", "--bs-warning", "--bs-success"]'
-                    />}
+                    {periodData.length > 0 && (
+                      <StackedColumnChart
+                        periodData={periodData}
+                        dataColors='["--bs-primary", "--bs-warning", "--bs-success"]'
+                      />
+                    )}
                   </CardBody>
                 </Card>
               </Col>
@@ -255,6 +255,6 @@ Dashboard.propTypes = {
   t: PropTypes.any,
   chartsData: PropTypes.any,
   onGetChartsData: PropTypes.func,
-};
+}
 
-export default withTranslation()(Dashboard);
+export default withTranslation()(Dashboard)
