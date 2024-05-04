@@ -15,7 +15,7 @@ import {
 } from 'reactstrap'
 import Dropzone from 'react-dropzone'
 import { useFormik } from 'formik'
-import { productFullSchema } from '../../../schemas'
+import { addProductSchema, updateProductSchema } from '../../../schemas'
 import Select from 'react-select'
 import PropTypes from 'prop-types'
 import withRouter from '../../Common/withRouter'
@@ -111,7 +111,7 @@ const ProductsAddForm = (props) => {
   const formik = useFormik({
     initialValues: {
       name: '',
-      image: '',
+      ...(ProdUpdateID && { image: '' }),
       category: '',
       description: '',
       defaultVariant: {
@@ -121,7 +121,7 @@ const ProductsAddForm = (props) => {
         quantity: '',
       },
     },
-    validationSchema: productFullSchema,
+    validationSchema: ProdUpdateID ? updateProductSchema : addProductSchema,
     onSubmit: (values) => {
       if (imgUrl) {
         values.image = imgUrl
@@ -195,6 +195,15 @@ const ProductsAddForm = (props) => {
   }, [add_product])
 
   useEffect(() => {
+    if (add_product?.error || update_product?.error) {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      })
+    }
+  }, [add_product, update_product])
+
+  useEffect(() => {
     if (ProdUpdateID) {
       dispatch(getProductInfoByID(ProdUpdateID))
     }
@@ -213,6 +222,7 @@ const ProductsAddForm = (props) => {
       )
     }
   }, [update_product])
+
   useEffect(() => {
     if (ProdUpdateID && product_info) {
       formik.setFieldValue('name', product_info?.name)
