@@ -5,5 +5,5 @@ export const setItem = (key, value) => {
 }
 
 export const removeItem = (key) => {
-    localStorage.removeItem(String(key))
+  localStorage.removeItem(String(key))
 }

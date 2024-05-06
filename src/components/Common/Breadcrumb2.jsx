@@ -1,9 +1,9 @@
-import React from "react"
+import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from "react-router-dom"
-import { Row, Col, BreadcrumbItem } from "reactstrap"
+import { Link } from 'react-router-dom'
+import { Row, Col, BreadcrumbItem } from 'reactstrap'
 
-const Breadcrumb = props => {
+const Breadcrumb = (props) => {
   const { title, breadcrumbItems } = props
   const itemLength = breadcrumbItems.length
 
@@ -29,7 +29,7 @@ const Breadcrumb = props => {
 
 Breadcrumb.propTypes = {
   breadcrumbItems: PropTypes.array,
-  title: PropTypes.string
+  title: PropTypes.string,
 }
 
 export default Breadcrumb

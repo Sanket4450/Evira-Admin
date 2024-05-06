@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
-import React, { useEffect, useState } from "react";
+import PropTypes from 'prop-types'
+import React, { useEffect, useState } from 'react'
 import {
   Alert,
   Button,
@@ -538,6 +538,6 @@ Shipping.propTypes = {
   t: PropTypes.any,
   chartsData: PropTypes.any,
   onGetChartsData: PropTypes.func,
-};
+}
 
-export default withTranslation()(Shipping);
+export default withTranslation()(Shipping)

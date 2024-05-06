@@ -1,23 +1,8 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Link, useNavigate } from 'react-router-dom'
-import {
-  Button,
-  Card,
-  CardBody,
-  CardTitle,
-  Col,
-  Container,
-  Form,
-  FormGroup,
-  Input,
-  Label,
-  Nav,
-  NavItem,
-  NavLink,
-  Row,
-} from 'reactstrap'
-import classnames from 'classnames'
+import { Button, Card, CardBody, Col, Form, Input, Row } from 'reactstrap'
+
 import { isEmpty } from 'lodash'
 
 //Import Star Ratings

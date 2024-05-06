@@ -1,95 +1,95 @@
-import PropTypes from "prop-types";
-import React, { useState, useEffect } from "react";
-import { Row, Col, Collapse } from "reactstrap";
-import { Link } from "react-router-dom";
-import withRouter from "../Common/withRouter";
-import classname from "classnames";
+import PropTypes from 'prop-types'
+import React, { useState, useEffect } from 'react'
+import { Row, Col, Collapse } from 'reactstrap'
+import { Link } from 'react-router-dom'
+import withRouter from '../Common/withRouter'
+import classname from 'classnames'
 
 //i18n
-import { withTranslation } from "react-i18next";
+import { withTranslation } from 'react-i18next'
 
-import { connect } from "react-redux";
+import { connect } from 'react-redux'
 
 const Navbar = (props) => {
-  const [dashboard, setdashboard] = useState(false);
-  const [ui, setui] = useState(false);
-  const [app, setapp] = useState(false);
-  const [email, setemail] = useState(false);
-  const [ecommerce, setecommerce] = useState(false);
-  const [crypto, setcrypto] = useState(false);
-  const [project, setproject] = useState(false);
-  const [task, settask] = useState(false);
-  const [contact, setcontact] = useState(false);
-  const [blog, setBlog] = useState(false);
-  const [job, setJob] = useState(false);
-  const [candidate, setCandidate] = useState(false);
-  const [component, setcomponent] = useState(false);
-  const [form, setform] = useState(false);
-  const [table, settable] = useState(false);
-  const [chart, setchart] = useState(false);
-  const [icon, seticon] = useState(false);
-  const [map, setmap] = useState(false);
-  const [extra, setextra] = useState(false);
-  const [invoice, setinvoice] = useState(false);
-  const [auth, setauth] = useState(false);
-  const [utility, setutility] = useState(false);
+  const [dashboard, setdashboard] = useState(false)
+  const [ui, setui] = useState(false)
+  const [app, setapp] = useState(false)
+  const [email, setemail] = useState(false)
+  const [ecommerce, setecommerce] = useState(false)
+  const [crypto, setcrypto] = useState(false)
+  const [project, setproject] = useState(false)
+  const [task, settask] = useState(false)
+  const [contact, setcontact] = useState(false)
+  const [blog, setBlog] = useState(false)
+  const [job, setJob] = useState(false)
+  const [candidate, setCandidate] = useState(false)
+  const [component, setcomponent] = useState(false)
+  const [form, setform] = useState(false)
+  const [table, settable] = useState(false)
+  const [chart, setchart] = useState(false)
+  const [icon, seticon] = useState(false)
+  const [map, setmap] = useState(false)
+  const [extra, setextra] = useState(false)
+  const [invoice, setinvoice] = useState(false)
+  const [auth, setauth] = useState(false)
+  const [utility, setutility] = useState(false)
 
   useEffect(() => {
-    var matchingMenuItem = null;
-    var ul = document.getElementById("navigation");
-    var items = ul.getElementsByTagName("a");
-    removeActivation(items);
+    var matchingMenuItem = null
+    var ul = document.getElementById('navigation')
+    var items = ul.getElementsByTagName('a')
+    removeActivation(items)
     for (var i = 0; i < items.length; ++i) {
       if (window.location.pathname === items[i].pathname) {
-        matchingMenuItem = items[i];
-        break;
+        matchingMenuItem = items[i]
+        break
       }
     }
     if (matchingMenuItem) {
-      activateParentDropdown(matchingMenuItem);
+      activateParentDropdown(matchingMenuItem)
     }
-  });
+  })
 
   const removeActivation = (items) => {
     for (var i = 0; i < items.length; ++i) {
-      var item = items[i];
-      const parent = items[i].parentElement;
-      if (item && item.classList.contains("active")) {
-        item.classList.remove("active");
+      var item = items[i]
+      const parent = items[i].parentElement
+      if (item && item.classList.contains('active')) {
+        item.classList.remove('active')
       }
       if (parent) {
-        if (parent.classList.contains("active")) {
-          parent.classList.remove("active");
+        if (parent.classList.contains('active')) {
+          parent.classList.remove('active')
         }
       }
     }
-  };
+  }
 
   function activateParentDropdown(item) {
-    item.classList.add("active");
-    const parent = item.parentElement;
+    item.classList.add('active')
+    const parent = item.parentElement
     if (parent) {
-      parent.classList.add("active"); // li
-      const parent2 = parent.parentElement;
-      parent2.classList.add("active"); // li
-      const parent3 = parent2.parentElement;
+      parent.classList.add('active') // li
+      const parent2 = parent.parentElement
+      parent2.classList.add('active') // li
+      const parent3 = parent2.parentElement
       if (parent3) {
-        parent3.classList.add("active"); // li
-        const parent4 = parent3.parentElement;
+        parent3.classList.add('active') // li
+        const parent4 = parent3.parentElement
         if (parent4) {
-          parent4.classList.add("active"); // li
-          const parent5 = parent4.parentElement;
+          parent4.classList.add('active') // li
+          const parent5 = parent4.parentElement
           if (parent5) {
-            parent5.classList.add("active"); // li
-            const parent6 = parent5.parentElement;
+            parent5.classList.add('active') // li
+            const parent6 = parent5.parentElement
             if (parent6) {
-              parent6.classList.add("active"); // li
+              parent6.classList.add('active') // li
             }
           }
         }
       }
     }
-    return false;
+    return false
   }
 
   return (
@@ -110,32 +110,32 @@ const Navbar = (props) => {
                   <Link
                     className="nav-link  arrow-none"
                     onClick={(e) => {
-                      e.preventDefault();
-                      setdashboard(!dashboard);
+                      e.preventDefault()
+                      setdashboard(!dashboard)
                     }}
                     to="/dashboard"
                   >
                     <i className="bx bx-home-circle me-2"></i>
-                    {props.t("Dashboard")} {props.menuOpen}
+                    {props.t('Dashboard')} {props.menuOpen}
                     <div className="arrow-down"></div>
                   </Link>
                   <div
-                    className={classname("dropdown-menu", { show: dashboard })}
+                    className={classname('dropdown-menu', { show: dashboard })}
                   >
                     <Link to="/dashboard" className="dropdown-item">
-                      {props.t("Default")}
+                      {props.t('Default')}
                     </Link>
                     <Link to="#" className="dropdown-item">
-                      {props.t("Saas")}
+                      {props.t('Saas')}
                     </Link>
                     <Link to="#" className="dropdown-item">
-                      {props.t("Crypto")}
+                      {props.t('Crypto')}
                     </Link>
                     <Link to="#" className="dropdown-item">
-                      {props.t("Blog")}
+                      {props.t('Blog')}
                     </Link>
                     <Link to="#" className="dropdown-item">
-                      {props.t("Jobs")}
+                      {props.t('Jobs')}
                     </Link>
                   </div>
                 </li>
@@ -144,17 +144,17 @@ const Navbar = (props) => {
                   <Link
                     to="/#"
                     onClick={(e) => {
-                      e.preventDefault();
-                      setui(!ui);
+                      e.preventDefault()
+                      setui(!ui)
                     }}
                     className="nav-link dropdown-toggle arrow-none"
                   >
                     <i className="bx bx-tone me-2"></i>
-                    {props.t("UI Elements")} <div className="arrow-down"></div>
+                    {props.t('UI Elements')} <div className="arrow-down"></div>
                   </Link>
                   <div
                     className={classname(
-                      "dropdown-menu mega-dropdown-menu dropdown-menu-left dropdown-mega-menu-xl",
+                      'dropdown-menu mega-dropdown-menu dropdown-menu-left dropdown-mega-menu-xl',
                       { show: ui }
                     )}
                   >
@@ -162,90 +162,81 @@ const Navbar = (props) => {
                       <Col lg={4}>
                         <div>
                           <Link to="#" className="dropdown-item">
-                            {props.t("Alerts")}
+                            {props.t('Alerts')}
                           </Link>
                           <Link to="#" className="dropdown-item">
-                            {props.t("Buttons")}
+                            {props.t('Buttons')}
                           </Link>
                           <Link to="#" className="dropdown-item">
-                            {props.t("Cards")}
+                            {props.t('Cards')}
                           </Link>
                           <Link to="#" className="dropdown-item">
-                            {props.t("Carousel")}
+                            {props.t('Carousel')}
                           </Link>
                           <Link to="#" className="dropdown-item">
-                            {props.t("Dropdowns")}
+                            {props.t('Dropdowns')}
                           </Link>
                           <Link to="#" className="dropdown-item">
-                            {props.t("Grid")}
+                            {props.t('Grid')}
                           </Link>
                           <Link to="#" className="dropdown-item">
-                            {props.t("Images")}
+                            {props.t('Images')}
                           </Link>
                           <Link to="#" className="dropdown-item">
-                            {props.t("Lightbox")}
+                            {props.t('Lightbox')}
                           </Link>
                         </div>
                       </Col>
                       <Col lg={4}>
                         <div>
                           <Link to="#" className="dropdown-item">
-                            {props.t("Modals")}
+                            {props.t('Modals')}
                           </Link>
                           <Link to="#" className="dropdown-item">
-                            {props.t("Offcanvas")}
+                            {props.t('Offcanvas')}
                           </Link>
                           <Link to="#" className="dropdown-item">
-                            {props.t("Range Slider")}
-                          </Link>
-                          <Link
-                            to="#"
-                            className="dropdown-item"
-                          >
-                            {props.t("Session Timeout")}
+                            {props.t('Range Slider')}
                           </Link>
                           <Link to="#" className="dropdown-item">
-                            {props.t("Progress Bars")}
+                            {props.t('Session Timeout')}
                           </Link>
                           <Link to="#" className="dropdown-item">
-                            {props.t("Placeholders")}
+                            {props.t('Progress Bars')}
                           </Link>
-                          <Link
-                            to="#"
-                            className="dropdown-item"
-                          >
-                            {props.t("Tabs & Accordions")}
+                          <Link to="#" className="dropdown-item">
+                            {props.t('Placeholders')}
+                          </Link>
+                          <Link to="#" className="dropdown-item">
+                            {props.t('Tabs & Accordions')}
                           </Link>
                         </div>
                       </Col>
                       <Col lg={4}>
                         <div>
                           <Link to="#" className="dropdown-item">
-                            {props.t("Typography")}
+                            {props.t('Typography')}
                           </Link>
                           <Link to="#" className="dropdown-item">
-                            {props.t("Toasts")}
+                            {props.t('Toasts')}
                           </Link>
                           <Link to="#" className="dropdown-item">
-                            {props.t("Video")}
+                            {props.t('Video')}
                           </Link>
                           <Link to="#" className="dropdown-item">
-                            {props.t("General")}
+                            {props.t('General')}
                           </Link>
                           <Link to="#" className="dropdown-item">
-                            {props.t("Colors")}
+                            {props.t('Colors')}
                           </Link>
                           <Link to="#" className="dropdown-item">
-                            {props.t("Rating")}
-                          </Link>
-                          <Link
-                            to="#"
-                            className="dropdown-item"
-                          >
-                            {props.t("Notifications")}
+                            {props.t('Rating')}
                           </Link>
                           <Link to="#" className="dropdown-item">
-                            {props.t("Utilities")}
+                            {props.t('Notifications')}
+                          </Link>
+                          <Link to="#" className="dropdown-item">
+                            {props.t('Utilities')}
                           </Link>
                         </div>
                       </Col>
@@ -257,78 +248,69 @@ const Navbar = (props) => {
                   <Link
                     to="/#"
                     onClick={(e) => {
-                      e.preventDefault();
-                      setapp(!app);
+                      e.preventDefault()
+                      setapp(!app)
                     }}
                     className="nav-link z arrow-none"
                   >
                     <i className="bx bx-customize me-2"></i>
-                    {props.t("Apps")} <div className="arrow-down"></div>
+                    {props.t('Apps')} <div className="arrow-down"></div>
                   </Link>
-                  <div className={classname("dropdown-menu", { show: app })}>
+                  <div className={classname('dropdown-menu', { show: app })}>
                     <Link to="#" className="dropdown-item">
-                      {props.t("Calendar")}
+                      {props.t('Calendar')}
                     </Link>
                     <Link to="#" className="dropdown-item">
-                      {props.t("Chat")}
+                      {props.t('Chat')}
                     </Link>
                     <Link to="#" className="dropdown-item">
-                      {props.t("File Manager")}
+                      {props.t('File Manager')}
                     </Link>
                     <div className="dropdown">
                       <Link
                         to="/#"
                         className="dropdown-item  arrow-none"
                         onClick={(e) => {
-                          e.preventDefault();
-                          setemail(!email);
+                          e.preventDefault()
+                          setemail(!email)
                         }}
                       >
-                        {props.t("Email")} <div className="arrow-down"></div>
+                        {props.t('Email')} <div className="arrow-down"></div>
                       </Link>
                       <div
-                        className={classname("dropdown-menu", { show: email })}
+                        className={classname('dropdown-menu', { show: email })}
                       >
                         <Link to="#" className="dropdown-item">
-                          {props.t("Inbox")}
+                          {props.t('Inbox')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Read Email")}
+                          {props.t('Read Email')}
                         </Link>
                         <div className="dropdown">
                           <Link
                             className="dropdown-item  arrow-none"
                             to="/#"
                             onClick={(e) => {
-                              e.preventDefault();
-                              setemail(!email);
+                              e.preventDefault()
+                              setemail(!email)
                             }}
                           >
-                            <span key="#">Templates</span>{" "}
+                            <span key="#">Templates</span>{' '}
                             <div className="arrow-down"></div>
                           </Link>
                           <div
-                            className={classname("dropdown-menu", {
+                            className={classname('dropdown-menu', {
                               show: email,
                             })}
                           >
-                            <Link
-                              to="#"
-                              className="dropdown-item"
-                            >
-                              {props.t("Basic Action")}
+                            <Link to="#" className="dropdown-item">
+                              {props.t('Basic Action')}
                             </Link>
-                            <Link
-                              to="#"
-                              className="dropdown-item"
-                            >
-                              {props.t("Alert Email")}
+                            <Link to="#" className="dropdown-item">
+                              {props.t('Alert Email')}
                             </Link>
-                            <Link
-                              to="#"
-                              className="dropdown-item"
-                            >
-                              {props.t("Billing Email")}
+                            <Link to="#" className="dropdown-item">
+                              {props.t('Billing Email')}
                             </Link>
                           </div>
                         </div>
@@ -339,56 +321,41 @@ const Navbar = (props) => {
                         to="/#"
                         className="dropdown-item  arrow-none"
                         onClick={(e) => {
-                          e.preventDefault();
-                          setecommerce(!ecommerce);
+                          e.preventDefault()
+                          setecommerce(!ecommerce)
                         }}
                       >
-                        {props.t(" Ecommerce")}{" "}
+                        {props.t(' Ecommerce')}{' '}
                         <div className="arrow-down"></div>
                       </Link>
                       <div
-                        className={classname("dropdown-menu", {
+                        className={classname('dropdown-menu', {
                           show: ecommerce,
                         })}
                       >
-                        <Link
-                          to="#"
-                          className="dropdown-item"
-                        >
-                          {props.t("Products")}
-                        </Link>
-                        <Link
-                          to="#"
-                          className="dropdown-item"
-                        >
-                          {props.t("Product Detail")}
+                        <Link to="#" className="dropdown-item">
+                          {props.t('Products')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Orders")}
-                        </Link>
-                        <Link
-                          to="#"
-                          className="dropdown-item"
-                        >
-                          {props.t("Customers")}
+                          {props.t('Product Detail')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Cart")}
-                        </Link>
-                        <Link
-                          to="#"
-                          className="dropdown-item"
-                        >
-                          {props.t("Checkout")}
+                          {props.t('Orders')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Shops")}
+                          {props.t('Customers')}
                         </Link>
-                        <Link
-                          to="#"
-                          className="dropdown-item"
-                        >
-                          {props.t("Add Product")}
+                        <Link to="#" className="dropdown-item">
+                          {props.t('Cart')}
+                        </Link>
+                        <Link to="#" className="dropdown-item">
+                          {props.t('Checkout')}
+                        </Link>
+                        <Link to="#" className="dropdown-item">
+                          {props.t('Shops')}
+                        </Link>
+                        <Link to="#" className="dropdown-item">
+                          {props.t('Add Product')}
                         </Link>
                       </div>
                     </div>
@@ -398,41 +365,35 @@ const Navbar = (props) => {
                         to="/#"
                         className="dropdown-item  arrow-none"
                         onClick={(e) => {
-                          e.preventDefault();
-                          setcrypto(!crypto);
+                          e.preventDefault()
+                          setcrypto(!crypto)
                         }}
                       >
-                        {props.t("Crypto")} <div className="arrow-down"></div>
+                        {props.t('Crypto')} <div className="arrow-down"></div>
                       </Link>
                       <div
-                        className={classname("dropdown-menu", { show: crypto })}
+                        className={classname('dropdown-menu', { show: crypto })}
                       >
                         <Link to="#" className="dropdown-item">
-                          {props.t("Wallet")}
+                          {props.t('Wallet')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Buy/Sell")}
+                          {props.t('Buy/Sell')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Exchange")}
+                          {props.t('Exchange')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Lending")}
+                          {props.t('Lending')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Orders")}
+                          {props.t('Orders')}
                         </Link>
-                        <Link
-                          to="#"
-                          className="dropdown-item"
-                        >
-                          {props.t("KYC Application")}
+                        <Link to="#" className="dropdown-item">
+                          {props.t('KYC Application')}
                         </Link>
-                        <Link
-                          to="#"
-                          className="dropdown-item"
-                        >
-                          {props.t("ICO Landing")}
+                        <Link to="#" className="dropdown-item">
+                          {props.t('ICO Landing')}
                         </Link>
                       </div>
                     </div>
@@ -442,28 +403,28 @@ const Navbar = (props) => {
                         to="/#"
                         className="dropdown-item  arrow-none"
                         onClick={(e) => {
-                          e.preventDefault();
-                          setproject(!project);
+                          e.preventDefault()
+                          setproject(!project)
                         }}
                       >
-                        {props.t("Projects")} <div className="arrow-down"></div>
+                        {props.t('Projects')} <div className="arrow-down"></div>
                       </Link>
                       <div
-                        className={classname("dropdown-menu", {
+                        className={classname('dropdown-menu', {
                           show: project,
                         })}
                       >
                         <Link to="#" className="dropdown-item">
-                          {props.t("Projects Grid")}
+                          {props.t('Projects Grid')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Projects List")}
+                          {props.t('Projects List')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Project Overview")}
+                          {props.t('Project Overview')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Create New")}
+                          {props.t('Create New')}
                         </Link>
                       </div>
                     </div>
@@ -472,21 +433,23 @@ const Navbar = (props) => {
                         to="/#"
                         className="dropdown-item  arrow-none"
                         onClick={(e) => {
-                          e.preventDefault();
-                          settask(!task);
+                          e.preventDefault()
+                          settask(!task)
                         }}
                       >
-                        {props.t("Tasks")} <div className="arrow-down"></div>
+                        {props.t('Tasks')} <div className="arrow-down"></div>
                       </Link>
                       <div
-                        className={classname("dropdown-menu", { show: task })}
+                        className={classname('dropdown-menu', { show: task })}
                       >
                         <Link to="#" className="dropdown-item">
-                          {props.t("Task List")}
+                          {props.t('Task List')}
                         </Link>
-                        <Link to="#" className="dropdown-item">{props.t("Tasks Kanban")}</Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Create Task")}
+                          {props.t('Tasks Kanban')}
+                        </Link>
+                        <Link to="#" className="dropdown-item">
+                          {props.t('Create Task')}
                         </Link>
                       </div>
                     </div>
@@ -495,25 +458,25 @@ const Navbar = (props) => {
                         to="/#"
                         className="dropdown-item  arrow-none"
                         onClick={(e) => {
-                          e.preventDefault();
-                          setcontact(!contact);
+                          e.preventDefault()
+                          setcontact(!contact)
                         }}
                       >
-                        {props.t("Contacts")} <div className="arrow-down"></div>
+                        {props.t('Contacts')} <div className="arrow-down"></div>
                       </Link>
                       <div
-                        className={classname("dropdown-menu", {
+                        className={classname('dropdown-menu', {
                           show: contact,
                         })}
                       >
                         <Link to="#" className="dropdown-item">
-                          {props.t("User Grid")}
+                          {props.t('User Grid')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("User List")}
+                          {props.t('User List')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Profile")}
+                          {props.t('Profile')}
                         </Link>
                       </div>
                     </div>
@@ -522,25 +485,25 @@ const Navbar = (props) => {
                         to="/#"
                         className="dropdown-item  arrow-none"
                         onClick={(e) => {
-                          e.preventDefault();
-                          setBlog(!blog);
+                          e.preventDefault()
+                          setBlog(!blog)
                         }}
                       >
-                        {props.t("Blog")} <div className="arrow-down" />
+                        {props.t('Blog')} <div className="arrow-down" />
                       </Link>
                       <div
-                        className={classname("dropdown-menu", {
+                        className={classname('dropdown-menu', {
                           show: blog,
                         })}
                       >
                         <Link to="#" className="dropdown-item">
-                          {props.t("Blog List")}
+                          {props.t('Blog List')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Blog Grid")}
+                          {props.t('Blog Grid')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Blog Details")}
+                          {props.t('Blog Details')}
                         </Link>
                       </div>
                     </div>
@@ -550,29 +513,29 @@ const Navbar = (props) => {
                         to="/#"
                         className="dropdown-item arrow-none"
                         onClick={(e) => {
-                          e.preventDefault();
-                          setJob(!job);
+                          e.preventDefault()
+                          setJob(!job)
                         }}
                       >
-                        {props.t("Jobs")} <div className="arrow-down"></div>
+                        {props.t('Jobs')} <div className="arrow-down"></div>
                       </Link>
                       <div
-                        className={classname("dropdown-menu", { show: job })}
+                        className={classname('dropdown-menu', { show: job })}
                       >
                         <Link to="#" className="dropdown-item">
-                          {props.t("Job List")}
+                          {props.t('Job List')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Job Grid")}
+                          {props.t('Job Grid')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Job Apply")}
+                          {props.t('Job Apply')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Job Details")}
+                          {props.t('Job Details')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Job Catogories")}
+                          {props.t('Job Catogories')}
                         </Link>
 
                         <div className="dropdown">
@@ -580,29 +543,23 @@ const Navbar = (props) => {
                             className="dropdown-item dropdown-toggle arrow-none"
                             to="/#"
                             onClick={(e) => {
-                              e.preventDefault();
-                              setCandidate(!candidate);
+                              e.preventDefault()
+                              setCandidate(!candidate)
                             }}
                           >
-                            <span key="t-candidate">Candidate</span>{" "}
+                            <span key="t-candidate">Candidate</span>{' '}
                             <div className="arrow-down"></div>
                           </Link>
                           <div
-                            className={classname("dropdown-menu", {
+                            className={classname('dropdown-menu', {
                               show: candidate,
                             })}
                           >
-                            <Link
-                              to="#"
-                              className="dropdown-item"
-                            >
-                              {props.t("List")}
+                            <Link to="#" className="dropdown-item">
+                              {props.t('List')}
                             </Link>
-                            <Link
-                              to="#"
-                              className="dropdown-item"
-                            >
-                              {props.t("Overview")}
+                            <Link to="#" className="dropdown-item">
+                              {props.t('Overview')}
                             </Link>
                           </div>
                         </div>
@@ -616,56 +573,56 @@ const Navbar = (props) => {
                     to="/#"
                     className="nav-link  arrow-none"
                     onClick={(e) => {
-                      e.preventDefault();
-                      setcomponent(!component);
+                      e.preventDefault()
+                      setcomponent(!component)
                     }}
                   >
                     <i className="bx bx-collection me-2"></i>
-                    {props.t("Components")} <div className="arrow-down"></div>
+                    {props.t('Components')} <div className="arrow-down"></div>
                   </Link>
                   <div
-                    className={classname("dropdown-menu", { show: component })}
+                    className={classname('dropdown-menu', { show: component })}
                   >
                     <div className="dropdown">
                       <Link
                         to="/#"
                         className="dropdown-item  arrow-none"
                         onClick={(e) => {
-                          e.preventDefault();
-                          setform(!form);
+                          e.preventDefault()
+                          setform(!form)
                         }}
                       >
-                        {props.t("Forms")} <div className="arrow-down"></div>
+                        {props.t('Forms')} <div className="arrow-down"></div>
                       </Link>
                       <div
-                        className={classname("dropdown-menu", { show: form })}
+                        className={classname('dropdown-menu', { show: form })}
                       >
                         <Link to="#" className="dropdown-item">
-                          {props.t("Form Elements")}
+                          {props.t('Form Elements')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Form Layouts")}
+                          {props.t('Form Layouts')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Form Validation")}
+                          {props.t('Form Validation')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Form Advanced")}
+                          {props.t('Form Advanced')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Form Editors")}
+                          {props.t('Form Editors')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Form File Upload")}{" "}
+                          {props.t('Form File Upload')}{' '}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Form Repeater")}
+                          {props.t('Form Repeater')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Form Wizard")}
+                          {props.t('Form Wizard')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Form Mask")}
+                          {props.t('Form Mask')}
                         </Link>
                       </div>
                     </div>
@@ -674,23 +631,23 @@ const Navbar = (props) => {
                         to="/#"
                         className="dropdown-item  arrow-none"
                         onClick={(e) => {
-                          e.preventDefault();
-                          settable(!table);
+                          e.preventDefault()
+                          settable(!table)
                         }}
                       >
-                        {props.t("Tables")} <div className="arrow-down"></div>
+                        {props.t('Tables')} <div className="arrow-down"></div>
                       </Link>
                       <div
-                        className={classname("dropdown-menu", { show: table })}
+                        className={classname('dropdown-menu', { show: table })}
                       >
                         <Link to="#" className="dropdown-item">
-                          {props.t("Basic Tables")}
+                          {props.t('Basic Tables')}
                         </Link>
                         {/* <Link to="#" className="dropdown-item">
                           {props.t("Data Tables")}
                         </Link> */}
                         <Link to="#" className="dropdown-item">
-                          {props.t("Responsive Table")}
+                          {props.t('Responsive Table')}
                         </Link>
                         {/* <Link to="#" className="dropdown-item">
                           {props.t("Drag & Drop Table")}
@@ -702,33 +659,33 @@ const Navbar = (props) => {
                         to="/#"
                         className="dropdown-item  arrow-none"
                         onClick={(e) => {
-                          e.preventDefault();
-                          setchart(!chart);
+                          e.preventDefault()
+                          setchart(!chart)
                         }}
                       >
-                        {props.t("Charts")} <div className="arrow-down"></div>
+                        {props.t('Charts')} <div className="arrow-down"></div>
                       </Link>
                       <div
-                        className={classname("dropdown-menu", { show: chart })}
+                        className={classname('dropdown-menu', { show: chart })}
                       >
                         <Link to="#" className="dropdown-item">
-                          {" "}
-                          {props.t("Apex charts")}
+                          {' '}
+                          {props.t('Apex charts')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {" "}
-                          {props.t("Chartjs Chart")}
+                          {' '}
+                          {props.t('Chartjs Chart')}
                         </Link>
 
                         <Link to="#" className="dropdown-item">
-                          {props.t("Knob Chart")}
+                          {props.t('Knob Chart')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Re Chart")}
+                          {props.t('Re Chart')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {" "}
-                          {props.t("Sparkline Chart")}
+                          {' '}
+                          {props.t('Sparkline Chart')}
                         </Link>
                       </div>
                     </div>
@@ -737,29 +694,26 @@ const Navbar = (props) => {
                         to="/#"
                         className="dropdown-item  arrow-none"
                         onClick={(e) => {
-                          e.preventDefault();
-                          seticon(!icon);
+                          e.preventDefault()
+                          seticon(!icon)
                         }}
                       >
-                        {props.t("Icons")} <div className="arrow-down"></div>
+                        {props.t('Icons')} <div className="arrow-down"></div>
                       </Link>
                       <div
-                        className={classname("dropdown-menu", { show: icon })}
+                        className={classname('dropdown-menu', { show: icon })}
                       >
                         <Link to="#" className="dropdown-item">
-                          {props.t("Boxicons")}
-                        </Link>
-                        <Link
-                          to="#"
-                          className="dropdown-item"
-                        >
-                          {props.t("Material Design")}
+                          {props.t('Boxicons')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Dripicons")}
+                          {props.t('Material Design')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Font awesome")}{" "}
+                          {props.t('Dripicons')}
+                        </Link>
+                        <Link to="#" className="dropdown-item">
+                          {props.t('Font awesome')}{' '}
                         </Link>
                       </div>
                     </div>
@@ -768,19 +722,18 @@ const Navbar = (props) => {
                         to="/#"
                         className="dropdown-item  arrow-none"
                         onClick={(e) => {
-                          e.preventDefault();
-                          setmap(!map);
+                          e.preventDefault()
+                          setmap(!map)
                         }}
                       >
-                        {props.t("Maps")} <div className="arrow-down"></div>
+                        {props.t('Maps')} <div className="arrow-down"></div>
                       </Link>
                       <div
-                        className={classname("dropdown-menu", { show: map })}
+                        className={classname('dropdown-menu', { show: map })}
                       >
                         <Link to="#" className="dropdown-item">
-                          {props.t("Google Maps")}{" "}
+                          {props.t('Google Maps')}{' '}
                         </Link>
-
                       </div>
                     </div>
                   </div>
@@ -791,35 +744,35 @@ const Navbar = (props) => {
                     className="nav-link  arrow-none"
                     to="/#"
                     onClick={(e) => {
-                      e.preventDefault();
-                      setextra(!extra);
+                      e.preventDefault()
+                      setextra(!extra)
                     }}
                   >
                     <i className="bx bx-file me-2"></i>
-                    {props.t("Extra pages")} <div className="arrow-down"></div>
+                    {props.t('Extra pages')} <div className="arrow-down"></div>
                   </Link>
-                  <div className={classname("dropdown-menu", { show: extra })}>
+                  <div className={classname('dropdown-menu', { show: extra })}>
                     <div className="dropdown">
                       <Link
                         to="/#"
                         className="dropdown-item  arrow-none"
                         onClick={(e) => {
-                          e.preventDefault();
-                          setinvoice(!invoice);
+                          e.preventDefault()
+                          setinvoice(!invoice)
                         }}
                       >
-                        {props.t("Invoices")} <div className="arrow-down"></div>
+                        {props.t('Invoices')} <div className="arrow-down"></div>
                       </Link>
                       <div
-                        className={classname("dropdown-menu", {
+                        className={classname('dropdown-menu', {
                           show: invoice,
                         })}
                       >
                         <Link to="#" className="dropdown-item">
-                          {props.t("Invoice List")}
+                          {props.t('Invoice List')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Invoice Detail")}
+                          {props.t('Invoice Detail')}
                         </Link>
                       </div>
                     </div>
@@ -829,69 +782,51 @@ const Navbar = (props) => {
                         to="/#"
                         className="dropdown-item  arrow-none"
                         onClick={(e) => {
-                          e.preventDefault();
-                          setauth(!auth);
+                          e.preventDefault()
+                          setauth(!auth)
                         }}
                       >
-                        {props.t("Authentication")}{" "}
+                        {props.t('Authentication')}{' '}
                         <div className="arrow-down"></div>
                       </Link>
                       <div
-                        className={classname("dropdown-menu", { show: auth })}
+                        className={classname('dropdown-menu', { show: auth })}
                       >
                         <Link to="#" className="dropdown-item">
-                          {props.t("Login")}
+                          {props.t('Login')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Login 2")}
+                          {props.t('Login 2')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Recover Password")}
+                          {props.t('Recover Password')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Recover Password 2")}
+                          {props.t('Recover Password 2')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Lock Screen")}
-                        </Link>
-                        <Link
-                          to="#"
-                          className="dropdown-item"
-                        >
-                          {props.t("Lock Screen 2")}
+                          {props.t('Lock Screen')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Confirm Mail")}
+                          {props.t('Lock Screen 2')}
                         </Link>
-                        <Link
-                          to="#"
-                          className="dropdown-item"
-                        >
-                          {props.t("Confirm Mail 2")}
+                        <Link to="#" className="dropdown-item">
+                          {props.t('Confirm Mail')}
                         </Link>
-                        <Link
-                          to="#"
-                          className="dropdown-item"
-                        >
-                          {props.t("Email Verification")}
+                        <Link to="#" className="dropdown-item">
+                          {props.t('Confirm Mail 2')}
                         </Link>
-                        <Link
-                          to="#"
-                          className="dropdown-item"
-                        >
-                          {props.t("Email Verification 2")}
+                        <Link to="#" className="dropdown-item">
+                          {props.t('Email Verification')}
                         </Link>
-                        <Link
-                          to="#"
-                          className="dropdown-item"
-                        >
-                          {props.t("Two Step Verification")}
+                        <Link to="#" className="dropdown-item">
+                          {props.t('Email Verification 2')}
                         </Link>
-                        <Link
-                          to="#"
-                          className="dropdown-item"
-                        >
-                          {props.t("Two Step Verification 2")}
+                        <Link to="#" className="dropdown-item">
+                          {props.t('Two Step Verification')}
+                        </Link>
+                        <Link to="#" className="dropdown-item">
+                          {props.t('Two Step Verification 2')}
                         </Link>
                       </div>
                     </div>
@@ -901,40 +836,40 @@ const Navbar = (props) => {
                         className="dropdown-item  arrow-none"
                         to="/#"
                         onClick={(e) => {
-                          e.preventDefault();
-                          setutility(!utility);
+                          e.preventDefault()
+                          setutility(!utility)
                         }}
                       >
-                        {props.t("Utility")} <div className="arrow-down"></div>
+                        {props.t('Utility')} <div className="arrow-down"></div>
                       </Link>
                       <div
-                        className={classname("dropdown-menu", {
+                        className={classname('dropdown-menu', {
                           show: utility,
                         })}
                       >
                         <Link to="#" className="dropdown-item">
-                          {props.t("Starter Page")}
+                          {props.t('Starter Page')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Maintenance")}
+                          {props.t('Maintenance')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Coming Soon")}
+                          {props.t('Coming Soon')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Timeline")}
+                          {props.t('Timeline')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("FAQs")}
+                          {props.t('FAQs')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Pricing")}
+                          {props.t('Pricing')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Error 404")}
+                          {props.t('Error 404')}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {props.t("Error 500")}
+                          {props.t('Error 500')}
                         </Link>
                       </div>
                     </div>
@@ -946,21 +881,21 @@ const Navbar = (props) => {
         </div>
       </div>
     </React.Fragment>
-  );
-};
+  )
+}
 
 Navbar.propTypes = {
   leftMenu: PropTypes.any,
   location: PropTypes.any,
   menuOpen: PropTypes.any,
   t: PropTypes.any,
-};
+}
 
 const mapStatetoProps = (state) => {
-  const { leftMenu } = state.Layout;
-  return { leftMenu };
-};
+  const { leftMenu } = state.Layout
+  return { leftMenu }
+}
 
 export default withRouter(
   connect(mapStatetoProps, {})(withTranslation()(Navbar))
-);
+)

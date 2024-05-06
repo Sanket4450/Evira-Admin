@@ -1,40 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react'
 import {
   Dropdown,
   DropdownItem,
   DropdownMenu,
   DropdownToggle,
-} from "reactstrap";
-import { get, map } from "lodash";
-import { withTranslation } from "react-i18next";
+} from 'reactstrap'
+import { get, map } from 'lodash'
+import { withTranslation } from 'react-i18next'
 
 //i18n
-import i18n from "../../../i18n";
-import languages from "../../../common/languages";
+import i18n from '../../../i18n'
+import languages from '../../../common/languages'
 
 import { getItem, setItem } from '../../../helpers/localStorage'
 
 const LanguageDropdown = () => {
   // Declare a new state variable, which we'll call "menu"
-  const [selectedLang, setSelectedLang] = useState("");
-  const [menu, setMenu] = useState(false);
+  const [selectedLang, setSelectedLang] = useState('')
+  const [menu, setMenu] = useState(false)
 
   useEffect(() => {
     const currentLanguage = getItem('I18N_LANGUAGE')
-    setSelectedLang(currentLanguage);
+    setSelectedLang(currentLanguage)
   }, [])
 
-  const changeLanguageAction = lang => {
+  const changeLanguageAction = (lang) => {
     //set language as i18n
-    i18n.changeLanguage(lang);
-    setItem("I18N_LANGUAGE", lang);
-    setSelectedLang(lang);
+    i18n.changeLanguage(lang)
+    setItem('I18N_LANGUAGE', lang)
+    setSelectedLang(lang)
   }
 
   const toggle = () => {
-    setMenu(!menu);
+    setMenu(!menu)
   }
-  
+
   return (
     <>
       <Dropdown isOpen={menu} toggle={toggle} className="d-inline-block">
@@ -47,12 +47,13 @@ const LanguageDropdown = () => {
           />
         </DropdownToggle>
         <DropdownMenu className="language-switch dropdown-menu-end">
-          {map(Object.keys(languages), key => (
+          {map(Object.keys(languages), (key) => (
             <DropdownItem
               key={key}
               onClick={() => changeLanguageAction(key)}
-              className={`notify-item ${selectedLang === key ? "active" : "none"
-                }`}
+              className={`notify-item ${
+                selectedLang === key ? 'active' : 'none'
+              }`}
             >
               <img
                 src={get(languages, `${key}.flag`)}

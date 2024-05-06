@@ -159,7 +159,7 @@ const Dashboard = (props) => {
                               ₹
                               {(
                                 dashboard_revenue?.success?.Revenue /
-                                dashboard_revenue?.success?.Orders || 0
+                                  dashboard_revenue?.success?.Orders || 0
                               ).toFixed(2)}
                             </h4>
                           </div>

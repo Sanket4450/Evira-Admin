@@ -1,19 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { useEffect, useState } from 'react'
 import {
-  Alert,
-  Collapse,
-  Button,
-  Card,
-  CardBody,
-  CardTitle,
   Container,
-  Form,
-  Input,
-  Modal,
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
 } from 'reactstrap'
 //redux
 import { useSelector, useDispatch } from 'react-redux'
@@ -112,7 +100,12 @@ const Message = (props) => {
                 {!message_list || message_list?.length === 0 ? (
                   <h3 className="text-center">No Record Found</h3>
                 ) : (
-                  <div style={{ backgroundColor: 'var(--bs-secondary-bg)', padding: '20px' }}>
+                  <div
+                    style={{
+                      backgroundColor: 'var(--bs-secondary-bg)',
+                      padding: '20px',
+                    }}
+                  >
                     <div
                       style={{
                         backgroundColor: 'var(--bs-light)',

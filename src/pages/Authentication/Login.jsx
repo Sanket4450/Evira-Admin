@@ -1,14 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import withRouter from "../../components/Common/withRouter";
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
+import withRouter from '../../components/Common/withRouter'
 
 //redux
-import { useSelector, useDispatch } from "react-redux";
-import { createSelector } from "reselect";
+import { useSelector, useDispatch } from 'react-redux'
+import { createSelector } from 'reselect'
 
 // Formik validation
-import { useFormik } from "formik";
+import { useFormik } from 'formik'
 import { loginSchema } from '../../schemas'
 
 import {
@@ -22,15 +22,15 @@ import {
   Input,
   FormFeedback,
   Label,
-} from "reactstrap";
+} from 'reactstrap'
 
 // actions
-import { loginUser } from "../../store/actions";
+import { loginUser } from '../../store/actions'
 
 // import images
-import profile from "../../assets/images/profile-img.png";
-import logo from "../../assets/images/logo.svg";
-import lightlogo from "../../assets/images/logo-light.svg";
+import profile from '../../assets/images/profile-img.png'
+import logo from '../../assets/images/logo.svg'
+import lightlogo from '../../assets/images/logo-light.svg'
 
 const Login = (props) => {
   document.title = 'Login | Evira - Admin & Dashboard'
@@ -117,11 +117,7 @@ const Login = (props) => {
                         return false
                       }}
                     >
-                      {error ? (
-                        <Alert color="danger">
-                          {error}
-                        </Alert>
-                      ) : null}
+                      {error ? <Alert color="danger">{error}</Alert> : null}
 
                       <div className="mb-3">
                         <Label className="form-label">Email</Label>
@@ -218,8 +214,8 @@ const Login = (props) => {
   )
 }
 
-export default withRouter(Login);
+export default withRouter(Login)
 
 Login.propTypes = {
   history: PropTypes.object,
-};
+}

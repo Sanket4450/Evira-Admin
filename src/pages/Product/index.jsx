@@ -1,9 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { useEffect, useState } from 'react'
-import {
-  Container,
-  Row,
-} from 'reactstrap'
+import { Container, Row } from 'reactstrap'
 //redux
 import { useSelector, useDispatch } from 'react-redux'
 //Import Breadcrumb
@@ -11,9 +8,7 @@ import Breadcrumbs from '../../components/Common/Breadcrumb'
 
 //i18n
 import { withTranslation } from 'react-i18next'
-import {
-  getProductList,
-} from '../../store/home/product/actions'
+import { getProductList } from '../../store/home/product/actions'
 import { createSelector } from 'reselect'
 
 import ProductsFilters from '../../components/Products/ProductsList/Filter/productFilter'
@@ -41,11 +36,7 @@ const Product = (props) => {
     total_record: product.total_record,
   }))
 
-  const {
-    product_list,
-    loading,
-    total_record,
-  } = useSelector(ProductProperties)
+  const { product_list, loading, total_record } = useSelector(ProductProperties)
 
   useEffect(() => {
     dispatch(getProductList(pagination))
@@ -81,7 +72,6 @@ const Product = (props) => {
           </Row>
         </Container>
       </div>
-      
     </React.Fragment>
   )
 }

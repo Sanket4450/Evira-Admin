@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import withRouter from "../Common/withRouter";
-import PropTypes from "prop-types";
+import React, { useEffect, useState } from 'react'
+import withRouter from '../Common/withRouter'
+import PropTypes from 'prop-types'
 
 //actions
 import {
@@ -9,21 +9,20 @@ import {
   changeLayoutWidth,
   showRightSidebarAction,
   changeLayoutMode,
-} from "../../store/actions";
+} from '../../store/actions'
 
 //redux
-import { useSelector, useDispatch } from "react-redux";
-import { createSelector } from "reselect";
+import { useSelector, useDispatch } from 'react-redux'
+import { createSelector } from 'reselect'
 
 //components
-import Navbar from "./Navbar";
-import Header from "./Header";
-import Footer from "./Footer";
-import RightSidebar from "../CommonForBoth/RightSidebar";
-import { useLocation } from "react-router-dom";
+import Navbar from './Navbar'
+import Header from './Header'
+import Footer from './Footer'
+import RightSidebar from '../CommonForBoth/RightSidebar'
+import { useLocation } from 'react-router-dom'
 const Layout = (props) => {
-  const dispatch = useDispatch();
-
+  const dispatch = useDispatch()
 
   const selectLayoutProperties = createSelector(
     (state) => state.Layout,
@@ -34,93 +33,92 @@ const Layout = (props) => {
       showRightSidebar: layout.showRightSidebar,
       layoutModeType: layout.layoutModeType,
     })
-  );
+  )
   const {
     topbarTheme,
     layoutModeType,
     layoutWidth,
     isPreloader,
-    showRightSidebar
-  } = useSelector(selectLayoutProperties);
+    showRightSidebar,
+  } = useSelector(selectLayoutProperties)
 
   /*
   document title
   */
 
-  const pathName = useLocation();
+  const pathName = useLocation()
 
   useEffect(() => {
-    const title = pathName.pathname;
-    let currentage = title.charAt(1).toUpperCase() + title.slice(2);
+    const title = pathName.pathname
+    let currentage = title.charAt(1).toUpperCase() + title.slice(2)
 
-    document.title =
-      currentage + " | Evira - Admin & Dashboard";
-  }, [pathName.pathname]);
+    document.title = currentage + ' | Evira - Admin & Dashboard'
+  }, [pathName.pathname])
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    window.scrollTo(0, 0)
+  }, [])
 
   //hides right sidebar on body click
   const hideRightbar = (event) => {
-    var rightbar = document.getElementById("right-bar");
+    var rightbar = document.getElementById('right-bar')
     //if clicked in inside right bar, then do nothing
     if (rightbar && rightbar.contains(event.target)) {
-      return;
+      return
     } else {
       //if clicked in outside of rightbar then fire action for hide rightbar
-      dispatch(showRightSidebarAction(false));
+      dispatch(showRightSidebarAction(false))
     }
-  };
+  }
 
   /*
   layout settings
   */
   useEffect(() => {
-    dispatch(changeLayout("horizontal"));
-  }, [dispatch]);
+    dispatch(changeLayout('horizontal'))
+  }, [dispatch])
 
   useEffect(() => {
     //init body click event fot toggle rightbar
-    document.body.addEventListener("click", hideRightbar, true);
+    document.body.addEventListener('click', hideRightbar, true)
 
     if (isPreloader === true) {
-      document.getElementById("preloader").style.display = "block";
-      document.getElementById("status").style.display = "block";
+      document.getElementById('preloader').style.display = 'block'
+      document.getElementById('status').style.display = 'block'
 
       setTimeout(function () {
-        document.getElementById("preloader").style.display = "none";
-        document.getElementById("status").style.display = "none";
-      }, 2500);
+        document.getElementById('preloader').style.display = 'none'
+        document.getElementById('status').style.display = 'none'
+      }, 2500)
     } else {
-      document.getElementById("preloader").style.display = "none";
-      document.getElementById("status").style.display = "none";
+      document.getElementById('preloader').style.display = 'none'
+      document.getElementById('status').style.display = 'none'
     }
-  }, [isPreloader]);
+  }, [isPreloader])
 
   useEffect(() => {
     if (topbarTheme) {
-      dispatch(changeTopbarTheme(topbarTheme));
+      dispatch(changeTopbarTheme(topbarTheme))
     }
-  }, [dispatch, topbarTheme]);
+  }, [dispatch, topbarTheme])
 
   useEffect(() => {
     if (layoutModeType) {
-      dispatch(changeLayoutMode(layoutModeType));
+      dispatch(changeLayoutMode(layoutModeType))
     }
-  }, [layoutModeType, dispatch]);
+  }, [layoutModeType, dispatch])
 
   useEffect(() => {
     if (layoutWidth) {
-      dispatch(changeLayoutWidth(layoutWidth));
+      dispatch(changeLayoutWidth(layoutWidth))
     }
-  }, [dispatch, layoutWidth]);
+  }, [dispatch, layoutWidth])
 
-  const [isMenuOpened, setIsMenuOpened] = useState(false);
+  const [isMenuOpened, setIsMenuOpened] = useState(false)
 
   const openMenu = () => {
-    setIsMenuOpened(!isMenuOpened);
-  };
+    setIsMenuOpened(!isMenuOpened)
+  }
 
   return (
     <React.Fragment>
@@ -150,8 +148,8 @@ const Layout = (props) => {
 
       {showRightSidebar ? <RightSidebar /> : null}
     </React.Fragment>
-  );
-};
+  )
+}
 
 Layout.propTypes = {
   changeLayout: PropTypes.func /*  */,
@@ -163,6 +161,6 @@ Layout.propTypes = {
   location: PropTypes.object,
   showRightSidebar: PropTypes.any,
   topbarTheme: PropTypes.any,
-};
+}
 
-export default withRouter(Layout);
+export default withRouter(Layout)

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
-import React from "react"
-import { Col, Modal, ModalBody, Row } from "reactstrap"
+import React from 'react'
+import { Col, Modal, ModalBody, Row } from 'reactstrap'
 
 const DeleteModal = ({ show, onDeleteClick, onCloseClick }) => {
   return (
@@ -11,7 +11,7 @@ const DeleteModal = ({ show, onDeleteClick, onCloseClick }) => {
             <div className="text-center">
               <i
                 className="mdi mdi-alert-circle-outline"
-                style={{ fontSize: "9em", color: "orange" }}
+                style={{ fontSize: '9em', color: 'orange' }}
               />
               <h2>Are you sure?</h2>
               <h4>{"You won't be able to revert this!"}</h4>
@@ -46,7 +46,7 @@ const DeleteModal = ({ show, onDeleteClick, onCloseClick }) => {
 DeleteModal.propTypes = {
   onCloseClick: PropTypes.func,
   onDeleteClick: PropTypes.func,
-  show: PropTypes.any
+  show: PropTypes.any,
 }
 
 export default DeleteModal

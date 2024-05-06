@@ -267,10 +267,7 @@ const FAQ = (props) => {
       <div className="page-content">
         <Container fluid>
           {/* Render Breadcrumb */}
-          <Breadcrumbs
-            title={props.t('FAQ')}
-            breadcrumbItem={props.t('FAQ')}
-          />
+          <Breadcrumbs title={props.t('FAQ')} breadcrumbItem={props.t('FAQ')} />
           <div className="mb-4 text-end">
             <Button
               color="primary"

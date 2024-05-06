@@ -93,7 +93,8 @@ const OrdersTrackingModal = (props) => {
         status: {
           title,
           description,
-          isForwardDirection: activeTabVertical < trackingInfo.length ? false : true,
+          isForwardDirection:
+            activeTabVertical < trackingInfo.length ? false : true,
         },
       }
       dispatch(updateOrders(payload))

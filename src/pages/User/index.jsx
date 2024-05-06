@@ -334,7 +334,9 @@ const User = (props) => {
                 <div className="avatar-md mx-auto mb-4">
                   <div className="avatar-title bg-light  rounded-circle text-primary h1">
                     <img
-                      src={modelInfo?.updateUserInfo?.profileImage || DummyImage}
+                      src={
+                        modelInfo?.updateUserInfo?.profileImage || DummyImage
+                      }
                       alt=""
                       width={'80px'}
                       className="rounded-circle"

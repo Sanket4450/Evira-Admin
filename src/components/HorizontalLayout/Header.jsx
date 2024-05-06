@@ -1,40 +1,40 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 
-import { connect } from "react-redux";
+import { connect } from 'react-redux'
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
 
 // Redux Store
-import { showRightSidebarAction, toggleLeftmenu } from "../../store/actions";
+import { showRightSidebarAction, toggleLeftmenu } from '../../store/actions'
 // reactstrap
-import { Row, Col, Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
+import { Row, Col, Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap'
 
 // Import menuDropdown
-import LanguageDropdown from "../CommonForBoth/TopbarDropdown/LanguageDropdown";
-import ProfileMenu from "../CommonForBoth/TopbarDropdown/ProfileMenu";
+import LanguageDropdown from '../CommonForBoth/TopbarDropdown/LanguageDropdown'
+import ProfileMenu from '../CommonForBoth/TopbarDropdown/ProfileMenu'
 
-import megamenuImg from "../../assets/images/megamenu-img.png";
-import logo from "../../assets/images/logo.svg";
-import logoLight from "../../assets/images/logo-light.png";
-import logoLightSvg from "../../assets/images/logo-light.svg";
-import logoDark from "../../assets/images/logo-dark.png";
+import megamenuImg from '../../assets/images/megamenu-img.png'
+import logo from '../../assets/images/logo.svg'
+import logoLight from '../../assets/images/logo-light.png'
+import logoLightSvg from '../../assets/images/logo-light.svg'
+import logoDark from '../../assets/images/logo-dark.png'
 
 // import images
-import github from "../../assets/images/brands/github.png";
-import bitbucket from "../../assets/images/brands/bitbucket.png";
-import dribbble from "../../assets/images/brands/dribbble.png";
-import dropbox from "../../assets/images/brands/dropbox.png";
-import mail_chimp from "../../assets/images/brands/mail_chimp.png";
-import slack from "../../assets/images/brands/slack.png";
+import github from '../../assets/images/brands/github.png'
+import bitbucket from '../../assets/images/brands/bitbucket.png'
+import dribbble from '../../assets/images/brands/dribbble.png'
+import dropbox from '../../assets/images/brands/dropbox.png'
+import mail_chimp from '../../assets/images/brands/mail_chimp.png'
+import slack from '../../assets/images/brands/slack.png'
 
 //i18n
-import { withTranslation } from "react-i18next";
+import { withTranslation } from 'react-i18next'
 
 const Header = (props) => {
-  const [menu, setMenu] = useState(false);
-  const [isSearch, setSearch] = useState(false);
-  const [socialDrp, setsocialDrp] = useState(false);
+  const [menu, setMenu] = useState(false)
+  const [isSearch, setSearch] = useState(false)
+  const [socialDrp, setsocialDrp] = useState(false)
 
   function toggleFullscreen() {
     if (
@@ -44,21 +44,21 @@ const Header = (props) => {
     ) {
       // current working methods
       if (document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen();
+        document.documentElement.requestFullscreen()
       } else if (document.documentElement.mozRequestFullScreen) {
-        document.documentElement.mozRequestFullScreen();
+        document.documentElement.mozRequestFullScreen()
       } else if (document.documentElement.webkitRequestFullscreen) {
         document.documentElement.webkitRequestFullscreen(
           Element.ALLOW_KEYBOARD_INPUT
-        );
+        )
       }
     } else {
       if (document.cancelFullScreen) {
-        document.cancelFullScreen();
+        document.cancelFullScreen()
       } else if (document.mozCancelFullScreen) {
-        document.mozCancelFullScreen();
+        document.mozCancelFullScreen()
       } else if (document.webkitCancelFullScreen) {
-        document.webkitCancelFullScreen();
+        document.webkitCancelFullScreen()
       }
     }
   }
@@ -92,7 +92,7 @@ const Header = (props) => {
               className="btn btn-sm px-3 font-size-16 d-lg-none header-item"
               data-toggle="collapse"
               onClick={() => {
-                props.toggleLeftmenu(!props.leftMenu);
+                props.toggleLeftmenu(!props.leftMenu)
               }}
               data-target="#topnav-menu-content"
             >
@@ -116,7 +116,7 @@ const Header = (props) => {
               toggle={() => setMenu(!menu)}
             >
               <DropdownToggle className="btn header-item " caret tag="button">
-                {props.t("Mega Menu")} <i className="mdi mdi-chevron-down" />
+                {props.t('Mega Menu')} <i className="mdi mdi-chevron-down" />
               </DropdownToggle>
               <DropdownMenu className="dropdown-megamenu">
                 <Row>
@@ -124,84 +124,84 @@ const Header = (props) => {
                     <Row>
                       <Col md={4}>
                         <h5 className="font-size-14 mt-0">
-                          {props.t("UI Components")}
+                          {props.t('UI Components')}
                         </h5>
                         <ul className="list-unstyled megamenu-list">
                           <li>
-                            <Link to="#">{props.t("Lightbox")}</Link>
+                            <Link to="#">{props.t('Lightbox')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{props.t("Range Slider")}</Link>
+                            <Link to="#">{props.t('Range Slider')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{props.t("Sweet Alert")}</Link>
+                            <Link to="#">{props.t('Sweet Alert')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{props.t("Rating")}</Link>
+                            <Link to="#">{props.t('Rating')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{props.t("Forms")}</Link>
+                            <Link to="#">{props.t('Forms')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{props.t("Tables")}</Link>
+                            <Link to="#">{props.t('Tables')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{props.t("Charts")}</Link>
+                            <Link to="#">{props.t('Charts')}</Link>
                           </li>
                         </ul>
                       </Col>
 
                       <Col md={4}>
                         <h5 className="font-size-14 mt-0">
-                          {props.t("Applications")}
+                          {props.t('Applications')}
                         </h5>
                         <ul className="list-unstyled megamenu-list">
                           <li>
-                            <Link to="#">{props.t("Ecommerce")}</Link>
+                            <Link to="#">{props.t('Ecommerce')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{props.t("Calendar")}</Link>
+                            <Link to="#">{props.t('Calendar')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{props.t("Email")}</Link>
+                            <Link to="#">{props.t('Email')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{props.t("Projects")}</Link>
+                            <Link to="#">{props.t('Projects')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{props.t("Tasks")}</Link>
+                            <Link to="#">{props.t('Tasks')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{props.t("Contacts")}</Link>
+                            <Link to="#">{props.t('Contacts')}</Link>
                           </li>
                         </ul>
                       </Col>
 
                       <Col md={4}>
                         <h5 className="font-size-14 mt-0">
-                          {props.t("Extra Pages")}
+                          {props.t('Extra Pages')}
                         </h5>
                         <ul className="list-unstyled megamenu-list">
                           <li>
-                            <Link to="#">{props.t("Light Sidebar")}</Link>
+                            <Link to="#">{props.t('Light Sidebar')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{props.t("Compact Sidebar")}</Link>
+                            <Link to="#">{props.t('Compact Sidebar')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{props.t("Horizontal layout")}</Link>
+                            <Link to="#">{props.t('Horizontal layout')}</Link>
                           </li>
                           <li>
-                            <Link to="#"> {props.t("Maintenance")}</Link>
+                            <Link to="#"> {props.t('Maintenance')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{props.t("Coming Soon")}</Link>
+                            <Link to="#">{props.t('Coming Soon')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{props.t("Timeline")}</Link>
+                            <Link to="#">{props.t('Timeline')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{props.t("FAQs")}</Link>
+                            <Link to="#">{props.t('FAQs')}</Link>
                           </li>
                         </ul>
                       </Col>
@@ -211,29 +211,29 @@ const Header = (props) => {
                     <Row>
                       <Col sm={6}>
                         <h5 className="font-size-14 mt-0">
-                          {props.t("UI Components")}
+                          {props.t('UI Components')}
                         </h5>
                         <ul className="list-unstyled megamenu-list">
                           <li>
-                            <Link to="#">{props.t("Lightbox")}</Link>
+                            <Link to="#">{props.t('Lightbox')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{props.t("Range Slider")}</Link>
+                            <Link to="#">{props.t('Range Slider')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{props.t("Sweet Alert")}</Link>
+                            <Link to="#">{props.t('Sweet Alert')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{props.t("Rating")}</Link>
+                            <Link to="#">{props.t('Rating')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{props.t("Forms")}</Link>
+                            <Link to="#">{props.t('Forms')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{props.t("Tables")}</Link>
+                            <Link to="#">{props.t('Tables')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{props.t("Charts")}</Link>
+                            <Link to="#">{props.t('Charts')}</Link>
                           </li>
                         </ul>
                       </Col>
@@ -267,8 +267,8 @@ const Header = (props) => {
               <div
                 className={
                   isSearch
-                    ? "dropdown-menu dropdown-menu-lg dropdown-menu-end p-0 show"
-                    : "dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+                    ? 'dropdown-menu dropdown-menu-lg dropdown-menu-end p-0 show'
+                    : 'dropdown-menu dropdown-menu-lg dropdown-menu-end p-0'
                 }
                 aria-labelledby="page-header-search-dropdown"
               >
@@ -279,7 +279,7 @@ const Header = (props) => {
                         type="text"
                         name="search"
                         className="form-control"
-                        placeholder={props.t("Search") + "..."}
+                        placeholder={props.t('Search') + '...'}
                         aria-label="Recipient's username"
                       />
                       <div className="input-group-append">
@@ -299,7 +299,7 @@ const Header = (props) => {
               className="d-none d-lg-inline-block ms-1"
               isOpen={socialDrp}
               toggle={() => {
-                setsocialDrp(!socialDrp);
+                setsocialDrp(!socialDrp)
               }}
             >
               <DropdownToggle
@@ -360,7 +360,7 @@ const Header = (props) => {
                 type="button"
                 className="btn header-item noti-icon "
                 onClick={() => {
-                  toggleFullscreen();
+                  toggleFullscreen()
                 }}
                 data-toggle="fullscreen"
               >
@@ -373,7 +373,7 @@ const Header = (props) => {
             <div className="dropdown d-inline-block">
               <button
                 onClick={() => {
-                  props.showRightSidebarAction(!props.showRightSidebar);
+                  props.showRightSidebarAction(!props.showRightSidebar)
                 }}
                 type="button"
                 className="btn header-item noti-icon right-bar-toggle "
@@ -385,8 +385,8 @@ const Header = (props) => {
         </div>
       </header>
     </React.Fragment>
-  );
-};
+  )
+}
 
 Header.propTypes = {
   leftMenu: PropTypes.any,
@@ -394,14 +394,14 @@ Header.propTypes = {
   showRightSidebarAction: PropTypes.func,
   t: PropTypes.any,
   toggleLeftmenu: PropTypes.func,
-};
+}
 
 const mapStatetoProps = (state) => {
-  const { layoutType, showRightSidebar, leftMenu } = state.Layout;
-  return { layoutType, showRightSidebar, leftMenu };
-};
+  const { layoutType, showRightSidebar, leftMenu } = state.Layout
+  return { layoutType, showRightSidebar, leftMenu }
+}
 
 export default connect(mapStatetoProps, {
   showRightSidebarAction,
   toggleLeftmenu,
-})(withTranslation()(Header));
+})(withTranslation()(Header))

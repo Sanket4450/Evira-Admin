@@ -1,10 +1,10 @@
-import React from "react"
+import React from 'react'
 
-import { Row, Col, Card, CardBody } from "reactstrap"
-import { Link } from "react-router-dom"
+import { Row, Col, Card, CardBody } from 'reactstrap'
+import { Link } from 'react-router-dom'
 
-import avatar1 from "../../assets/images/users/avatar-1.jpg"
-import profileImg from "../../assets/images/profile-img.png"
+import avatar1 from '../../assets/images/users/avatar-1.jpg'
+import profileImg from '../../assets/images/profile-img.png'
 
 const WelcomeComp = () => {
   return (
@@ -50,10 +50,7 @@ const WelcomeComp = () => {
                   </Col>
                 </Row>
                 <div className="mt-4">
-                  <Link
-                    to=""
-                    className="btn btn-primary  btn-sm"
-                  >
+                  <Link to="" className="btn btn-primary  btn-sm">
                     View Profile <i className="mdi mdi-arrow-right ms-1"></i>
                   </Link>
                 </div>
